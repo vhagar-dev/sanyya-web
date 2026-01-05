@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
@@ -11,9 +13,22 @@ import ComplexSpendSection from "@/components/ComplexSpendSection";
 import ContractsSection from "@/components/ContractsSection";
 import ROISection from "@/components/ROISection";
 import PioneerSection from "@/components/PioneerSection";
-import Footer from "@/components/Footer";
 
 const Index = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Handle hash navigation when coming from another page
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location.hash]);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -29,7 +44,6 @@ const Index = () => {
       <ContractsSection />
       <ROISection />
       <PioneerSection />
-      <Footer />
     </div>
   );
 };

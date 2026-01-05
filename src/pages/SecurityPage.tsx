@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, Server, Lock, BrainCircuit, Activity } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const securityFeatures = [
   {
@@ -124,8 +123,6 @@ const SecurityPage = () => {
           </motion.div>
         </div>
       </section>
-      
-      <Footer />
     </div>
   );
 };
