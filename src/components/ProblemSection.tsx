@@ -11,11 +11,17 @@ import React from "react";
 const problemCards = [
   {
     id: "data-silo",
-    icon: (size: "sm" | "lg") => <Database className={size === "lg" ? "w-7 h-7 text-slate-600" : "w-5 h-5 text-slate-600"} />,
+    icon: (size: "sm" | "lg") => (
+      <Database
+        className={
+          size === "lg" ? "w-7 h-7 text-slate-600" : "w-5 h-5 text-slate-600"
+        }
+      />
+    ),
     iconBg: "from-slate-100 to-slate-200",
     title: "The Data Silo",
     description:
-      "Your data arrives via three fragmented channels on three different timelines. A Digital PO created today, a Paper Slip arriving on the dock next week, and a PDF Invoice emailed next month. Because they never align, your humans are forced to act as \"manual middleware\" to stitch the transaction together.",
+      'Your data arrives via three fragmented channels on three different timelines. A Digital PO created today, a Paper Slip arriving on the dock next week, and a PDF Invoice emailed next month. Because they never align, your humans are forced to act as "manual middleware" to stitch the transaction together.',
   },
   {
     id: "semantic-gap",
@@ -28,7 +34,15 @@ const problemCards = [
   },
   {
     id: "velocity-trap",
-    icon: (size: "sm" | "lg") => <TrendingDown className={size === "lg" ? "w-7 h-7 text-emerald-600" : "w-5 h-5 text-emerald-600"} />,
+    icon: (size: "sm" | "lg") => (
+      <TrendingDown
+        className={
+          size === "lg"
+            ? "w-7 h-7 text-emerald-600"
+            : "w-5 h-5 text-emerald-600"
+        }
+      />
+    ),
     iconBg: "from-emerald-100 to-emerald-200",
     title: "The Linear Scaling Trap",
     description:
@@ -38,7 +52,16 @@ const problemCards = [
 ];
 
 const ProblemSection = () => (
-  <section id="problem" className="py-24 bg-white relative overflow-hidden">
+  <section
+    id="problem"
+    className="py-24 bg-[#E8E4F8] md:bg-white relative overflow-hidden"
+  >
+    {/* Top blur gradient - mobile only */}
+    <div className="md:hidden absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
+
+    {/* Bottom blur gradient - mobile only */}
+    <div className="md:hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+
     {/* Subtle background pattern */}
     <div
       className="absolute inset-0 opacity-[0.015]"
@@ -67,10 +90,13 @@ const ProblemSection = () => (
           </span>
           THE PROBLEM
         </motion.span>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">The 3-Way Match is Broken for Physical Ops</h2>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+          The 3-Way Match is Broken for Physical Ops
+        </h2>
         <p className="mt-6 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Digital POs, paper packing slips, and PDF invoices never align perfectly. For hardware and biotech teams, this
-          data friction turns a simple payment into a week-long investigation
+          Digital POs, paper packing slips, and PDF invoices never align
+          perfectly. For hardware and biotech teams, this data friction turns a
+          simple payment into a week-long investigation
         </p>
       </motion.div>
 
@@ -85,27 +111,35 @@ const ProblemSection = () => (
             transition={{ delay: 0.1 * (index + 1) }}
             className="glass-card p-8 group"
           >
-            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+            <div
+              className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+            >
               {card.icon("lg")}
             </div>
             <h3 className="text-xl font-semibold mb-3">{card.title}</h3>
-            <p className="text-slate-600 leading-relaxed mb-6">{card.description}</p>
-            
+            <p className="text-slate-600 leading-relaxed mb-6">
+              {card.description}
+            </p>
+
             {card.hasCodeBlock && (
               <div className="code-block space-y-3 text-slate-300">
                 <div>
-                  <span className="text-slate-500">PO:</span> <span className="text-blue-400">"Fetal Bovine Serum"</span>
+                  <span className="text-slate-500">PO:</span>{" "}
+                  <span className="text-blue-400">"Fetal Bovine Serum"</span>
                 </div>
                 <div>
-                  <span className="text-slate-500">Slip:</span> <span className="text-violet-400">"FBS"</span>
+                  <span className="text-slate-500">Slip:</span>{" "}
+                  <span className="text-violet-400">"FBS"</span>
                 </div>
                 <div className="flex items-center gap-2 pt-3 border-t border-slate-700">
                   <Check className="w-4 h-4 text-emerald-400" />
-                  <span className="text-emerald-400 font-medium">Semantic Match</span>
+                  <span className="text-emerald-400 font-medium">
+                    Semantic Match
+                  </span>
                 </div>
               </div>
             )}
-            
+
             {card.hasChart && (
               <>
                 <div className="h-24 flex items-end gap-2">
@@ -116,7 +150,9 @@ const ProblemSection = () => (
                       whileInView={{ height: `${h}%` }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-                      className={`flex-1 rounded-t-sm ${i < 4 ? "bg-red-400" : "bg-emerald-400"}`}
+                      className={`flex-1 rounded-t-sm ${
+                        i < 4 ? "bg-red-400" : "bg-emerald-400"
+                      }`}
                     />
                   ))}
                 </div>
@@ -132,7 +168,7 @@ const ProblemSection = () => (
 
       {/* Mobile: Accordion layout */}
       <div className="md:hidden max-w-lg mx-auto">
-        <Accordion type="single" collapsible defaultValue="data-silo" className="space-y-3">
+        <Accordion type="single" collapsible className="space-y-3">
           {problemCards.map((card) => (
             <AccordionItem
               key={card.id}
@@ -141,30 +177,42 @@ const ProblemSection = () => (
             >
               <AccordionTrigger className="px-6 py-4 hover:no-underline">
                 <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${card.iconBg} flex items-center justify-center flex-shrink-0`}>
+                  <div
+                    className={`w-10 h-10 rounded-xl bg-gradient-to-br ${card.iconBg} flex items-center justify-center flex-shrink-0`}
+                  >
                     {card.icon("sm")}
                   </div>
-                  <span className="text-left font-semibold text-base">{card.title}</span>
+                  <span className="text-left font-semibold text-base">
+                    {card.title}
+                  </span>
                 </div>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6">
-                <p className="text-slate-600 leading-relaxed mb-4">{card.description}</p>
-                
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  {card.description}
+                </p>
+
                 {card.hasCodeBlock && (
                   <div className="code-block space-y-3 text-slate-300">
                     <div>
-                      <span className="text-slate-500">PO:</span> <span className="text-blue-400">"Fetal Bovine Serum"</span>
+                      <span className="text-slate-500">PO:</span>{" "}
+                      <span className="text-blue-400">
+                        "Fetal Bovine Serum"
+                      </span>
                     </div>
                     <div>
-                      <span className="text-slate-500">Slip:</span> <span className="text-violet-400">"FBS"</span>
+                      <span className="text-slate-500">Slip:</span>{" "}
+                      <span className="text-violet-400">"FBS"</span>
                     </div>
                     <div className="flex items-center gap-2 pt-3 border-t border-slate-700">
                       <Check className="w-4 h-4 text-emerald-400" />
-                      <span className="text-emerald-400 font-medium">Semantic Match</span>
+                      <span className="text-emerald-400 font-medium">
+                        Semantic Match
+                      </span>
                     </div>
                   </div>
                 )}
-                
+
                 {card.hasChart && (
                   <>
                     <div className="h-20 flex items-end gap-2">
@@ -172,7 +220,9 @@ const ProblemSection = () => (
                         <div
                           key={i}
                           style={{ height: `${h}%` }}
-                          className={`flex-1 rounded-t-sm ${i < 4 ? "bg-red-400" : "bg-emerald-400"}`}
+                          className={`flex-1 rounded-t-sm ${
+                            i < 4 ? "bg-red-400" : "bg-emerald-400"
+                          }`}
                         />
                       ))}
                     </div>

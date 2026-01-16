@@ -70,9 +70,18 @@ const VectorVisual = () => (
       </motion.div>
 
       {/* Connecting Line */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 320">
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 400 320"
+      >
         <defs>
-          <linearGradient id="vectorLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient
+            id="vectorLineGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
             <stop offset="0%" stopColor="hsl(199, 89%, 48%)" />
             <stop offset="100%" stopColor="hsl(199, 89%, 48%)" />
           </linearGradient>
@@ -125,7 +134,12 @@ const VectorVisual = () => (
 const MobileVisual = () => (
   <div className="relative w-full h-80 md:h-96 flex items-center justify-center">
     {/* Phone mockup */}
-    <motion.div initial={{ y: 20 }} whileInView={{ y: 0 }} viewport={{ once: true }} className="relative">
+    <motion.div
+      initial={{ y: 20 }}
+      whileInView={{ y: 0 }}
+      viewport={{ once: true }}
+      className="relative"
+    >
       <div className="relative w-52 h-[420px] bg-gradient-to-b from-slate-900 to-slate-800 rounded-[3rem] p-2 shadow-2xl">
         <div className="w-full h-full bg-slate-900 rounded-[2.5rem] overflow-hidden relative">
           {/* Notch */}
@@ -178,7 +192,9 @@ const MobileVisual = () => (
             >
               <div className="bg-emerald-500 rounded-xl px-4 py-3 flex items-center gap-2 shadow-lg">
                 <Check className="w-5 h-5 text-white" />
-                <span className="text-sm text-white font-semibold">Matched: PO #8821</span>
+                <span className="text-sm text-white font-semibold">
+                  Matched: PO #8821
+                </span>
               </div>
             </motion.div>
 
@@ -230,7 +246,9 @@ const OCRVisual = () => (
         >
           <div className="absolute -inset-2 border-2 border-cyan-400 rounded-lg animate-pulse" />
           <div className="bg-slate-100 px-4 py-2 rounded-lg">
-            <span className="text-sm font-mono text-slate-600">INV-2024-001</span>
+            <span className="text-sm font-mono text-slate-600">
+              INV-2024-001
+            </span>
           </div>
         </motion.div>
       </div>
@@ -349,14 +367,20 @@ const FeatureRow = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`grid md:grid-cols-2 gap-12 lg:gap-20 items-center ${reversed ? "md:flex-row-reverse" : ""}`}
+      className={`grid md:grid-cols-2 gap-12 lg:gap-20 items-center ${
+        reversed ? "md:flex-row-reverse" : ""
+      }`}
     >
       {/* Text Column */}
       <div className={`space-y-6 ${reversed ? "md:order-2" : ""}`}>
-        <span className={`inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium ${badgeColor}`}>
+        <span
+          className={`inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium ${badgeColor}`}
+        >
           {badge}
         </span>
-        <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">{headline}</h3>
+        <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+          {headline}
+        </h3>
         <p className="text-lg text-slate-600 leading-relaxed">{body}</p>
         <div className="space-y-3 pt-2">
           {checklist.map((item, i) => (
@@ -400,8 +424,9 @@ const SolutionSection = () => {
             Centralize. Verify. Resolve.
           </h2>
           <p className="mt-4 text-lg text-slate-600 subheading-fade">
-            Bring your disparate documents into one intelligent view. Sanyya ingests the data, correlates the dots, and
-            highlights the truth—giving you a perfect audit trail before you book.
+            Bring your disparate documents into one intelligent view. Sanyya
+            ingests the data, correlates the dots, and highlights the
+            truth—giving you a perfect audit trail before you book.
           </p>
         </motion.div>
 
@@ -413,7 +438,10 @@ const SolutionSection = () => {
             badgeColor="bg-cyan-100 text-cyan-700"
             headline="Ingest & Normalize."
             body="Upload your POs, contracts, and invoices in any format. Sanyya ingests raw data from PDF, CSV, or Image and normalizes it into a single source of truth—no complex ERP migration required."
-            checklist={["Works with any file format", "No IT integration needed"]}
+            checklist={[
+              "Works with any file format",
+              "No IT integration needed",
+            ]}
             visual={<VectorVisual />}
           />
 
@@ -423,7 +451,10 @@ const SolutionSection = () => {
             badgeColor="bg-violet-100 text-violet-700"
             headline="Verify Against Reality."
             body="We automate the 3-way match for physical goods and link service invoices to contract milestones. Plus, our mobile PWA lets LabOps snap packing slips at the bench—no barcode guns or laptop carts."
-            checklist={["Liberates LabOps from scanners", "Matches synonyms automatically"]}
+            checklist={[
+              "Liberates LabOps from scanners",
+              "Matches synonyms automatically",
+            ]}
             visual={<MobileVisual />}
             reversed
           />
