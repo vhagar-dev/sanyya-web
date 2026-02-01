@@ -68,12 +68,6 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Link
-              to="/blog"
-              className="relative text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
-            >
-              Blog
-            </Link>
             <Button
               onClick={scrollToWaitlist}
               size="sm"
@@ -129,13 +123,6 @@ const Navbar = () => {
                     {link.label}
                   </a>
                 ))}
-                <Link
-                  to="/blog"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-base text-foreground hover:text-amber-600 transition-colors py-2"
-                >
-                  Blog
-                </Link>
                 <Button
                   onClick={scrollToWaitlist}
                   className="mt-2 w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-semibold shadow-lg shadow-amber-500/30"
