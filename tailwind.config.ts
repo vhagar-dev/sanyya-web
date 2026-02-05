@@ -12,8 +12,11 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
-        border: "hsl(var(--border))", input: "hsl(var(--input))", ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))", foreground: "hsl(var(--foreground))",
+        border: "hsl(var(--border))", 
+        input: "hsl(var(--input))", 
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))", 
+        foreground: "hsl(var(--foreground))",
         primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
         secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
         destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
@@ -21,6 +24,33 @@ export default {
         accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
         popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
+        
+        /* Document Type Colors */
+        doc: {
+          po: "hsl(var(--doc-po))",
+          grn: "hsl(var(--doc-grn))",
+          invoice: "hsl(var(--doc-invoice))",
+        },
+        
+        /* Status Colors */
+        status: {
+          success: "hsl(var(--status-success))",
+          warning: "hsl(var(--status-warning))",
+          error: "hsl(var(--status-error))",
+          info: "hsl(var(--status-info))",
+        },
+        
+        /* Semantic Aliases */
+        success: { DEFAULT: "hsl(var(--success))", foreground: "hsl(var(--success-foreground))" },
+        warning: { DEFAULT: "hsl(var(--warning))", foreground: "hsl(var(--warning-foreground))" },
+        info: { DEFAULT: "hsl(var(--info))", foreground: "hsl(var(--info-foreground))" },
+        
+        /* Brand Gradient Colors */
+        glow: {
+          magenta: "hsl(var(--glow-magenta))",
+          pink: "hsl(var(--glow-pink))",
+          coral: "hsl(var(--glow-coral))",
+        },
       },
       borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
       keyframes: {

@@ -1,88 +1,29 @@
 import { motion } from "framer-motion";
-import { Database, TrendingDown, Check } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import React from "react";
-
-const problemCards = [
-  {
-    id: "data-silo",
-    icon: (size: "sm" | "lg") => (
-      <Database
-        className={
-          size === "lg" ? "w-7 h-7 text-slate-600" : "w-5 h-5 text-slate-600"
-        }
-      />
-    ),
-    iconBg: "from-slate-100 to-slate-200",
-    title: "The Data Silo",
-    description:
-      'Your data arrives via three fragmented channels on three different timelines. A Digital PO created today, a Paper Slip arriving on the dock next week, and a PDF Invoice emailed next month. Because they never align, your humans are forced to act as "manual middleware" to stitch the transaction together.',
-  },
-  {
-    id: "semantic-gap",
-    icon: () => <span className="text-2xl font-mono text-violet-600">≈</span>,
-    iconBg: "from-violet-100 to-violet-200",
-    title: "The Semantic Gap",
-    description:
-      "Vendors frequently use different nomenclature on packing slips than what appears on your PO. Our Vector Engine looks beyond keywords to understand context—automatically matching 'Fetal Bovine Serum' on a purchase order to 'FBS' on a packing slip.",
-    hasCodeBlock: true,
-  },
-  {
-    id: "velocity-trap",
-    icon: (size: "sm" | "lg") => (
-      <TrendingDown
-        className={
-          size === "lg"
-            ? "w-7 h-7 text-emerald-600"
-            : "w-5 h-5 text-emerald-600"
-        }
-      />
-    ),
-    iconBg: "from-emerald-100 to-emerald-200",
-    title: "The Linear Scaling Trap",
-    description:
-      "Paperwork shouldn't be your bottleneck. In the legacy world, doubling experiments meant doubling finance headcount—causing financial friction to grow faster than your science. Sanyya breaks this linear scaling trap, letting you scale volume without bloating your back office.",
-    hasChart: true,
-  },
-];
+import { Clock, Brain, FileWarning, Check, X } from "lucide-react";
 
 const ProblemSection = () => (
-  <section
-    id="problem"
-    className="py-24 bg-[#E8E4F8] md:bg-white relative overflow-hidden"
-  >
-    {/* Top blur gradient - mobile only */}
-    <div className="md:hidden absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
-
-    {/* Bottom blur gradient - mobile only */}
-    <div className="md:hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
-
+  <section id="problem" className="py-20 md:py-28 bg-background relative overflow-hidden">
     {/* Subtle background pattern */}
     <div
-      className="absolute inset-0 opacity-[0.015]"
+      className="absolute inset-0 opacity-[0.03]"
       style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+        backgroundImage: `radial-gradient(circle at 1px 1px, hsl(0 0% 40%) 1px, transparent 0)`,
         backgroundSize: "40px 40px",
       }}
     />
 
-    <div className="container mx-auto px-6 relative z-10">
+    <div className="container mx-auto px-4 sm:px-6 relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center max-w-3xl mx-auto mb-16"
+        className="text-center max-w-3xl mx-auto mb-10 md:mb-16"
       >
         <motion.span
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 border border-red-100 text-red-600 text-sm font-medium mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs sm:text-sm font-medium mb-4"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -90,153 +31,334 @@ const ProblemSection = () => (
           </span>
           THE PROBLEM
         </motion.span>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-          The 3-Way Match is Broken for Physical Ops
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground px-2">
+          Why Your ERP is Hallucinating.
         </h2>
-        <p className="mt-6 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Digital POs, paper packing slips, and PDF invoices never align
-          perfectly. For hardware and biotech teams, this data friction turns a
-          simple payment into a week-long investigation
+        <p className="mt-4 md:mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed px-2">
+          Legacy ERP systems assume a 'Happy Path'—where ordered equals received. But they lack a centralized connection to the physical loading dock. Without a digitally-linked Packing Slip or GRN, you have no verified proof of delivery—just messy data and "Phantom Inventory."
         </p>
+
+        {/* Disconnected Documents Visual */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="mt-10 md:mt-14 max-w-2xl mx-auto"
+        >
+          <div className="relative bg-secondary/30 rounded-2xl border border-border p-4 sm:p-6 md:p-8">
+            {/* The three documents - stacked on mobile, row on tablet+ */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-2 md:gap-4">
+              {/* PO Document */}
+              <motion.div
+                initial={{ rotate: -3 }}
+                animate={{ rotate: [-3, -1, -3] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-border shadow-lg"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[10px] font-bold text-blue-400">PO</span>
+                  </div>
+                  <span className="text-xs font-medium text-foreground">Purchase Order</span>
+                </div>
+                <div className="space-y-1.5">
+                  <div className="h-1.5 w-full bg-muted rounded" />
+                  <div className="h-1.5 w-3/4 bg-muted rounded" />
+                  <div className="h-1.5 w-1/2 bg-muted rounded" />
+                </div>
+              </motion.div>
+
+              {/* Broken Link 1 - hidden on mobile, shows between docs on larger */}
+              <div className="hidden sm:flex flex-col items-center gap-1 flex-shrink-0">
+                <div className="w-4 md:w-8 h-0.5 bg-red-500/40" />
+                <X className="w-3 h-3 md:w-4 md:h-4 text-red-400" />
+                <div className="w-4 md:w-8 h-0.5 bg-red-500/40" />
+              </div>
+              
+              {/* Mobile broken link indicator */}
+              <div className="sm:hidden flex items-center gap-2">
+                <div className="h-0.5 w-6 bg-red-500/40" />
+                <X className="w-3 h-3 text-red-400" />
+                <div className="h-0.5 w-6 bg-red-500/40" />
+              </div>
+
+              {/* Invoice Document */}
+              <motion.div
+                initial={{ rotate: 2 }}
+                animate={{ rotate: [2, 0, 2] }}
+                transition={{ duration: 3.5, repeat: Infinity }}
+                className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-border shadow-lg"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[10px] font-bold text-emerald-400">INV</span>
+                  </div>
+                  <span className="text-xs font-medium text-foreground">Invoice</span>
+                </div>
+                <div className="space-y-1.5">
+                  <div className="h-1.5 w-full bg-muted rounded" />
+                  <div className="h-1.5 w-2/3 bg-muted rounded" />
+                  <div className="h-1.5 w-4/5 bg-muted rounded" />
+                </div>
+              </motion.div>
+
+              {/* Broken Link 2 */}
+              <div className="hidden sm:flex flex-col items-center gap-1 flex-shrink-0">
+                <div className="w-4 md:w-8 h-0.5 bg-red-500/40" />
+                <X className="w-3 h-3 md:w-4 md:h-4 text-red-400" />
+                <div className="w-4 md:w-8 h-0.5 bg-red-500/40" />
+              </div>
+              
+              {/* Mobile broken link indicator */}
+              <div className="sm:hidden flex items-center gap-2">
+                <div className="h-0.5 w-6 bg-red-500/40" />
+                <X className="w-3 h-3 text-red-400" />
+                <div className="h-0.5 w-6 bg-red-500/40" />
+              </div>
+
+              {/* Packing Slip Document */}
+              <motion.div
+                initial={{ rotate: -2 }}
+                animate={{ rotate: [-2, 1, -2] }}
+                transition={{ duration: 4.5, repeat: Infinity }}
+                className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-red-500/30 shadow-lg relative"
+              >
+                <div className="absolute -top-2 -right-2 bg-red-500 text-white text-[8px] px-1.5 py-0.5 rounded font-bold">
+                  UNLINKED
+                </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[10px] font-bold text-orange-400">GRN</span>
+                  </div>
+                  <span className="text-xs font-medium text-foreground">Packing Slip</span>
+                </div>
+                <div className="space-y-1.5">
+                  <div className="h-1.5 w-full bg-muted rounded" />
+                  <div className="h-1.5 w-1/2 bg-muted rounded" />
+                  <div className="h-1.5 w-3/4 bg-muted rounded" />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Caption */}
+            <p className="text-center text-xs text-muted-foreground mt-4">
+              Without a digital link, these three documents live in silos—creating "Phantom Inventory"
+            </p>
+          </div>
+        </motion.div>
       </motion.div>
 
-      {/* Desktop: Grid layout */}
-      <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {problemCards.map((card, index) => (
-          <motion.div
-            key={card.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 * (index + 1) }}
-            className="glass-card p-8 group"
-          >
-            <div
-              className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-            >
-              {card.icon("lg")}
-            </div>
-            <h3 className="text-xl font-semibold mb-3">{card.title}</h3>
-            <p className="text-slate-600 leading-relaxed mb-6">
-              {card.description}
-            </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
+        {/* Card 1: The Blind Spot Gap */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="glass-card p-5 sm:p-6 md:p-8 group col-span-1 sm:col-span-2 lg:col-span-1"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <Clock className="w-7 h-7 text-red-400" />
+          </div>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">The Blind Spot Gap</h3>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Financial data and Physical data arrive weeks apart. In that gap, 'Phantom Inventory' is created because there is no viable way to link a physical packing slip to the digital PO and Invoice. Your team spends 30% of their week just chasing the paper trail to prove something actually arrived.
+          </p>
 
-            {card.hasCodeBlock && (
-              <div className="code-block space-y-3 text-slate-300">
-                <div>
-                  <span className="text-slate-500">PO:</span>{" "}
-                  <span className="text-blue-400">"Fetal Bovine Serum"</span>
+          {/* Timeline Visual */}
+          <div className="bg-secondary/50 rounded-xl p-3 sm:p-4 border border-border overflow-hidden">
+            {/* Mobile: Vertical timeline */}
+            <div className="sm:hidden space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-blue-500/20 border-2 border-blue-500 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xs font-bold text-blue-400">1</span>
                 </div>
                 <div>
-                  <span className="text-slate-500">Slip:</span>{" "}
-                  <span className="text-violet-400">"FBS"</span>
-                </div>
-                <div className="flex items-center gap-2 pt-3 border-t border-slate-700">
-                  <Check className="w-4 h-4 text-emerald-400" />
-                  <span className="text-emerald-400 font-medium">
-                    Semantic Match
-                  </span>
+                  <span className="text-[10px] text-muted-foreground">Day 1</span>
+                  <span className="text-[10px] text-foreground font-semibold ml-2">PO Created</span>
                 </div>
               </div>
-            )}
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xs font-bold text-emerald-400">3</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-muted-foreground">Day 3</span>
+                  <span className="text-[10px] text-foreground font-semibold ml-2">Invoice</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="bg-red-500/20 border border-red-500/40 rounded-lg px-2 py-1">
+                  <span className="text-[9px] font-bold text-red-400">⚠ 12-day RISK GAP</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-orange-500/20 border-2 border-orange-500 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xs font-bold text-orange-400">15</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-muted-foreground">Day 15</span>
+                  <span className="text-[10px] text-foreground font-semibold ml-2">Arrives</span>
+                </div>
+              </div>
+            </div>
 
-            {card.hasChart && (
-              <>
-                <div className="h-24 flex items-end gap-2">
-                  {[60, 75, 85, 70, 40, 25, 15, 10].map((h, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ height: 0 }}
-                      whileInView={{ height: `${h}%` }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-                      className={`flex-1 rounded-t-sm ${
-                        i < 4 ? "bg-red-400" : "bg-emerald-400"
-                      }`}
-                    />
-                  ))}
+            {/* Tablet+: Horizontal timeline */}
+            <div className="hidden sm:flex items-center justify-between relative gap-2">
+              {/* Timeline line - split into segments */}
+              <div className="absolute top-4 left-8 w-[15%] sm:w-[12%] lg:w-[18%] h-0.5 bg-border" />
+              <div className="absolute top-4 left-[25%] sm:left-[22%] lg:left-[28%] right-[25%] sm:right-[22%] lg:right-[28%] h-1 bg-red-500/40 rounded-full" />
+              <div className="absolute top-4 right-8 w-[15%] sm:w-[12%] lg:w-[18%] h-0.5 bg-border" />
+              
+              {/* Day 1 */}
+              <div className="relative z-10 flex flex-col items-center flex-shrink-0">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-500/20 border-2 border-blue-500 flex items-center justify-center mb-1 sm:mb-2">
+                  <span className="text-[10px] sm:text-xs font-bold text-blue-400">1</span>
                 </div>
-                <div className="flex justify-between mt-2 text-xs text-slate-400">
-                  <span>Manual</span>
-                  <span>With Sanyya</span>
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium">Day 1</span>
+                <span className="text-[9px] sm:text-[10px] text-foreground font-semibold">PO</span>
+              </div>
+
+              {/* Day 3 */}
+              <div className="relative z-10 flex flex-col items-center flex-shrink-0">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center mb-1 sm:mb-2">
+                  <span className="text-[10px] sm:text-xs font-bold text-emerald-400">3</span>
                 </div>
-              </>
-            )}
-          </motion.div>
-        ))}
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium">Day 3</span>
+                <span className="text-[9px] sm:text-[10px] text-foreground font-semibold text-center">Inv</span>
+              </div>
+
+              {/* Unverified Risk Gap */}
+              <div className="relative z-10 flex flex-col items-center flex-shrink-0">
+                <div className="bg-red-500/20 border border-red-500/40 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 mb-1 sm:mb-2">
+                  <span className="text-[7px] sm:text-[8px] lg:text-[9px] font-bold text-red-400 whitespace-nowrap">⚠ GAP</span>
+                </div>
+                <span className="text-[8px] sm:text-[9px] text-red-400/70">12d</span>
+              </div>
+
+              {/* Day 15 */}
+              <div className="relative z-10 flex flex-col items-center flex-shrink-0">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-orange-500/20 border-2 border-orange-500 flex items-center justify-center mb-1 sm:mb-2">
+                  <span className="text-[10px] sm:text-xs font-bold text-orange-400">15</span>
+                </div>
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium">Day 15</span>
+                <span className="text-[9px] sm:text-[10px] text-foreground font-semibold text-center">GRN</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Card 2: The Fuzzy Logic Failure */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="glass-card p-5 sm:p-6 md:p-8 group"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <Brain className="w-7 h-7 text-violet-400" />
+          </div>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">The 'Fuzzy Logic' Failure</h3>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Even when a Packing Slip exists, it rarely matches the PO verbatim. Vendors write 'FBS' instead of 'Fetal Bovine Serum.' Legacy OCR can't bridge this gap, forcing humans to manually reconcile 40% of shipments.
+          </p>
+          <div className="code-block space-y-3">
+            <div>
+              <span className="text-muted-foreground">PO:</span> <span className="text-blue-400">"Fetal Bovine Serum"</span>
+            </div>
+            <div>
+              <span className="text-muted-foreground">Slip:</span> <span className="text-violet-400">"FBS"</span>
+            </div>
+            <div className="flex items-center gap-2 pt-3 border-t border-border">
+              <Check className="w-4 h-4 text-emerald-400" />
+              <span className="text-emerald-400 font-medium">Semantic Match</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Card 3: The Audit Cliff */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="glass-card p-5 sm:p-6 md:p-8 group"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-yellow-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <FileWarning className="w-7 h-7 text-yellow-400" />
+          </div>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">The Audit Cliff</h3>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            When auditors ask for proof of delivery, manual systems crumble. Because the GRN (Packing Slip) is never digitally tethered to the appropriate PO or Invoice, there is zero visibility into verified delivery. For most Series B companies, this lack of a connected audit trail triggers a 3-week panic to find lost PDFs.
+          </p>
+
+          {/* File System Visual with Error Toast */}
+          <div className="bg-secondary/50 rounded-xl border border-border overflow-hidden">
+            {/* File System Header */}
+            <div className="flex items-center gap-2 px-3 py-2 bg-muted/50 border-b border-border">
+              <div className="flex gap-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
+              </div>
+              <span className="text-[10px] text-muted-foreground font-mono">Documents</span>
+            </div>
+            
+            {/* File List */}
+            <div className="p-2 space-y-1">
+              <div className="flex items-center gap-2 px-2 py-1.5 rounded bg-muted/30">
+                <span className="text-[10px]">📁</span>
+                <span className="text-[10px] text-muted-foreground truncate">Q4_invoices/</span>
+              </div>
+              <div className="flex items-center gap-2 px-2 py-1.5 rounded bg-muted/30">
+                <span className="text-[10px]">📄</span>
+                <span className="text-[10px] text-muted-foreground truncate">vendor_contracts/</span>
+              </div>
+            </div>
+
+            {/* Error Toast - Static, not overlapping */}
+            <div className="mx-2 mb-2 bg-red-500 text-white rounded-lg px-3 py-2">
+              <div className="flex items-center gap-2">
+                <X className="w-3.5 h-3.5 flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-[10px] font-semibold">File Not Found</p>
+                  <p className="text-[9px] opacity-80 truncate">PO_8823_receipt.pdf</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Mobile: Accordion layout */}
-      <div className="md:hidden max-w-lg mx-auto">
-        <Accordion type="single" collapsible className="space-y-3">
-          {problemCards.map((card) => (
-            <AccordionItem
-              key={card.id}
-              value={card.id}
-              className="glass-card border-0 rounded-2xl overflow-hidden"
+      {/* Transition to Solution */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-16 md:mt-24 text-center"
+      >
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-primary/50" />
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
+          >
+            <span className="text-primary text-sm font-medium">There's a better way</span>
+            <motion.span
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="text-primary"
             >
-              <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                <div className="flex items-center gap-4">
-                  <div
-                    className={`w-10 h-10 rounded-xl bg-gradient-to-br ${card.iconBg} flex items-center justify-center flex-shrink-0`}
-                  >
-                    {card.icon("sm")}
-                  </div>
-                  <span className="text-left font-semibold text-base">
-                    {card.title}
-                  </span>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-6">
-                <p className="text-slate-600 leading-relaxed mb-4">
-                  {card.description}
-                </p>
-
-                {card.hasCodeBlock && (
-                  <div className="code-block space-y-3 text-slate-300">
-                    <div>
-                      <span className="text-slate-500">PO:</span>{" "}
-                      <span className="text-blue-400">
-                        "Fetal Bovine Serum"
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-slate-500">Slip:</span>{" "}
-                      <span className="text-violet-400">"FBS"</span>
-                    </div>
-                    <div className="flex items-center gap-2 pt-3 border-t border-slate-700">
-                      <Check className="w-4 h-4 text-emerald-400" />
-                      <span className="text-emerald-400 font-medium">
-                        Semantic Match
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {card.hasChart && (
-                  <>
-                    <div className="h-20 flex items-end gap-2">
-                      {[60, 75, 85, 70, 40, 25, 15, 10].map((h, i) => (
-                        <div
-                          key={i}
-                          style={{ height: `${h}%` }}
-                          className={`flex-1 rounded-t-sm ${
-                            i < 4 ? "bg-red-400" : "bg-emerald-400"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <div className="flex justify-between mt-2 text-xs text-slate-400">
-                      <span>Manual</span>
-                      <span>With Sanyya</span>
-                    </div>
-                  </>
-                )}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
+              ↓
+            </motion.span>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   </section>
 );

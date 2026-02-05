@@ -1,49 +1,41 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
 import UnifiedViewSection from "@/components/UnifiedViewSection";
 import ValuePropSection from "@/components/ValuePropSection";
-import IntegrationSection from "@/components/IntegrationSection";
-import CompetitiveLandscape from "@/components/CompetitiveLandscape";
 import IntelligenceLayerSection from "@/components/IntelligenceLayerSection";
 import ComplexSpendSection from "@/components/ComplexSpendSection";
 import ContractsSection from "@/components/ContractsSection";
-import ROISection from "@/components/ROISection";
+import StakeholderSection from "@/components/StakeholderSection";
 import PioneerSection from "@/components/PioneerSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    // Handle hash navigation when coming from another page
-    if (location.hash) {
-      const element = document.querySelector(location.hash);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      }
-    }
-  }, [location.hash]);
-
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background">
       <Navbar />
+      {/* 1. Hook: What we do */}
       <HeroSection />
+      {/* 2. Problem: Why current solutions fail */}
       <ProblemSection />
+      {/* 3. Solution: How Sanyya fixes it (3 steps) */}
       <SolutionSection />
+      {/* 4. Proof: Show the 360° view in action */}
       <UnifiedViewSection />
+      {/* 5. Deep Dive: The technology behind it */}
       <ValuePropSection />
-      <IntegrationSection />
-      <CompetitiveLandscape />
+      {/* 6. Integration: How it fits your stack */}
       <IntelligenceLayerSection />
+      {/* 7. Advanced: Handle complex spend types */}
       <ComplexSpendSection />
+      {/* 8. Services: Contracts & milestones */}
       <ContractsSection />
-      <ROISection />
+      {/* 9. Benefits: Who wins */}
+      <StakeholderSection />
+      {/* 10. CTA: Join the waitlist */}
       <PioneerSection />
+      <Footer />
     </div>
   );
 };

@@ -1,16 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  CreditCard,
-  Database,
-  Mail,
-  Smartphone,
-  Cloud,
-  Layers,
-  ShieldCheck,
-  Network,
-  Zap,
-  Globe,
-} from "lucide-react";
+import { CreditCard, Database, Mail, Smartphone, Cloud, Layers, ShieldCheck, Network, Zap, Globe } from "lucide-react";
 import SanyyaLogo from "./SanyyaLogo";
 
 const IntegrationSection = () => {
@@ -31,29 +20,25 @@ const IntegrationSection = () => {
     {
       icon: Layers,
       title: "The Intelligence Layer",
-      description:
-        "We don't replace your ERP or Bill Pay. We sit on top of them to enforce accuracy without disrupting your workflow.",
+      description: "We don't replace your ERP or Bill Pay. We sit on top of them to enforce accuracy without disrupting your workflow.",
       highlight: true,
     },
     {
       icon: ShieldCheck,
       title: "Zero-Risk Implementation",
-      description:
-        "No data migration. No downtime. No training your team on a new PO system. Just connect and verify.",
+      description: "No data migration. No downtime. No training your team on a new PO system. Just connect and verify.",
       highlight: false,
     },
     {
       icon: Network,
       title: "Universal Compatibility",
-      description:
-        "Whether you use NetSuite, QuickBooks, or custom spreadsheets, Sanyya ingests the data to find the 3-way match.",
+      description: "Whether you use NetSuite, QuickBooks, or custom spreadsheets, Sanyya ingests the data to find the 3-way match.",
       highlight: false,
     },
     {
       icon: Globe,
       title: "Multi-Currency Support",
-      description:
-        "Match POs and Invoices across different currencies with auto-normalization.",
+      description: "Match POs and Invoices across different currencies with auto-normalization.",
       highlight: false,
     },
   ];
@@ -74,45 +59,44 @@ const IntegrationSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-16 md:py-24 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-4xl mx-auto mb-16"
+          className="text-center max-w-4xl mx-auto mb-10 md:mb-16"
         >
-          <motion.span
+          <motion.span 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-medium mb-4"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-4"
           >
             <Zap className="w-3 h-3" />
-            The Intelligence Layer
+            Zero-Friction Setup
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight heading-shimmer inline-block">
-            The Single Source of Truth for Your Spend
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight heading-shimmer inline-block text-foreground px-2">
+            Plug Into Your Existing Stack
           </h2>
-          <p className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto subheading-fade leading-relaxed">
-            Procurement says one thing. Accounts Payable says another. Sanyya
-            sits in the middle as the objective judge, validating every line
-            item before a single dollar leaves the building.
+          <p className="mt-4 md:mt-6 text-base md:text-lg text-muted-foreground max-w-3xl mx-auto subheading-fade leading-relaxed text-center px-2">
+            No migrations. No training. Sanyya sits between your PO system and Bill Pay to enforce accuracy.
           </p>
         </motion.div>
 
-        {/* Data Flow Diagram - Desktop */}
-        <div className="hidden lg:block max-w-5xl mx-auto mb-20">
-          <div className="relative flex flex-row items-center justify-between py-8 min-h-[300px]">
+        {/* Data Flow Diagram */}
+        <div className="max-w-5xl mx-auto mb-12 md:mb-20">
+          <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0 py-4 md:py-8 min-h-[250px] md:min-h-[300px]">
+            
             {/* Column 1: INPUTS */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="flex flex-col gap-4 w-[22%] z-10"
+              className="flex flex-col gap-4 lg:w-[22%] z-10"
             >
               {inputs.map((input, index) => (
                 <motion.div
@@ -123,47 +107,26 @@ const IntegrationSection = () => {
                   transition={{ duration: 0.4, delay: 0.1 * index }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-                    <input.icon
-                      className="w-5 h-5 text-slate-600"
-                      strokeWidth={1.5}
-                    />
+                  <div className="w-12 h-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300">
+                    <input.icon className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
                   </div>
-                  <span className="text-sm font-medium text-slate-700">
-                    {input.label}
-                  </span>
+                  <span className="text-sm font-medium text-foreground">{input.label}</span>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* SVG Flowing Connections */}
-            <div className="absolute inset-0 pointer-events-none">
-              <svg
-                className="w-full h-full"
-                viewBox="0 0 800 280"
-                preserveAspectRatio="xMidYMid meet"
-              >
+            <div className="hidden lg:block absolute inset-0 pointer-events-none">
+              <svg className="w-full h-full" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet">
                 <defs>
-                  {/* Input line gradient */}
-                  <linearGradient
-                    id="inputGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="hsl(217, 91%, 65%)" />
-                    <stop offset="100%" stopColor="hsl(258, 90%, 70%)" />
+                  {/* Input line gradient - magenta/pink */}
+                  <linearGradient id="inputGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(292, 84%, 57%)" />
+                    <stop offset="100%" stopColor="hsl(330, 70%, 55%)" />
                   </linearGradient>
-
-                  {/* Output line gradient */}
-                  <linearGradient
-                    id="outputGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
+                  
+                  {/* Output line gradient - emerald */}
+                  <linearGradient id="outputGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="hsl(160, 84%, 45%)" />
                     <stop offset="100%" stopColor="hsl(170, 80%, 50%)" />
                   </linearGradient>
@@ -178,8 +141,8 @@ const IntegrationSection = () => {
                     strokeWidth="3"
                     fill="none"
                     strokeLinecap="round"
-                    animate={{
-                      opacity: [0.5, 1, 0.5],
+                    animate={{ 
+                      opacity: [0.5, 1, 0.5]
                     }}
                     transition={{
                       duration: 4,
@@ -199,8 +162,8 @@ const IntegrationSection = () => {
                     strokeWidth="3"
                     fill="none"
                     strokeLinecap="round"
-                    animate={{
-                      opacity: [0.5, 1, 0.5],
+                    animate={{ 
+                      opacity: [0.5, 1, 0.5]
                     }}
                     transition={{
                       duration: 4,
@@ -219,30 +182,29 @@ const IntegrationSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative w-[28%] flex justify-center z-10"
+              className="relative lg:w-[28%] flex justify-center z-10"
             >
               {/* Breathing glow effect */}
-              <motion.div
+              <motion.div 
                 className="absolute -inset-5 rounded-2xl"
                 style={{
-                  background:
-                    "radial-gradient(ellipse at center, hsl(160, 84%, 50%, 0.4), hsl(187, 92%, 69%, 0.2), transparent 70%)",
+                  background: "radial-gradient(ellipse at center, hsl(292, 84%, 57%, 0.4), hsl(330, 70%, 55%, 0.2), transparent 70%)",
                 }}
-                animate={{
+                animate={{ 
                   opacity: [0.3, 0.8, 0.3],
-                  scale: [1, 1.08, 1],
+                  scale: [1, 1.08, 1]
                 }}
-                transition={{
-                  duration: 4,
+                transition={{ 
+                  duration: 4, 
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: "easeInOut"
                 }}
               />
-
-              <div className="relative bg-white rounded-xl px-10 py-8 shadow-lg border border-slate-200">
-                <div className="flex flex-col items-center gap-3">
+              
+              <div className="relative bg-card rounded-xl px-10 py-8 shadow-lg border border-border">
+              <div className="flex flex-col items-center gap-3">
                   <SanyyaLogo size="lg" showText={false} />
-                  <span className="text-xs text-slate-500 font-medium">
+                  <span className="text-xs text-muted-foreground font-medium">
                     Vector Matching & 3-Way Logic
                   </span>
                 </div>
@@ -255,7 +217,7 @@ const IntegrationSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-col gap-6 w-[22%] z-10"
+              className="flex flex-col gap-6 lg:w-[22%] z-10"
             >
               {outputs.map((output, index) => (
                 <motion.div
@@ -266,106 +228,28 @@ const IntegrationSection = () => {
                   transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-sm hover:shadow-md hover:border-emerald-300 transition-all duration-300">
-                    <output.icon
-                      className="w-5 h-5 text-slate-600"
-                      strokeWidth={1.5}
-                    />
+                  <div className="w-12 h-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all duration-300">
+                    <output.icon className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
                   </div>
-                  <span className="text-sm font-medium text-slate-700">
-                    {output.label}
-                  </span>
+                  <span className="text-sm font-medium text-foreground">{output.label}</span>
                 </motion.div>
               ))}
             </motion.div>
           </div>
-        </div>
 
-        {/* Data Flow Diagram - Mobile (Horizontal) */}
-        <div className="lg:hidden max-w-full mx-auto mb-16 overflow-x-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-3 py-6 px-4 min-w-[340px]"
-          >
-            {/* Inputs Column */}
-            <div className="flex flex-col gap-2 shrink-0">
-              {inputs.map((input) => (
-                <div
-                  key={input.label}
-                  className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center shadow-sm"
-                  title={input.label}
-                >
-                  <input.icon
-                    className="w-4 h-4 text-slate-600"
-                    strokeWidth={1.5}
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Arrow In */}
+          {/* Mobile flow indicators */}
+          <div className="lg:hidden flex flex-col items-center gap-4 my-6">
             <motion.div
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="w-8 h-1 rounded-full bg-gradient-to-r from-blue-400 to-violet-400 shrink-0"
+              className="w-1 h-10 rounded-full bg-gradient-to-b from-primary to-pink-500"
             />
-
-            {/* Center Brain */}
-            <div className="relative shrink-0">
-              <motion.div
-                className="absolute -inset-3 rounded-xl"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, hsl(160, 84%, 50%, 0.3), transparent 70%)",
-                }}
-                animate={{ opacity: [0.3, 0.7, 0.3] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              <div className="relative bg-white rounded-xl px-4 py-4 shadow-lg border border-slate-200">
-                <div className="flex flex-col items-center gap-2">
-                  <SanyyaLogo size="sm" showText={false} />
-                  <span className="text-[10px] text-slate-500 font-medium text-center leading-tight">
-                    Vector Match
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Arrow Out */}
+            <div className="text-xs text-muted-foreground font-medium">Processing</div>
             <motion.div
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-              className="w-8 h-1 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 shrink-0"
+              className="w-1 h-10 rounded-full bg-gradient-to-b from-emerald-400 to-emerald-500"
             />
-
-            {/* Outputs Column */}
-            <div className="flex flex-col gap-2 shrink-0">
-              {outputs.map((output) => (
-                <div
-                  key={output.label}
-                  className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center shadow-sm"
-                  title={output.label}
-                >
-                  <output.icon
-                    className="w-4 h-4 text-slate-600"
-                    strokeWidth={1.5}
-                  />
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Mobile labels */}
-          <div className="flex justify-center gap-16 text-[10px] text-slate-400 font-medium mt-2">
-            <span>Inputs</span>
-            <span>Sanyya</span>
-            <span>Outputs</span>
           </div>
         </div>
 
@@ -375,7 +259,7 @@ const IntegrationSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
         >
           {featureCards.map((card, index) => (
             <motion.div
@@ -384,38 +268,35 @@ const IntegrationSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-              className={`relative p-6 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
-                card.highlight
-                  ? "bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-lg"
-                  : "bg-white/60 border border-slate-200 shadow-sm"
+              className={`relative p-4 md:p-6 rounded-xl md:rounded-2xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                card.highlight 
+                  ? 'bg-gradient-to-br from-card to-secondary text-foreground shadow-lg border border-primary/20' 
+                  : 'glass-card'
               }`}
             >
-              <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                  card.highlight ? "bg-white/10" : "bg-slate-100"
-                }`}
-              >
-                <card.icon
-                  className={`w-6 h-6 ${
-                    card.highlight ? "text-emerald-400" : "text-slate-600"
-                  }`}
-                  strokeWidth={1.5}
-                />
+              <div className={`w-10 md:w-12 h-10 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-3 md:mb-4 ${
+                card.highlight
+                  ? 'bg-primary/10' 
+                  : 'bg-secondary'
+              }`}>
+                <card.icon className={`w-5 md:w-6 h-5 md:h-6 ${
+                  card.highlight 
+                    ? 'text-primary' 
+                    : 'text-muted-foreground'
+                }`} strokeWidth={1.5} />
               </div>
-              <h4
-                className={`text-lg mb-2 ${
-                  card.highlight
-                    ? "font-bold text-white"
-                    : "font-semibold text-slate-800"
-                }`}
-              >
+              <h4 className={`text-sm md:text-lg mb-1 md:mb-2 ${
+                card.highlight 
+                  ? 'font-bold text-foreground' 
+                  : 'font-semibold text-foreground'
+              }`}>
                 {card.title}
               </h4>
-              <p
-                className={`text-sm leading-relaxed ${
-                  card.highlight ? "text-slate-300" : "text-slate-500"
-                }`}
-              >
+              <p className={`text-xs md:text-sm leading-relaxed ${
+                card.highlight 
+                  ? 'text-muted-foreground' 
+                  : 'text-muted-foreground'
+              }`}>
                 {card.description}
               </p>
             </motion.div>

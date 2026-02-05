@@ -1,17 +1,31 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Brain, Smartphone, Scan, Sparkles, Check, Cpu } from "lucide-react";
+
+// Hook to detect mobile
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  return isMobile;
+};
 
 // Visual 1: Vector Search Graph (High-Science Example)
 const VectorVisual = () => (
-  <div className="relative w-full h-80 md:h-96">
+  <div className="relative w-full h-64 sm:h-80 md:h-96">
     {/* Glass card container */}
-    <div className="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+    <div className="absolute inset-0 bg-card/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-border shadow-xl overflow-hidden">
       {/* Grid background */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(to right, hsl(0 0% 50%) 1px, transparent 1px), linear-gradient(to bottom, hsl(0 0% 50%) 1px, transparent 1px)`,
           backgroundSize: "32px 32px",
         }}
       />
@@ -20,7 +34,7 @@ const VectorVisual = () => (
       {[...Array(12)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 rounded-full bg-slate-300/40"
+          className="absolute w-2 h-2 rounded-full bg-primary/40"
           style={{
             left: `${15 + Math.random() * 70}%`,
             top: `${15 + Math.random() * 70}%`,
@@ -43,12 +57,12 @@ const VectorVisual = () => (
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, type: "spring" }}
-        className="absolute left-[15%] top-[28%]"
+        className="absolute left-[12%] sm:left-[15%] md:left-[18%] top-[30%] sm:top-[28%]"
       >
         <div className="relative">
-          <div className="w-7 h-7 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50" />
-          <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap font-mono">
-            "Doxorubicin HCl"
+          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50" />
+          <div className="absolute -top-8 sm:-top-10 md:-top-12 left-0 sm:left-1/2 sm:-translate-x-1/2 bg-card text-foreground text-[9px] sm:text-[10px] md:text-xs px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-1.5 rounded-lg whitespace-nowrap font-mono border border-border">
+            "Doxorubicin"
           </div>
         </div>
       </motion.div>
@@ -59,31 +73,22 @@ const VectorVisual = () => (
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.4, type: "spring" }}
-        className="absolute right-[15%] bottom-[28%]"
+        className="absolute right-[12%] sm:right-[15%] md:right-[18%] bottom-[30%] sm:bottom-[28%]"
       >
         <div className="relative">
-          <div className="w-7 h-7 rounded-full bg-violet-500 shadow-lg shadow-violet-500/50" />
-          <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap font-mono">
+          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-violet-500 shadow-lg shadow-violet-500/50" />
+          <div className="absolute -bottom-8 sm:-bottom-10 md:-bottom-12 right-0 sm:left-1/2 sm:-translate-x-1/2 bg-card text-foreground text-[9px] sm:text-[10px] md:text-xs px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-1.5 rounded-lg whitespace-nowrap font-mono border border-border">
             "Adriamycin"
           </div>
         </div>
       </motion.div>
 
       {/* Connecting Line */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 400 320"
-      >
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 320">
         <defs>
-          <linearGradient
-            id="vectorLineGradient"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
-          >
-            <stop offset="0%" stopColor="hsl(199, 89%, 48%)" />
-            <stop offset="100%" stopColor="hsl(199, 89%, 48%)" />
+          <linearGradient id="vectorLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="hsl(292, 84%, 57%)" />
+            <stop offset="100%" stopColor="hsl(330, 70%, 55%)" />
           </linearGradient>
         </defs>
         <motion.line
@@ -104,7 +109,7 @@ const VectorVisual = () => (
           y1="110"
           x2="310"
           y2="210"
-          stroke="hsl(199, 89%, 48%)"
+          stroke="hsl(292, 84%, 57%)"
           strokeWidth="10"
           strokeLinecap="round"
           opacity="0.15"
@@ -121,7 +126,7 @@ const VectorVisual = () => (
         transition={{ delay: 0.7, type: "spring" }}
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
       >
-        <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-5 py-2.5 rounded-full shadow-xl shadow-cyan-500/40 flex items-center gap-2">
+        <div className="bg-gradient-to-r from-primary to-pink-500 text-primary-foreground px-5 py-2.5 rounded-full shadow-xl shadow-primary/40 flex items-center gap-2">
           <span className="text-sm font-medium">Match</span>
           <span className="text-lg font-bold tabular-nums">(0.99)</span>
         </div>
@@ -132,24 +137,19 @@ const VectorVisual = () => (
 
 // Visual 2: Mobile PWA Phone Mockup
 const MobileVisual = () => (
-  <div className="relative w-full h-80 md:h-96 flex items-center justify-center">
+  <div className="relative w-full h-72 sm:h-80 md:h-96 flex items-center justify-center">
     {/* Phone mockup */}
-    <motion.div
-      initial={{ y: 20 }}
-      whileInView={{ y: 0 }}
-      viewport={{ once: true }}
-      className="relative"
-    >
-      <div className="relative w-52 h-[420px] bg-gradient-to-b from-slate-900 to-slate-800 rounded-[3rem] p-2 shadow-2xl">
-        <div className="w-full h-full bg-slate-900 rounded-[2.5rem] overflow-hidden relative">
+    <motion.div initial={{ y: 20 }} whileInView={{ y: 0 }} viewport={{ once: true }} className="relative">
+      <div className="relative w-40 sm:w-52 h-[320px] sm:h-[420px] bg-gradient-to-b from-card to-secondary rounded-[2rem] sm:rounded-[3rem] p-1.5 sm:p-2 shadow-2xl border border-border">
+        <div className="w-full h-full bg-background rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden relative">
           {/* Notch */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-slate-900 rounded-b-2xl z-10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-background rounded-b-2xl z-10" />
 
           {/* Camera viewfinder */}
-          <div className="h-full bg-gradient-to-b from-slate-800 to-slate-700 relative">
+          <div className="h-full bg-gradient-to-b from-card to-secondary relative">
             {/* Scan line */}
             <motion.div
-              className="absolute inset-x-5 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent rounded-full"
+              className="absolute inset-x-5 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"
               animate={{ top: ["18%", "72%", "18%"] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
             />
@@ -177,10 +177,10 @@ const MobileVisual = () => (
             </div>
 
             {/* Corner brackets */}
-            <div className="absolute top-12 left-5 w-8 h-8 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg" />
-            <div className="absolute top-12 right-5 w-8 h-8 border-t-2 border-r-2 border-cyan-400 rounded-tr-lg" />
-            <div className="absolute bottom-24 left-5 w-8 h-8 border-b-2 border-l-2 border-cyan-400 rounded-bl-lg" />
-            <div className="absolute bottom-24 right-5 w-8 h-8 border-b-2 border-r-2 border-cyan-400 rounded-br-lg" />
+            <div className="absolute top-12 left-5 w-8 h-8 border-t-2 border-l-2 border-primary rounded-tl-lg" />
+            <div className="absolute top-12 right-5 w-8 h-8 border-t-2 border-r-2 border-primary rounded-tr-lg" />
+            <div className="absolute bottom-24 left-5 w-8 h-8 border-b-2 border-l-2 border-primary rounded-bl-lg" />
+            <div className="absolute bottom-24 right-5 w-8 h-8 border-b-2 border-r-2 border-primary rounded-br-lg" />
 
             {/* Success Toast */}
             <motion.div
@@ -192,15 +192,13 @@ const MobileVisual = () => (
             >
               <div className="bg-emerald-500 rounded-xl px-4 py-3 flex items-center gap-2 shadow-lg">
                 <Check className="w-5 h-5 text-white" />
-                <span className="text-sm text-white font-semibold">
-                  Matched: PO #8821
-                </span>
+                <span className="text-sm text-white font-semibold">Matched: PO #8821</span>
               </div>
             </motion.div>
 
             {/* Bottom bar */}
-            <div className="absolute bottom-0 inset-x-0 h-10 bg-slate-900 flex items-center justify-center">
-              <div className="w-28 h-1 bg-slate-700 rounded-full" />
+            <div className="absolute bottom-0 inset-x-0 h-10 bg-background flex items-center justify-center">
+              <div className="w-28 h-1 bg-muted rounded-full" />
             </div>
           </div>
         </div>
@@ -212,7 +210,7 @@ const MobileVisual = () => (
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
-        className="absolute -bottom-3 -right-6 bg-violet-600 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg"
+        className="absolute -bottom-3 -right-6 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg"
       >
         <Cpu className="w-4 h-4" />
         WASM
@@ -223,19 +221,19 @@ const MobileVisual = () => (
 
 // Visual 3: OCR Invoice Processing
 const OCRVisual = () => (
-  <div className="relative w-full h-80 md:h-96 flex items-center justify-center p-6">
+  <div className="relative w-full h-72 sm:h-80 md:h-96 flex items-center justify-center p-4 sm:p-6">
     {/* Invoice mockup with bounding boxes */}
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md border border-slate-100"
+      className="relative bg-card rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-8 w-full max-w-md border border-border"
     >
       {/* Invoice header */}
       <div className="flex justify-between items-start mb-8">
         <div>
-          <div className="h-4 w-28 bg-slate-800 rounded mb-2" />
-          <div className="h-2.5 w-20 bg-slate-300 rounded" />
+          <div className="h-4 w-28 bg-foreground rounded mb-2" />
+          <div className="h-2.5 w-20 bg-muted rounded" />
         </div>
         <motion.div
           initial={{ opacity: 0 }}
@@ -244,11 +242,9 @@ const OCRVisual = () => (
           transition={{ delay: 0.3 }}
           className="relative"
         >
-          <div className="absolute -inset-2 border-2 border-cyan-400 rounded-lg animate-pulse" />
-          <div className="bg-slate-100 px-4 py-2 rounded-lg">
-            <span className="text-sm font-mono text-slate-600">
-              INV-2024-001
-            </span>
+          <div className="absolute -inset-2 border-2 border-primary rounded-lg animate-pulse" />
+          <div className="bg-secondary px-4 py-2 rounded-lg">
+            <span className="text-sm font-mono text-foreground">INV-2024-001</span>
           </div>
         </motion.div>
       </div>
@@ -261,19 +257,19 @@ const OCRVisual = () => (
         transition={{ delay: 0.5 }}
         className="relative mb-6"
       >
-        <div className="absolute -inset-2 border-2 border-fuchsia-400 rounded-lg animate-pulse" />
+        <div className="absolute -inset-2 border-2 border-pink-500 rounded-lg animate-pulse" />
         <div className="space-y-1.5 p-2">
-          <div className="h-2.5 w-40 bg-slate-300 rounded" />
-          <div className="h-2 w-36 bg-slate-200 rounded" />
-          <div className="h-2 w-32 bg-slate-200 rounded" />
+          <div className="h-2.5 w-40 bg-muted rounded" />
+          <div className="h-2 w-36 bg-muted-foreground/20 rounded" />
+          <div className="h-2 w-32 bg-muted-foreground/20 rounded" />
         </div>
       </motion.div>
 
       {/* Line items */}
       <div className="space-y-3 mb-6">
         <div className="flex justify-between">
-          <div className="h-2.5 w-24 bg-slate-200 rounded" />
-          <div className="h-2.5 w-16 bg-slate-200 rounded" />
+          <div className="h-2.5 w-24 bg-muted-foreground/20 rounded" />
+          <div className="h-2.5 w-16 bg-muted-foreground/20 rounded" />
         </div>
         <motion.div
           initial={{ opacity: 0 }}
@@ -282,15 +278,15 @@ const OCRVisual = () => (
           transition={{ delay: 0.7 }}
           className="relative"
         >
-          <div className="absolute -inset-2 border-2 border-cyan-400 rounded-lg animate-pulse" />
+          <div className="absolute -inset-2 border-2 border-primary rounded-lg animate-pulse" />
           <div className="flex justify-between p-2">
-            <div className="h-2.5 w-28 bg-slate-300 rounded" />
-            <div className="h-2.5 w-20 bg-emerald-400 rounded" />
+            <div className="h-2.5 w-28 bg-muted rounded" />
+            <div className="h-2.5 w-20 bg-emerald-500 rounded" />
           </div>
         </motion.div>
         <div className="flex justify-between">
-          <div className="h-2.5 w-32 bg-slate-200 rounded" />
-          <div className="h-2.5 w-18 bg-slate-200 rounded" />
+          <div className="h-2.5 w-32 bg-muted-foreground/20 rounded" />
+          <div className="h-2.5 w-18 bg-muted-foreground/20 rounded" />
         </div>
       </div>
 
@@ -300,24 +296,24 @@ const OCRVisual = () => (
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.9 }}
-        className="relative border-t pt-4"
+        className="relative border-t border-border pt-4"
       >
-        <div className="absolute -inset-2 border-2 border-fuchsia-400 rounded-lg animate-pulse" />
+        <div className="absolute -inset-2 border-2 border-pink-500 rounded-lg animate-pulse" />
         <div className="flex justify-between items-center p-2">
-          <div className="h-3.5 w-14 bg-slate-400 rounded" />
-          <div className="h-3.5 w-24 bg-slate-800 rounded" />
+          <div className="h-3.5 w-14 bg-muted rounded" />
+          <div className="h-3.5 w-24 bg-foreground rounded" />
         </div>
       </motion.div>
 
       {/* Legend */}
       <div className="absolute -bottom-10 left-0 right-0 flex justify-center gap-8">
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 border-2 border-cyan-400 rounded" />
-          <span className="text-xs text-slate-500">Key Fields</span>
+          <div className="w-4 h-4 border-2 border-primary rounded" />
+          <span className="text-xs text-muted-foreground">Key Fields</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 border-2 border-fuchsia-400 rounded" />
-          <span className="text-xs text-slate-500">Entities</span>
+          <div className="w-4 h-4 border-2 border-pink-500 rounded" />
+          <span className="text-xs text-muted-foreground">Entities</span>
         </div>
       </div>
     </motion.div>
@@ -327,14 +323,14 @@ const OCRVisual = () => (
 // Checklist Item Component
 const CheckItem = ({ children }: { children: React.ReactNode }) => (
   <div className="flex items-center gap-3">
-    <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-      <Check className="w-3 h-3 text-emerald-600" />
+    <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+      <Check className="w-3 h-3 text-emerald-400" />
     </div>
-    <span className="text-slate-600">{children}</span>
+    <span className="text-muted-foreground">{children}</span>
   </div>
 );
 
-// Feature Row Component with Parallax
+// Feature Row Component with Parallax (disabled on mobile)
 const FeatureRow = ({
   badge,
   badgeColor,
@@ -353,35 +349,31 @@ const FeatureRow = ({
   reversed?: boolean;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  // Disable parallax on mobile to prevent layout issues
+  const y = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [40, -40]);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`grid md:grid-cols-2 gap-12 lg:gap-20 items-center ${
-        reversed ? "md:flex-row-reverse" : ""
-      }`}
+      className={`grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center ${reversed ? "md:flex-row-reverse" : ""}`}
     >
       {/* Text Column */}
-      <div className={`space-y-6 ${reversed ? "md:order-2" : ""}`}>
-        <span
-          className={`inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium ${badgeColor}`}
-        >
+      <div className={`space-y-4 md:space-y-6 ${reversed ? "md:order-2" : ""}`}>
+        <span className={`inline-flex items-center px-3 md:px-4 py-1.5 rounded-full text-xs md:text-sm font-medium ${badgeColor}`}>
           {badge}
         </span>
-        <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-          {headline}
-        </h3>
-        <p className="text-lg text-slate-600 leading-relaxed">{body}</p>
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">{headline}</h3>
+        <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{body}</p>
         <div className="space-y-3 pt-2">
           {checklist.map((item, i) => (
             <CheckItem key={i}>{item}</CheckItem>
@@ -389,8 +381,8 @@ const FeatureRow = ({
         </div>
       </div>
 
-      {/* Visual Column with Parallax */}
-      <motion.div style={{ y }} className={reversed ? "md:order-1" : ""}>
+      {/* Visual Column - no parallax on mobile */}
+      <motion.div style={{ y: isMobile ? 0 : y }} className={reversed ? "md:order-1" : ""}>
         {visual}
       </motion.div>
     </motion.div>
@@ -399,62 +391,205 @@ const FeatureRow = ({
 
 const SolutionSection = () => {
   return (
-    <section id="solution" className="py-24 bg-white relative overflow-hidden">
+    <section id="solution" className="py-20 md:py-28 bg-background relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-br from-blue-100/20 via-violet-100/10 to-transparent rounded-full blur-3xl" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-br from-primary/10 via-pink-500/5 to-transparent rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-24"
+          className="text-center max-w-3xl mx-auto mb-12 md:mb-24"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-medium mb-4"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-4"
           >
             <Sparkles className="w-3 h-3" />
             How It Works
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight heading-shimmer">
-            Centralize. Verify. Resolve.
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+            Sanyya Creates the Digital Tether.
           </h2>
-          <p className="mt-4 text-lg text-slate-600 subheading-fade">
-            Bring your disparate documents into one intelligent view. Sanyya
-            ingests the data, correlates the dots, and highlights the
-            truth—giving you a perfect audit trail before you book.
+          <p className="mt-4 text-base md:text-lg text-muted-foreground px-2">
+            We digitally link your Purchase Order, Invoice, and Packing Slip into one verified record—eliminating Phantom Inventory and creating an audit-ready paper trail.
           </p>
+
+          {/* Connected Documents Visual */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="mt-10 max-w-xl mx-auto"
+          >
+            <div className="relative bg-secondary/30 rounded-2xl border border-emerald-500/30 p-4 sm:p-6 md:p-8">
+              {/* Success glow */}
+              <div className="absolute inset-0 bg-emerald-500/5 rounded-2xl" />
+              
+              {/* The three documents connected - stacked on mobile */}
+              <div className="relative flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-2 md:gap-4">
+                {/* SVG Connection Lines - Animated (hidden on mobile) */}
+                <svg className="hidden sm:block absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="tether-gradient-1" x1="0%" y1="50%" x2="100%" y2="50%">
+                      <stop offset="0%" stopColor="hsl(142, 76%, 36%)" />
+                      <stop offset="100%" stopColor="hsl(142, 76%, 46%)" />
+                    </linearGradient>
+                  </defs>
+                  {/* Line from PO to GRN */}
+                  <motion.line
+                    x1="24%"
+                    y1="50%"
+                    x2="36%"
+                    y2="50%"
+                    stroke="url(#tether-gradient-1)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+                  />
+                  {/* Line from GRN to Invoice */}
+                  <motion.line
+                    x1="64%"
+                    y1="50%"
+                    x2="76%"
+                    y2="50%"
+                    stroke="url(#tether-gradient-1)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+                  />
+                </svg>
+
+                {/* PO Document */}
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-emerald-500/30 shadow-lg z-10"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[10px] font-bold text-blue-400">PO</span>
+                    </div>
+                    <span className="text-xs font-medium text-foreground">Purchase Order</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 w-full bg-muted rounded" />
+                    <div className="h-1.5 w-3/4 bg-muted rounded" />
+                  </div>
+                </motion.div>
+
+                {/* Check 1 - Animated */}
+                <motion.div 
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7, type: "spring", stiffness: 300 }}
+                  className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/50 z-10 flex-shrink-0"
+                >
+                  <Check className="w-3.5 h-3.5 text-white" />
+                </motion.div>
+
+                {/* Packing Slip Document */}
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-emerald-500/30 shadow-lg relative z-10"
+                >
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1.1, type: "spring" }}
+                    className="absolute -top-2 -right-2 bg-emerald-500 text-white text-[8px] px-1.5 py-0.5 rounded font-bold"
+                  >
+                    LINKED
+                  </motion.div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded bg-violet-500/20 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[10px] font-bold text-violet-400">GRN</span>
+                    </div>
+                    <span className="text-xs font-medium text-foreground">Packing Slip</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 w-full bg-muted rounded" />
+                    <div className="h-1.5 w-1/2 bg-muted rounded" />
+                  </div>
+                </motion.div>
+
+                {/* Check 2 - Animated */}
+                <motion.div 
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 1.0, type: "spring", stiffness: 300 }}
+                  className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/50 z-10 flex-shrink-0"
+                >
+                  <Check className="w-3.5 h-3.5 text-white" />
+                </motion.div>
+
+                {/* Invoice Document */}
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-emerald-500/30 shadow-lg z-10"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[10px] font-bold text-amber-400">INV</span>
+                    </div>
+                    <span className="text-xs font-medium text-foreground">Invoice</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 w-full bg-muted rounded" />
+                    <div className="h-1.5 w-2/3 bg-muted rounded" />
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Caption */}
+              <p className="text-center text-xs text-emerald-400 mt-4 font-medium">
+                ✓ Digitally tethered — audit-ready
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Feature Rows */}
-        <div className="max-w-6xl mx-auto space-y-32">
+        <div className="max-w-6xl mx-auto space-y-16 md:space-y-32">
           {/* Row 1: Centralize */}
           <FeatureRow
             badge="Step 1: Centralize"
-            badgeColor="bg-cyan-100 text-cyan-700"
+            badgeColor="bg-primary/10 border border-primary/20 text-primary"
             headline="Ingest & Normalize."
-            body="Upload your POs, contracts, and invoices in any format. Sanyya ingests raw data from PDF, CSV, or Image and normalizes it into a single source of truth—no complex ERP migration required."
-            checklist={[
-              "Works with any file format",
-              "No IT integration needed",
-            ]}
+            body="Upload your POs, Invoices, and Packing Slips in any format. Sanyya ingests raw data from PDF, CSV, or Image and normalizes it into a single source of truth—creating the foundation for a digital tether."
+            checklist={["Works with any file format", "No IT integration needed"]}
             visual={<VectorVisual />}
           />
 
           {/* Row 2: Verify */}
           <FeatureRow
             badge="Step 2: Verify"
-            badgeColor="bg-violet-100 text-violet-700"
-            headline="Verify Against Reality."
-            body="We automate the 3-way match for physical goods and link service invoices to contract milestones. Plus, our mobile PWA lets LabOps snap packing slips at the bench—no barcode guns or laptop carts."
-            checklist={[
-              "Liberates LabOps from scanners",
-              "Matches synonyms automatically",
-            ]}
+            badgeColor="bg-violet-500/10 border border-violet-500/20 text-violet-400"
+            headline="Tether the Packing Slip."
+            body="Our mobile PWA lets LabOps snap Packing Slips at the dock—instantly linking GRNs to the corresponding PO and Invoice. This creates a verified, digital proof of delivery that lives with the financial record."
+            checklist={["Digitally links GRN to PO & Invoice", "Eliminates Phantom Inventory"]}
             visual={<MobileVisual />}
             reversed
           />
@@ -462,13 +597,34 @@ const SolutionSection = () => {
           {/* Row 3: Resolve */}
           <FeatureRow
             badge="Step 3: Resolve"
-            badgeColor="bg-emerald-100 text-emerald-700"
+            badgeColor="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
             headline="Resolve with Confidence."
-            body="Stop guessing. We present a fully reconciled 'decision package'—PO, packing slip, and invoice side-by-side. Approve with certainty and hand off clean data to your finance team."
+            body="We present a fully reconciled 'decision package'—PO, Packing Slip, and Invoice digitally tethered side-by-side. Approve with certainty and hand off audit-ready data to your finance team."
             checklist={["360° Audit View", "Ready-to-book data"]}
             visual={<OCRVisual />}
           />
         </div>
+
+        {/* Transition to next section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-20 md:mt-32 flex flex-col items-center"
+        >
+          {/* Vertical gradient line */}
+          <div className="w-px h-16 bg-gradient-to-b from-transparent via-primary/50 to-primary" />
+          
+          {/* Animated badge */}
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium"
+          >
+            See it in action
+            <span className="text-lg">↓</span>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

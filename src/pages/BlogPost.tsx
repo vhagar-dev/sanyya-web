@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, Clock, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
   Dialog,
   DialogContent,
@@ -699,6 +700,7 @@ const BlogPost = () => {
             </Button>
           </Link>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -816,6 +818,8 @@ const BlogPost = () => {
           </div>
         </motion.div>
       </section>
+
+      <Footer />
     </div>
   );
 };

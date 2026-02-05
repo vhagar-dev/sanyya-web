@@ -8,62 +8,60 @@ const ContractsSection = () => {
       title: "Centralized Repository",
       description:
         "Keep your MSAs and SOWs attached directly to the vendor profile so they never get lost in email threads.",
-      // Assigning specific shades to create a flow that matches the text gradient
-      colorClass: "text-cyan-600",
-      bgClass: "bg-cyan-50 border-cyan-100",
+      colorClass: "text-primary",
+      bgClass: "bg-primary/10 border-primary/20",
     },
     {
       icon: MapPin,
       title: "Milestone-Based Drawdowns",
       description:
         'Break down large service agreements into payable phases (e.g., "Phase 1 Complete") to prevent premature payment.',
-      colorClass: "text-teal-600",
-      bgClass: "bg-teal-50 border-teal-100",
+      colorClass: "text-pink-400",
+      bgClass: "bg-pink-500/10 border-pink-500/20",
     },
     {
       icon: Shield,
       title: "Total Value Caps",
       description:
         "Set a hard budget limit based on the signed contract. If a PO exceeds the agreed SOW amount, we flag it immediately.",
-      colorClass: "text-emerald-600",
-      bgClass: "bg-emerald-50 border-emerald-100",
+      colorClass: "text-emerald-400",
+      bgClass: "bg-emerald-500/10 border-emerald-500/20",
     },
     {
       icon: Bell,
       title: "Renewal Reminders",
       description: "Set expiration dates and get notified before a contract auto-renews or expires.",
-      colorClass: "text-cyan-600",
-      bgClass: "bg-cyan-50 border-cyan-100",
+      colorClass: "text-primary",
+      bgClass: "bg-primary/10 border-primary/20",
     },
   ];
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
-      {/* Clean background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-cyan-50/30" />
+    <section className="relative py-16 md:py-28 overflow-hidden bg-background">
+      {/* Gradient background with magenta/pink tones */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-pink-500/5" />
 
-      <div className="container relative z-10 mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* Left side - Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="text-center lg:text-left"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-medium mb-6">
-              Service Intelligence
+            <span className="inline-block px-3 md:px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-4 md:mb-6">
+              For Services & Consultants
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-800 mb-6">
-              Contracts, Services{" "}
-              <span className="bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-500 bg-clip-text text-transparent">
-                & Milestones
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4 md:mb-6 px-2 lg:px-0">
+              Track Milestones,{" "}
+              <span className="bg-gradient-to-r from-primary via-pink-500 to-primary bg-clip-text text-transparent">
+                Not Just Invoices
               </span>
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
-              Manage the agreement, not just the payment. Store basic contract terms directly in Sanyya to track
-              progress. We match invoices against those specific milestones—perfect for managing CROs and consultants
-              without physical shipping receipts.
+            <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed px-2 lg:px-0">
+              CROs and consultants don't ship boxes. We match their invoices against contract milestones instead—preventing scope creep and premature payments.
             </p>
           </motion.div>
 
@@ -82,25 +80,15 @@ const ContractsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+                className="glass-card p-4 md:p-6"
               >
-                {/* UPDATED ICON STYLING:
-                   Using the specific color classes from the object above.
-                */}
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 border ${feature.bgClass}`}>
-                  <feature.icon className={`w-5 h-5 ${feature.colorClass}`} strokeWidth={1.5} />
+                <div className={`w-9 md:w-10 h-9 md:h-10 rounded-lg flex items-center justify-center mb-3 md:mb-4 border ${feature.bgClass}`}>
+                  <feature.icon className={`w-4 md:w-5 h-4 md:h-5 ${feature.colorClass}`} strokeWidth={1.5} />
                 </div>
 
-                {/* OPTION 2 (Solid Gradient) - Uncomment this block and delete the div above if you prefer the solid look:
-                   
-                   <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-600 to-emerald-500 flex items-center justify-center mb-4 shadow-sm">
-                     <feature.icon className="w-5 h-5 text-white" strokeWidth={1.5} />
-                   </div>
-                 */}
+                <h3 className="text-base md:text-lg font-semibold text-foreground mb-1.5 md:mb-2">{feature.title}</h3>
 
-                <h3 className="text-lg font-semibold text-slate-800 mb-2">{feature.title}</h3>
-
-                <p className="text-sm text-slate-600 leading-relaxed">{feature.description}</p>
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>

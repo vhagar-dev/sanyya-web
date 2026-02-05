@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, ArrowRight, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import SanyyaLogo from "@/components/SanyyaLogo";
 import phantomBurnCover from "@/assets/phantom-burn-cover.png";
 import rdParadoxCover from "@/assets/rd-paradox-cover.png";
 import threeWayMatchCover from "@/assets/3way-match-cover.png";
@@ -260,6 +262,8 @@ const Blog = () => {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

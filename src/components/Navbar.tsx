@@ -1,14 +1,20 @@
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import SanyyaLogo from "./SanyyaLogo";
 import { Button } from "./ui/button";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+
+  const scrollToWaitlist = () => {
+    setMobileMenuOpen(false);
+    const heroSection = document.querySelector('#hero-waitlist');
+    if (heroSection) {
+      heroSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const navLinks = [
     { label: "Architecture", href: "#solution" },
@@ -16,125 +22,97 @@ const Navbar = () => {
     { label: "ROI", href: "#roi" },
   ];
 
-  const scrollToWaitlist = () => {
-    const heroSection = document.querySelector("#hero-waitlist");
-    if (heroSection) {
-      heroSection.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
-  };
-
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-
-    if (location.pathname !== "/") {
-      // Navigate to home page with hash
-      navigate("/" + href);
-    } else {
-      // Already on home page, just scroll
-      const section = document.querySelector(href);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <>
-      <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 frosted-glass"
-      >
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="group">
-            <SanyyaLogo size="sm" />
-          </Link>
+    <motion.nav 
+      initial={{ opacity: 0, y: -20 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.5 }} 
+      className="fixed top-0 left-0 right-0 z-50 frosted-glass"
+    >
+      <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <Link to="/" className="group">
+          <SanyyaLogo size="sm" />
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="relative text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
-              >
-                {link.label}
-              </a>
-            ))}
-            <Button
-              onClick={scrollToWaitlist}
-              size="sm"
-              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-semibold shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:-translate-y-0.5 transition-all duration-300"
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a 
+              key={link.label} 
+              href={link.href} 
+              className="relative text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
             >
-              Join Waitlist
-            </Button>
-          </div>
-
-          {/* Mobile: Join Waitlist button + Menu button */}
-          <div className="md:hidden flex items-center gap-2">
-            <Button
-              onClick={scrollToWaitlist}
-              size="sm"
-              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-semibold shadow-lg shadow-amber-500/30 text-xs px-3"
-            >
-              Join Waitlist
-            </Button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-foreground hover:bg-slate-100 rounded-lg transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
+              {link.label}
+            </a>
+          ))}
+          <Button
+            onClick={scrollToWaitlist}
+            size="sm"
+            className="bg-transparent border border-primary/50 text-primary hover:bg-primary/10 hover:border-primary font-semibold hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Join Waitlist
+          </Button>
         </div>
-      </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 z-40 md:hidden"
+            className="md:hidden overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl"
           >
-            <div className="bg-white/95 backdrop-blur-lg border-b border-slate-200 shadow-lg">
-              <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-base text-foreground hover:text-amber-600 transition-colors py-2"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
+              {navLinks.map((link, index) => (
+                <motion.button
+                  key={link.label}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  onClick={() => handleNavClick(link.href)}
+                  className="text-left py-3 px-4 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
+                >
+                  {link.label}
+                </motion.button>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.length * 0.05 }}
+                className="pt-2"
+              >
                 <Button
                   onClick={scrollToWaitlist}
-                  className="mt-2 w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-semibold shadow-lg shadow-amber-500/30"
+                  className="w-full bg-gradient-to-r from-primary to-glow-pink text-white font-semibold"
                 >
                   Join Waitlist
                 </Button>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </motion.nav>
   );
 };
 
