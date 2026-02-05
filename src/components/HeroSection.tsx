@@ -70,17 +70,17 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 md:mt-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight"
+            className="mt-6 md:mt-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-normal tracking-tight"
           >
-            Intelligent Financial
+            Unified Procurement
             <br />
             <motion.span 
-              className="gradient-text-aurora inline-block"
+              className="gradient-text-aurora"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
-              Reconciliation
+              Intelligence
             </motion.span>
           </motion.h1>
 

@@ -157,9 +157,9 @@ const MobileVisual = () => (
             {/* Packing Slip Document */}
             <div className="absolute inset-8 top-14 flex items-center justify-center">
               <motion.div
-                initial={{ rotate: -2 }}
-                animate={{ rotate: [-2, 0, -2] }}
-                transition={{ duration: 4, repeat: Infinity }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
                 className="bg-white rounded-xl p-5 shadow-lg w-32"
               >
                 <div className="space-y-2">
@@ -210,7 +210,7 @@ const MobileVisual = () => (
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
-        className="absolute -bottom-3 -right-6 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg"
+        className="absolute -bottom-8 right-0 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg"
       >
         <Cpu className="w-4 h-4" />
         WASM
@@ -391,7 +391,7 @@ const FeatureRow = ({
 
 const SolutionSection = () => {
   return (
-    <section id="solution" className="py-20 md:py-28 bg-background relative overflow-hidden">
+    <section id="solution" className="pt-16 md:pt-20 pb-16 md:pb-20 bg-background relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-br from-primary/10 via-pink-500/5 to-transparent rounded-full blur-3xl" />
 
@@ -605,27 +605,31 @@ const SolutionSection = () => {
           />
         </div>
 
-        {/* Transition to next section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-20 md:mt-32 flex flex-col items-center"
-        >
-          {/* Vertical gradient line */}
-          <div className="w-px h-16 bg-gradient-to-b from-transparent via-primary/50 to-primary" />
-          
-          {/* Animated badge */}
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium"
-          >
-            See it in action
-            <span className="text-lg">↓</span>
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Transition to next section - positioned to overlap section boundaries */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="relative z-20 py-4 flex flex-col items-center"
+      >
+        {/* Vertical gradient line top */}
+        <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-primary/50" />
+        
+        {/* Animated badge */}
+        <motion.div
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="my-3 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-sm"
+        >
+          See it in action
+          <span className="text-lg">↓</span>
+        </motion.div>
+        
+        {/* Vertical gradient line bottom */}
+        <div className="w-px h-12 bg-gradient-to-b from-primary/50 via-border to-transparent" />
+      </motion.div>
     </section>
   );
 };

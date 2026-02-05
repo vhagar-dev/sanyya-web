@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { TrendingUp, Check, Briefcase, ClipboardList, Shield } from "lucide-react";
+import { TrendingUp, Check, Briefcase, ClipboardList, Shield, AlertTriangle, Ban, FileX } from "lucide-react";
 
 const StakeholderSection = () => {
   return (
@@ -154,31 +154,61 @@ const StakeholderSection = () => {
 
             {/* Body */}
             <p className="text-muted-foreground text-xs md:text-sm leading-relaxed flex-1 text-center">
-              We found $1.2M in unverified risk in a single pilot. Sanyya acts as the 'Financial Firewall' that protects your cash from vendor errors, fraud, and phantom inventory.
+              Sanyya acts as the 'Financial Firewall' that protects your cash from vendor errors, fraud, and phantom inventory—surfacing hidden risk before it impacts your bottom line.
             </p>
 
-            {/* Visual Widget: Capital Protected Metric */}
+            {/* Visual Widget: Financial Firewall Shield */}
             <div className="mt-4 md:mt-6 bg-secondary/50 rounded-lg md:rounded-xl p-3 md:p-4 border border-border">
-              <p className="text-[10px] md:text-xs text-muted-foreground font-medium mb-1.5 md:mb-2 text-center">Capital Protected</p>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, type: "spring" }}
-                className="text-center"
-              >
-                <span className="text-2xl md:text-3xl font-bold text-emerald-400 tabular-nums">$1,206,327</span>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.8 }}
-                className="flex items-center justify-center gap-1 mt-1.5 md:mt-2"
-              >
-                <TrendingUp className="w-3 h-3 text-emerald-400" />
-                <span className="text-[10px] md:text-xs text-emerald-400 font-medium">From single pilot audit</span>
-              </motion.div>
+              <p className="text-[10px] md:text-xs text-muted-foreground font-medium mb-2 md:mb-3 text-center">Threats Blocked</p>
+              
+              {/* Shield with threats */}
+              <div className="relative flex items-center justify-center">
+                {/* Central Shield */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                  className="relative z-10"
+                >
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                    <Shield className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                  </div>
+                  {/* Pulse ring */}
+                  <motion.div
+                    className="absolute inset-0 rounded-xl border-2 border-emerald-400"
+                    animate={{ scale: [1, 1.4, 1.4], opacity: [0.6, 0, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </motion.div>
+              </div>
+
+              {/* Blocked threats list */}
+              <div className="mt-3 space-y-1.5">
+                {[
+                  { icon: FileX, label: "Duplicate Invoice", delay: 0.5 },
+                  { icon: AlertTriangle, label: "Price Variance", delay: 0.7 },
+                  { icon: Ban, label: "Phantom Inventory", delay: 0.9 },
+                ].map((threat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: threat.delay }}
+                    className="flex items-center justify-between px-2 py-1 rounded-md bg-red-500/5 border border-red-500/10"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <threat.icon className="w-3 h-3 text-red-400/70" />
+                      <span className="text-[9px] md:text-[10px] text-red-400/90">{threat.label}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="text-[8px] text-emerald-400 font-medium">BLOCKED</span>
+                      <Check className="w-2.5 h-2.5 text-emerald-400" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

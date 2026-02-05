@@ -148,86 +148,164 @@ const ValuePropSection = () => (
                   </p>
                 </div>
                 
-                {/* Visual: Similarity Graph */}
-                <div className="bg-secondary/50 rounded-2xl p-4 sm:p-6 border border-border">
-                  {/* Mobile: Vertical layout */}
-                  <div className="flex sm:hidden flex-col items-center gap-4 mb-6">
-                    <div className="text-center">
-                      <div className="w-16 h-16 rounded-xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center mb-2">
-                        <span className="text-xs font-semibold text-primary">"Laptop"</span>
-                      </div>
-                      <span className="text-[10px] text-muted-foreground">Term A</span>
+                {/* Visual: Semantic Matching Demo */}
+                <div className="bg-secondary/50 rounded-2xl p-4 sm:p-6 border border-border overflow-hidden">
+                  {/* Document comparison header */}
+                  <div className="flex items-center justify-center gap-2 mb-4">
+                    <div className="flex items-center gap-1.5 px-2 py-1 bg-blue-500/10 rounded-md border border-blue-500/20">
+                      <div className="w-2 h-2 rounded-full bg-blue-400" />
+                      <span className="text-[10px] text-blue-400 font-medium">Purchase Order</span>
                     </div>
-                    
-                    <div className="flex flex-col items-center">
-                      <div className="w-0.5 h-4 bg-gradient-to-b from-primary to-emerald-400" />
-                      <motion.div 
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg whitespace-nowrap"
-                      >
-                        98% Match
-                      </motion.div>
-                      <div className="w-0.5 h-4 bg-gradient-to-b from-emerald-400 to-pink-500" />
-                    </div>
-                    
-                    <div className="text-center">
-                      <div className="w-16 h-16 rounded-xl bg-pink-500/10 border-2 border-pink-500/20 flex items-center justify-center mb-2">
-                        <span className="text-xs font-semibold text-pink-400">"MacBook"</span>
-                      </div>
-                      <span className="text-[10px] text-muted-foreground">Term B</span>
+                    <span className="text-muted-foreground text-xs">vs</span>
+                    <div className="flex items-center gap-1.5 px-2 py-1 bg-amber-500/10 rounded-md border border-amber-500/20">
+                      <div className="w-2 h-2 rounded-full bg-amber-400" />
+                      <span className="text-[10px] text-amber-400 font-medium">Packing Slip</span>
                     </div>
                   </div>
 
-                  {/* Tablet+: Horizontal layout */}
-                  <div className="hidden sm:flex items-center justify-between mb-8">
-                    <div className="text-center flex-shrink-0">
-                      <div className="w-16 md:w-20 h-16 md:h-20 rounded-xl md:rounded-2xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center mb-2">
-                        <span className="text-xs md:text-sm font-semibold text-primary">"Laptop"</span>
+                  {/* Main comparison visual */}
+                  <div className="relative">
+                    {/* Animated connection background */}
+                    <motion.div 
+                      className="absolute inset-0 flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-full h-24 relative">
+                        {/* Animated pulse rings */}
+                        <motion.div
+                          className="absolute left-[15%] top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-primary/30"
+                          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                        <motion.div
+                          className="absolute right-[15%] top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-pink-500/30"
+                          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                        />
                       </div>
-                      <span className="text-[10px] md:text-xs text-muted-foreground">Term A</span>
-                    </div>
-                    
-                    <div className="flex-1 mx-2 md:mx-4 relative min-w-0">
-                      <div className="h-1 bg-gradient-to-r from-primary via-emerald-400 to-pink-500 rounded-full" />
+                    </motion.div>
+
+                    {/* Terms with embedding visualization */}
+                    <div className="flex items-center justify-between relative z-10">
+                      {/* Term A - From PO */}
                       <motion.div 
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
+                        className="text-center"
+                        initial={{ x: -20, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-emerald-500 text-white text-[10px] md:text-xs font-bold px-2 md:px-3 py-1 rounded-full shadow-lg whitespace-nowrap"
+                        transition={{ delay: 0.1 }}
                       >
-                        98% Match
+                        <div className="w-20 md:w-24 h-20 md:h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border-2 border-primary/40 flex flex-col items-center justify-center mb-2 shadow-lg shadow-primary/10 relative overflow-hidden">
+                          {/* Shimmer effect */}
+                          <motion.div 
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent"
+                            animate={{ x: ['-100%', '100%'] }}
+                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                          />
+                          <span className="text-sm md:text-base font-bold text-primary relative z-10">"Laptop"</span>
+                          <span className="text-[9px] text-primary/60 mt-1 relative z-10">from PO #4921</span>
+                        </div>
+                        <div className="flex items-center justify-center gap-1 mt-1">
+                          <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+                          <div className="w-1 h-1 rounded-full bg-primary/70 animate-pulse" style={{ animationDelay: '0.1s' }} />
+                          <div className="w-1 h-1 rounded-full bg-primary/40 animate-pulse" style={{ animationDelay: '0.2s' }} />
+                        </div>
+                      </motion.div>
+                      
+                      {/* Connection line */}
+                      <div className="flex-1 mx-3 md:mx-6 relative">
+                        {/* Animated data flow particles */}
+                        <div className="absolute inset-0 flex items-center">
+                          <motion.div
+                            className="w-2 h-2 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/50"
+                            animate={{ x: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                          />
+                        </div>
+                        <div className="absolute inset-0 flex items-center">
+                          <motion.div
+                            className="w-2 h-2 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/50"
+                            animate={{ x: ['100%', '0%'], opacity: [0, 1, 1, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.75 }}
+                          />
+                        </div>
+                        
+                        {/* Connection line */}
+                        <div className="h-0.5 bg-gradient-to-r from-primary via-emerald-400 to-pink-500 rounded-full" />
+                      </div>
+                      
+                      {/* Term B - From Packing Slip */}
+                      <motion.div 
+                        className="text-center"
+                        initial={{ x: 20, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        <div className="w-20 md:w-24 h-20 md:h-24 rounded-2xl bg-gradient-to-br from-pink-500/20 to-pink-500/5 border-2 border-pink-500/40 flex flex-col items-center justify-center mb-2 shadow-lg shadow-pink-500/10 relative overflow-hidden">
+                          {/* Shimmer effect */}
+                          <motion.div 
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/10 to-transparent"
+                            animate={{ x: ['-100%', '100%'] }}
+                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1, delay: 0.5 }}
+                          />
+                          <span className="text-sm md:text-base font-bold text-pink-400 relative z-10">"MacBook"</span>
+                          <span className="text-[9px] text-pink-400/60 mt-1 relative z-10">from Slip #99-A</span>
+                        </div>
+                        <div className="flex items-center justify-center gap-1 mt-1">
+                          <div className="w-1 h-1 rounded-full bg-pink-500/40 animate-pulse" style={{ animationDelay: '0.2s' }} />
+                          <div className="w-1 h-1 rounded-full bg-pink-500/70 animate-pulse" style={{ animationDelay: '0.1s' }} />
+                          <div className="w-1 h-1 rounded-full bg-pink-500 animate-pulse" />
+                        </div>
                       </motion.div>
                     </div>
-                    
-                    <div className="text-center flex-shrink-0">
-                      <div className="w-16 md:w-20 h-16 md:h-20 rounded-xl md:rounded-2xl bg-pink-500/10 border-2 border-pink-500/20 flex items-center justify-center mb-2">
-                        <span className="text-xs md:text-sm font-semibold text-pink-400">"MacBook"</span>
+
+                    {/* Score badge - centered below */}
+                    <motion.div 
+                      initial={{ scale: 0, y: 10 }}
+                      whileInView={{ scale: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
+                      className="flex flex-col items-center mt-6"
+                    >
+                      <div className="bg-emerald-500 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full shadow-lg shadow-emerald-500/30 flex items-center gap-1.5">
+                        <motion.span
+                          animate={{ rotate: [0, 360] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                          className="text-emerald-200"
+                        >
+                          ✦
+                        </motion.span>
+                        98% Semantic Match
                       </div>
-                      <span className="text-[10px] md:text-xs text-muted-foreground">Term B</span>
-                    </div>
+                      <div className="text-[10px] text-muted-foreground mt-1.5">Cosine Similarity Score</div>
+                    </motion.div>
                   </div>
-                  
-                  {/* Vector space dots */}
-                  <div className="h-20 sm:h-24 relative bg-card rounded-xl border border-border overflow-hidden">
-                    {[...Array(15)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className={`absolute w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full ${i < 7 ? 'bg-primary' : 'bg-pink-500'}`}
-                        style={{ left: `${15 + Math.random() * 70}%`, top: `${15 + Math.random() * 70}%` }}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 0.7, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 * i }}
-                      />
-                    ))}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[10px] sm:text-xs text-muted-foreground bg-card/80 px-2 py-1 rounded">Vector Space</span>
+
+                  {/* Bottom insight */}
+                  <motion.div 
+                    className="mt-10 pt-4 border-t border-border/50"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6 }}
+                  >
+                    <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <span className="text-emerald-400">✓</span> Same meaning
+                      </span>
+                      <span className="text-border">•</span>
+                      <span className="flex items-center gap-1">
+                        <span className="text-emerald-400">✓</span> Different spelling
+                      </span>
+                      <span className="text-border">•</span>
+                      <span className="flex items-center gap-1">
+                        <span className="text-emerald-400">✓</span> Auto-matched
+                      </span>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -380,7 +458,7 @@ const ValuePropSection = () => (
                             <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-primary rounded-br" />
                             
                             {/* Packing slip preview */}
-                            <div className="absolute inset-3 bg-white rounded-lg shadow-lg p-3 transform rotate-1">
+                            <div className="absolute inset-3 bg-white rounded-lg shadow-lg p-3">
                               <div className="text-[8px] text-slate-800 font-bold mb-2">PACKING SLIP</div>
                               <div className="space-y-1.5">
                                 <div className="h-1.5 bg-slate-200 rounded w-3/4" />
@@ -428,15 +506,17 @@ const ValuePropSection = () => (
                         </div>
                         
                         {/* Bottom UI */}
-                        <div className="p-4 bg-secondary/50 space-y-2">
+                        <div className="p-4 bg-secondary/50 space-y-3">
                           <motion.div 
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-emerald-500 rounded-xl py-3 text-center"
+                            className="bg-emerald-500 rounded-xl px-4 py-3 flex items-center justify-center gap-3"
                           >
-                            <span className="text-white font-semibold text-sm flex items-center justify-center gap-2">
-                              <Camera className="w-4 h-4" />
+                            <div className="w-8 h-8 bg-emerald-400/30 rounded-lg flex items-center justify-center">
+                              <Camera className="w-5 h-5 text-white" />
+                            </div>
+                            <span className="text-white font-semibold text-sm">
                               Packing Slip Captured
                             </span>
                           </motion.div>

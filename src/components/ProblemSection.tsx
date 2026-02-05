@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Clock, Brain, FileWarning, Check, X } from "lucide-react";
 
 const ProblemSection = () => (
-  <section id="problem" className="py-20 md:py-28 bg-background relative overflow-hidden">
+  <section id="problem" className="pt-20 md:pt-28 pb-16 md:pb-20 bg-background relative overflow-hidden">
     {/* Subtle background pattern */}
     <div
       className="absolute inset-0 opacity-[0.03]"
@@ -51,9 +51,9 @@ const ProblemSection = () => (
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-2 md:gap-4">
               {/* PO Document */}
               <motion.div
-                initial={{ rotate: -3 }}
-                animate={{ rotate: [-3, -1, -3] }}
-                transition={{ duration: 4, repeat: Infinity }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
                 className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-border shadow-lg"
               >
                 <div className="flex items-center gap-2 mb-2">
@@ -85,9 +85,9 @@ const ProblemSection = () => (
 
               {/* Invoice Document */}
               <motion.div
-                initial={{ rotate: 2 }}
-                animate={{ rotate: [2, 0, 2] }}
-                transition={{ duration: 3.5, repeat: Infinity }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
                 className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-border shadow-lg"
               >
                 <div className="flex items-center gap-2 mb-2">
@@ -119,9 +119,9 @@ const ProblemSection = () => (
 
               {/* Packing Slip Document */}
               <motion.div
-                initial={{ rotate: -2 }}
-                animate={{ rotate: [-2, 1, -2] }}
-                transition={{ duration: 4.5, repeat: Infinity }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
                 className="w-full sm:flex-1 bg-card rounded-xl p-3 md:p-4 border border-red-500/30 shadow-lg relative"
               >
                 <div className="absolute -top-2 -right-2 bg-red-500 text-white text-[8px] px-1.5 py-0.5 rounded font-bold">
@@ -332,34 +332,36 @@ const ProblemSection = () => (
         </motion.div>
       </div>
 
-      {/* Transition to Solution */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mt-16 md:mt-24 text-center"
-      >
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-primary/50" />
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
-          >
-            <span className="text-primary text-sm font-medium">There's a better way</span>
-            <motion.span
-              animate={{ y: [0, 4, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-primary"
-            >
-              ↓
-            </motion.span>
-          </motion.div>
-        </div>
-      </motion.div>
     </div>
+
+    {/* Transition to Solution - positioned to overlap section boundaries */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="relative z-20 text-center py-4"
+    >
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-primary/50" />
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm"
+        >
+          <span className="text-primary text-sm font-medium">There's a better way</span>
+          <motion.span
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="text-primary"
+          >
+            ↓
+          </motion.span>
+        </motion.div>
+        <div className="w-px h-12 bg-gradient-to-b from-primary/50 via-border to-transparent" />
+      </div>
+    </motion.div>
   </section>
 );
 

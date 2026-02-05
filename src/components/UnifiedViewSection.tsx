@@ -1,14 +1,43 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Check, ImageIcon, FileText, Package, Receipt, AlertTriangle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const UnifiedViewSection = () => {
-  const [showDiscrepancy, setShowDiscrepancy] = useState(true);
+  const [showDiscrepancy, setShowDiscrepancy] = useState(false); // Default to Perfect Match
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [showHint, setShowHint] = useState(true);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  // Auto-demo toggle when section comes into view
+  useEffect(() => {
+    if (isInView && !hasInteracted) {
+      const timer1 = setTimeout(() => {
+        setShowDiscrepancy(true); // Show discrepancy
+      }, 1500);
+      
+      const timer2 = setTimeout(() => {
+        setShowDiscrepancy(false); // Switch back to perfect match
+      }, 3500);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
+  }, [isInView, hasInteracted]);
+
+  // Handle user interaction
+  const handleToggle = (value: boolean) => {
+    setShowDiscrepancy(value);
+    setHasInteracted(true);
+    setShowHint(false);
+  };
 
   return (
-    <section className="py-20 md:py-28 bg-background relative overflow-hidden">
+    <section ref={sectionRef} className="pt-16 md:pt-20 pb-20 md:pb-28 bg-background relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0" style={{
@@ -44,29 +73,48 @@ const UnifiedViewSection = () => {
           </p>
 
           {/* Toggle Switch */}
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <button
-              onClick={() => setShowDiscrepancy(false)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                !showDiscrepancy 
-                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" 
-                  : "bg-secondary/50 text-muted-foreground hover:text-foreground border border-transparent"
-              }`}
-            >
-              <Check className="w-4 h-4 inline mr-2" />
-              Perfect Match
-            </button>
-            <button
-              onClick={() => setShowDiscrepancy(true)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                showDiscrepancy 
-                  ? "bg-red-500/20 text-red-400 border border-red-500/30" 
-                  : "bg-secondary/50 text-muted-foreground hover:text-foreground border border-transparent"
-              }`}
-            >
-              <AlertTriangle className="w-4 h-4 inline mr-2" />
-              Discrepancy
-            </button>
+          <div className="mt-6 flex flex-col items-center gap-2">
+            <div className="flex items-center justify-center gap-3">
+              <button
+                onClick={() => handleToggle(false)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  !showDiscrepancy 
+                    ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" 
+                    : "bg-secondary/50 text-muted-foreground hover:text-foreground border border-transparent"
+                }`}
+              >
+                <Check className="w-4 h-4 inline mr-2" />
+                Perfect Match
+              </button>
+              <button
+                onClick={() => handleToggle(true)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  showDiscrepancy 
+                    ? "bg-red-500/20 text-red-400 border border-red-500/30" 
+                    : "bg-secondary/50 text-muted-foreground hover:text-foreground border border-transparent"
+                }`}
+              >
+                <AlertTriangle className="w-4 h-4 inline mr-2" />
+                Discrepancy
+              </button>
+            </div>
+            
+            {/* Hint text */}
+            <AnimatePresence>
+              {showHint && (
+                <motion.p
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-xs text-muted-foreground/70 flex items-center gap-1"
+                >
+                  <span className="inline-block animate-pulse">←</span>
+                  Toggle to compare scenarios
+                  <span className="inline-block animate-pulse">→</span>
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Connected Documents Visual */}
