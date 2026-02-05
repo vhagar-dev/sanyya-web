@@ -1,18 +1,48 @@
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Rocket, CheckCircle } from "lucide-react";
+import { ArrowRight, Rocket, CheckCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
 import MagneticButton from "./MagneticButton";
 import CombinedMatchVisual from "./CombinedMatchVisual";
 
+const LOOPS_FORM_ID = import.meta.env.VITE_LOOPS_FORM_ID || "";
+
 const HeroSection = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setSubmitted(true);
+    if (!email) return;
+
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch(
+        `https://app.loops.so/api/newsletter-form/${LOOPS_FORM_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Failed to submit. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -80,15 +110,29 @@ const HeroSection = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="h-12 md:h-14 px-4 md:px-6 bg-secondary/80 backdrop-blur-sm border-border text-foreground placeholder:text-muted-foreground rounded-full focus:bg-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all flex-1 shadow-lg text-sm md:text-base"
+                  disabled={isLoading}
+                  className="h-12 md:h-14 px-4 md:px-6 bg-secondary/80 backdrop-blur-sm border-border text-foreground placeholder:text-muted-foreground rounded-full focus:bg-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all flex-1 shadow-lg text-sm md:text-base disabled:opacity-50"
                 />
                 <MagneticButton
                   type="submit"
-                  className="h-12 md:h-14 px-6 md:px-8 rounded-full bg-gradient-to-r from-glow-magenta to-glow-pink text-white font-semibold shadow-lg shadow-primary/40 hover:shadow-xl hover:shadow-primary/50 hover:-translate-y-0.5 transition-all shine-effect flex items-center justify-center gap-2 text-sm md:text-base"
+                  disabled={isLoading}
+                  className="h-12 md:h-14 px-6 md:px-8 rounded-full bg-gradient-to-r from-glow-magenta to-glow-pink text-white font-semibold shadow-lg shadow-primary/40 hover:shadow-xl hover:shadow-primary/50 hover:-translate-y-0.5 transition-all shine-effect flex items-center justify-center gap-2 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Join Waitlist
-                  <ArrowRight className="w-4 h-4" />
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Joining...
+                    </>
+                  ) : (
+                    <>
+                      Join Waitlist
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </MagneticButton>
+                {error && (
+                  <p className="text-red-400 text-sm mt-2 w-full text-center">{error}</p>
+                )}
               </form>
             ) : (
               <motion.div
