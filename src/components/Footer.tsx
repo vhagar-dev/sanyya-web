@@ -15,7 +15,7 @@ const Footer = () => (
         className="text-center space-y-4 flex flex-col items-center"
       >
         <SanyyaLogo size="lg" />
-        <p className="text-muted-foreground text-sm">© 2026 Sanyya Systems, LLC. Architecting Autonomous Commerce.</p>
+        <p className="text-muted-foreground text-sm">© 2026 Sanyya Systems, Inc. Architecting Autonomous Commerce.</p>
       </motion.div>
     </div>
   </footer>

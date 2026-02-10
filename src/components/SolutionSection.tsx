@@ -17,123 +17,208 @@ const useIsMobile = () => {
 };
 
 // Visual 1: Vector Search Graph (High-Science Example)
-const VectorVisual = () => (
-  <div className="relative w-full h-64 sm:h-80 md:h-96">
-    {/* Glass card container */}
-    <div className="absolute inset-0 bg-card/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-border shadow-xl overflow-hidden">
-      {/* Grid background */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `linear-gradient(to right, hsl(0 0% 50%) 1px, transparent 1px), linear-gradient(to bottom, hsl(0 0% 50%) 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
+const VectorVisual = () => {
+  // Fixed positions for floating particles
+  const particles = [
+    { left: 25, top: 20 }, { left: 45, top: 35 }, { left: 65, top: 25 },
+    { left: 30, top: 60 }, { left: 55, top: 70 }, { left: 75, top: 55 },
+    { left: 20, top: 45 }, { left: 70, top: 40 },
+  ];
 
-      {/* Floating data points */}
-      {[...Array(12)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 rounded-full bg-primary/40"
+  return (
+    <div className="relative w-full h-64 sm:h-80 md:h-96">
+      {/* Glass card container */}
+      <div className="absolute inset-0 bg-card/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-border shadow-xl overflow-hidden">
+        {/* Grid background */}
+        <div
+          className="absolute inset-0 opacity-15"
           style={{
-            left: `${15 + Math.random() * 70}%`,
-            top: `${15 + Math.random() * 70}%`,
-          }}
-          animate={{
-            y: [0, -6, 0],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
+            backgroundImage: `linear-gradient(to right, hsl(292 84% 57% / 0.4) 1px, transparent 1px), linear-gradient(to bottom, hsl(292 84% 57% / 0.4) 1px, transparent 1px)`,
+            backgroundSize: "40px 40px",
           }}
         />
-      ))}
 
-      {/* Point A: Scientific Name (Generic) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2, type: "spring" }}
-        className="absolute left-[12%] sm:left-[15%] md:left-[18%] top-[30%] sm:top-[28%]"
-      >
-        <div className="relative">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50" />
-          <div className="absolute -top-8 sm:-top-10 md:-top-12 left-0 sm:left-1/2 sm:-translate-x-1/2 bg-card text-foreground text-[9px] sm:text-[10px] md:text-xs px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-1.5 rounded-lg whitespace-nowrap font-mono border border-border">
-            "Doxorubicin"
-          </div>
+        {/* Floating data points */}
+        {particles.map((pos, i) => (
+          <motion.div
+            key={i}
+            className={`absolute w-1.5 h-1.5 rounded-full ${i % 2 === 0 ? 'bg-blue-400/60' : 'bg-violet-400/60'}`}
+            style={{ left: `${pos.left}%`, top: `${pos.top}%` }}
+            animate={{
+              y: [0, -5, 0],
+              opacity: [0.4, 0.7, 0.4],
+            }}
+            transition={{
+              duration: 2 + (i % 2),
+              repeat: Infinity,
+              delay: i * 0.3,
+            }}
+          />
+        ))}
+
+        {/* Point A: Doxorubicin - positioned precisely */}
+        <div className="absolute left-[20%] top-[35%]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, type: "spring" }}
+            className="relative"
+          >
+            {/* Pulse ring */}
+            <motion.div
+              className="absolute -inset-2 rounded-full border-2 border-blue-400/50"
+              animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
+            {/* Main node */}
+            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg shadow-blue-500/50" />
+            {/* Label - positioned above */}
+            <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm text-foreground text-[10px] md:text-xs px-3 py-1.5 rounded-lg whitespace-nowrap font-mono border border-blue-500/40 shadow-lg">
+              "Doxorubicin"
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
 
-      {/* Point B: Brand Name (Vendor Terminology) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.4, type: "spring" }}
-        className="absolute right-[12%] sm:right-[15%] md:right-[18%] bottom-[30%] sm:bottom-[28%]"
-      >
-        <div className="relative">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full bg-violet-500 shadow-lg shadow-violet-500/50" />
-          <div className="absolute -bottom-8 sm:-bottom-10 md:-bottom-12 right-0 sm:left-1/2 sm:-translate-x-1/2 bg-card text-foreground text-[9px] sm:text-[10px] md:text-xs px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-1.5 rounded-lg whitespace-nowrap font-mono border border-border">
-            "Adriamycin"
-          </div>
+        {/* Point B: Adriamycin - positioned precisely */}
+        <div className="absolute right-[20%] bottom-[35%]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, type: "spring" }}
+            className="relative"
+          >
+            {/* Pulse ring */}
+            <motion.div
+              className="absolute -inset-2 rounded-full border-2 border-violet-400/50"
+              animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+            />
+            {/* Main node */}
+            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-violet-400 to-violet-600 shadow-lg shadow-violet-500/50" />
+            {/* Label - positioned below */}
+            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm text-foreground text-[10px] md:text-xs px-3 py-1.5 rounded-lg whitespace-nowrap font-mono border border-violet-500/40 shadow-lg">
+              "Adriamycin"
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
 
-      {/* Connecting Line */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 320">
-        <defs>
-          <linearGradient id="vectorLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(292, 84%, 57%)" />
-            <stop offset="100%" stopColor="hsl(330, 70%, 55%)" />
-          </linearGradient>
-        </defs>
-        <motion.line
-          x1="90"
-          y1="110"
-          x2="310"
-          y2="210"
-          stroke="url(#vectorLineGradient)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
+        {/* Connecting Line with bidirectional particles */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#60a5fa" />
+              <stop offset="50%" stopColor="#c084fc" />
+              <stop offset="100%" stopColor="#a78bfa" />
+            </linearGradient>
+            <filter id="glow2">
+              <feGaussianBlur stdDeviation="1" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          
+          {/* Glow background line */}
+          <motion.line
+            x1="24" y1="38"
+            x2="76" y2="62"
+            stroke="url(#lineGrad)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            opacity="0.3"
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          
+          {/* Main line */}
+          <motion.line
+            x1="24" y1="38"
+            x2="76" y2="62"
+            stroke="url(#lineGrad)"
+            strokeWidth="0.8"
+            strokeLinecap="round"
+            filter="url(#glow2)"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          />
+          
+          {/* Bidirectional particles - going right */}
+          <motion.circle
+            r="1"
+            fill="#60a5fa"
+            filter="url(#glow2)"
+            animate={{ cx: [24, 76, 24], cy: [38, 62, 38] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.circle
+            r="0.8"
+            fill="#c084fc"
+            filter="url(#glow2)"
+            animate={{ cx: [24, 76, 24], cy: [38, 62, 38] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+          />
+          
+          {/* Bidirectional particles - going left */}
+          <motion.circle
+            r="1"
+            fill="#a78bfa"
+            filter="url(#glow2)"
+            animate={{ cx: [76, 24, 76], cy: [62, 38, 62] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+          />
+          <motion.circle
+            r="0.8"
+            fill="#818cf8"
+            filter="url(#glow2)"
+            animate={{ cx: [76, 24, 76], cy: [62, 38, 62] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
+        </svg>
+
+        {/* Similarity Badge - centered on the line */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        />
-        <motion.line
-          x1="90"
-          y1="110"
-          x2="310"
-          y2="210"
-          stroke="hsl(292, 84%, 57%)"
-          strokeWidth="10"
-          strokeLinecap="round"
-          opacity="0.15"
-          animate={{ opacity: [0.1, 0.25, 0.1] }}
-          transition={{ duration: 2.5, repeat: Infinity }}
-        />
-      </svg>
+          transition={{ delay: 0.7, type: "spring" }}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          {/* Badge glow */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-primary to-pink-500 rounded-full blur-lg"
+            animate={{ opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          {/* Badge */}
+          <div className="relative bg-gradient-to-r from-primary to-pink-500 text-white px-4 py-2 rounded-full shadow-xl flex items-center gap-2">
+            <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="text-white/90"
+            >
+              ✦
+            </motion.span>
+            <span className="text-sm font-semibold">Match</span>
+            <span className="text-base font-bold">(0.99)</span>
+          </div>
+        </motion.div>
 
-      {/* Similarity Badge */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.7, type: "spring" }}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-      >
-        <div className="bg-gradient-to-r from-primary to-pink-500 text-primary-foreground px-5 py-2.5 rounded-full shadow-xl shadow-primary/40 flex items-center gap-2">
-          <span className="text-sm font-medium">Match</span>
-          <span className="text-lg font-bold tabular-nums">(0.99)</span>
+        {/* Subtle corner indicators */}
+        <div className="absolute bottom-2 left-3 text-[7px] text-muted-foreground/40 font-mono">
+          dim: 1536
         </div>
-      </motion.div>
+        <div className="absolute bottom-2 right-3 text-[7px] text-muted-foreground/40 font-mono">
+          cosine similarity
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Visual 2: Mobile PWA Phone Mockup
 const MobileVisual = () => (
