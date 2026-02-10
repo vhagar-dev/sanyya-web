@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, ArrowRight, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WaitlistForm from "@/components/WaitlistForm";
 import SanyyaLogo from "@/components/SanyyaLogo";
 import phantomBurnCover from "@/assets/phantom-burn-cover.png";
 import rdParadoxCover from "@/assets/rd-paradox-cover.png";
@@ -251,13 +252,9 @@ const Blog = () => {
                 tuned.
               </p>
 
-              <Link
-                to="/#pioneer"
-                className="mt-8 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-foreground text-background font-semibold shadow-lg shadow-slate-900/15 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 shine-effect"
-              >
-                Join the Pioneer Program
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <div className="mt-8">
+                <WaitlistForm variant="compact" className="max-w-md mx-auto" />
+              </div>
             </div>
           </motion.div>
         </div>

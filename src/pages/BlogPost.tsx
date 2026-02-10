@@ -1,9 +1,10 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, Sparkles, ArrowRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WaitlistForm from "@/components/WaitlistForm";
 import {
   Dialog,
   DialogContent,
@@ -806,15 +807,7 @@ const BlogPost = () => {
             <p className="text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
               Join our Pioneer Program and be among the first to experience intelligent financial reconciliation.
             </p>
-            <Link to="/#pioneer">
-              <Button
-                size="lg"
-                className="h-14 px-8 rounded-full bg-foreground text-background hover:bg-foreground/90 font-semibold shadow-lg shadow-slate-900/15 hover:shadow-xl transition-all shine-effect"
-              >
-                Join the Waitlist
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
+            <WaitlistForm variant="compact" className="max-w-md mx-auto" />
           </div>
         </motion.div>
       </section>

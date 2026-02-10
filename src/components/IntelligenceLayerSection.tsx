@@ -169,7 +169,7 @@ const IntelligenceLayerSection = () => {
                   <CreditCard className="w-6 md:w-7 h-6 md:h-7 text-emerald-400" strokeWidth={1.5} />
                 </div>
                 <h3 className="font-semibold text-foreground mb-1 text-sm md:text-base">Your Bill Pay</h3>
-                <p className="text-xs md:text-sm text-muted-foreground">Bill.com, Ramp, Brex</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Bill.com, Ramp, NetSuite</p>
               </div>
             </motion.div>
           </div>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
+import WaitlistForm from "./WaitlistForm";
 
 const PioneerSection = () => {
   const benefits = [
@@ -7,13 +8,6 @@ const PioneerSection = () => {
     { label: "The Discount", text: "Locked-in 50% Lifetime Discount for Design Partners." },
     { label: "The Access", text: "Direct Slack channel with our Team." },
   ];
-
-  const scrollToWaitlist = () => {
-    const heroSection = document.querySelector('#hero-waitlist');
-    if (heroSection) {
-      heroSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="py-20 md:py-28 bg-background relative overflow-hidden">
@@ -88,15 +82,8 @@ const PioneerSection = () => {
                 ))}
               </div>
 
-              {/* CTA Button */}
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={scrollToWaitlist}
-                className="w-full py-3 md:py-4 rounded-lg md:rounded-xl font-semibold text-white bg-gradient-to-r from-primary via-glow-pink to-primary hover:from-glow-pink hover:via-primary hover:to-glow-pink transition-all duration-300 shadow-lg shadow-primary/30 text-sm md:text-base"
-              >
-                Join the Waitlist
-              </motion.button>
+              {/* Waitlist Form */}
+              <WaitlistForm variant="compact" />
             </div>
           </div>
         </motion.div>

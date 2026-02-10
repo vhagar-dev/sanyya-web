@@ -18,11 +18,11 @@ const useIsMobile = () => {
 
 // Visual 1: Vector Search Graph (High-Science Example)
 const VectorVisual = () => {
-  // Fixed positions for floating particles
+  // Fixed positions for floating particles (avoiding badge area at top-center)
   const particles = [
-    { left: 25, top: 20 }, { left: 45, top: 35 }, { left: 65, top: 25 },
-    { left: 30, top: 60 }, { left: 55, top: 70 }, { left: 75, top: 55 },
-    { left: 20, top: 45 }, { left: 70, top: 40 },
+    { left: 15, top: 20 }, { left: 85, top: 18 }, { left: 10, top: 55 },
+    { left: 30, top: 75 }, { left: 55, top: 85 }, { left: 75, top: 60 },
+    { left: 90, top: 45 }, { left: 20, top: 80 },
   ];
 
   return (
@@ -57,7 +57,7 @@ const VectorVisual = () => {
         ))}
 
         {/* Point A: Doxorubicin - positioned precisely */}
-        <div className="absolute left-[20%] top-[35%]">
+        <div className="absolute left-[20%] top-[45%]">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -81,7 +81,7 @@ const VectorVisual = () => {
         </div>
 
         {/* Point B: Adriamycin - positioned precisely */}
-        <div className="absolute right-[20%] bottom-[35%]">
+        <div className="absolute right-[20%] bottom-[25%]">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -123,8 +123,8 @@ const VectorVisual = () => {
           
           {/* Glow background line */}
           <motion.line
-            x1="24" y1="38"
-            x2="76" y2="62"
+            x1="24" y1="48"
+            x2="76" y2="72"
             stroke="url(#lineGrad)"
             strokeWidth="1.5"
             strokeLinecap="round"
@@ -135,8 +135,8 @@ const VectorVisual = () => {
           
           {/* Main line */}
           <motion.line
-            x1="24" y1="38"
-            x2="76" y2="62"
+            x1="24" y1="48"
+            x2="76" y2="72"
             stroke="url(#lineGrad)"
             strokeWidth="0.8"
             strokeLinecap="round"
@@ -152,14 +152,14 @@ const VectorVisual = () => {
             r="1"
             fill="#60a5fa"
             filter="url(#glow2)"
-            animate={{ cx: [24, 76, 24], cy: [38, 62, 38] }}
+            animate={{ cx: [24, 76, 24], cy: [48, 72, 48] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.circle
             r="0.8"
             fill="#c084fc"
             filter="url(#glow2)"
-            animate={{ cx: [24, 76, 24], cy: [38, 62, 38] }}
+            animate={{ cx: [24, 76, 24], cy: [48, 72, 48] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
           />
           
@@ -168,25 +168,25 @@ const VectorVisual = () => {
             r="1"
             fill="#a78bfa"
             filter="url(#glow2)"
-            animate={{ cx: [76, 24, 76], cy: [62, 38, 62] }}
+            animate={{ cx: [76, 24, 76], cy: [72, 48, 72] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
           />
           <motion.circle
             r="0.8"
             fill="#818cf8"
             filter="url(#glow2)"
-            animate={{ cx: [76, 24, 76], cy: [62, 38, 62] }}
+            animate={{ cx: [76, 24, 76], cy: [72, 48, 72] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           />
         </svg>
 
-        {/* Similarity Badge - centered on the line */}
+        {/* Similarity Badge - positioned above the line */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.7, type: "spring" }}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-1/2 top-[30%] -translate-x-1/2 -translate-y-1/2"
         >
           {/* Badge glow */}
           <motion.div
