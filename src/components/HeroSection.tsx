@@ -5,7 +5,7 @@ import { useState } from "react";
 import MagneticButton from "./MagneticButton";
 import CombinedMatchVisual from "./CombinedMatchVisual";
 
-const LOOPS_FORM_ID = import.meta.env.VITE_LOOPS_FORM_ID || "";
+const LOOPS_FORM_ID = "cml42iqn59zzx0i1zmn0qdhzg";
 
 const HeroSection = () => {
   const [email, setEmail] = useState("");
@@ -21,22 +21,23 @@ const HeroSection = () => {
     setError("");
 
     try {
+      const formBody = `userGroup=Waitlist&mailingLists=&email=${encodeURIComponent(email)}`;
+      
       const response = await fetch(
         `https://app.loops.so/api/newsletter-form/${LOOPS_FORM_ID}`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
           },
-          body: JSON.stringify({ email }),
+          body: formBody,
         }
       );
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
+      if (response.ok) {
         setSubmitted(true);
       } else {
+        const data = await response.json();
         setError(data.message || "Something went wrong. Please try again.");
       }
     } catch {
