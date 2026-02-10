@@ -48,7 +48,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative pt-24 md:pt-32 pb-20 md:pb-28 overflow-hidden">
+    <section id="hero-waitlist" className="relative pt-24 md:pt-32 pb-20 md:pb-28 overflow-hidden">
       {/* Animated Mesh Background */}
       <div className="absolute inset-0 mesh-gradient" />
 
