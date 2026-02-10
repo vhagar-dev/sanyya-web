@@ -450,8 +450,8 @@ const CombinedMatchVisual = () => {
         </div>
       </div>
 
-      {/* Mobile Layout - Simplified vertical flow */}
-      <div className="flex lg:hidden flex-col items-center gap-6">
+      {/* Mobile Layout - Vertical flow with animated particles */}
+      <div className="flex lg:hidden flex-col items-center gap-4">
         {/* Input Icons Row */}
         <div className="flex items-center gap-4">
           {inputs.map((input, i) => (
@@ -462,20 +462,50 @@ const CombinedMatchVisual = () => {
               transition={{ duration: 0.4, delay: 0.1 + i * 0.1 }}
               className="flex flex-col items-center gap-2"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-glow-magenta/20 to-glow-pink/10 border border-glow-magenta/40 flex items-center justify-center">
+              <motion.div 
+                className="w-12 h-12 rounded-xl bg-gradient-to-br from-glow-magenta/20 to-glow-pink/10 border border-glow-magenta/40 flex items-center justify-center"
+                animate={{
+                  boxShadow: [
+                    "0 0 15px hsla(var(--glow-magenta), 0.15)",
+                    "0 0 25px hsla(var(--glow-magenta), 0.3)",
+                    "0 0 15px hsla(var(--glow-magenta), 0.15)",
+                  ],
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.3 }}
+              >
                 <input.icon className="w-5 h-5 text-glow-magenta" />
-              </div>
+              </motion.div>
               <span className="text-xs text-muted-foreground">{input.label}</span>
             </motion.div>
           ))}
         </div>
 
-        {/* Flow indicator down */}
-        <motion.div
-          className="h-8 w-1 rounded-full bg-gradient-to-b from-glow-magenta to-glow-pink"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
+        {/* Animated flow indicator with particles - Input to Center */}
+        <div className="relative h-12 w-full flex justify-center">
+          {/* Static line */}
+          <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-glow-magenta/40 to-glow-pink/40 rounded-full" />
+          
+          {/* Animated particles flowing down */}
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={`particle-in-${i}`}
+              className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-glow-magenta"
+              style={{
+                boxShadow: "0 0 8px hsl(var(--glow-magenta)), 0 0 16px hsl(var(--glow-magenta))",
+              }}
+              animate={{
+                top: ["-4px", "calc(100% + 4px)"],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                delay: i * 0.5,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
 
         {/* Central Node */}
         <motion.div
@@ -489,7 +519,7 @@ const CombinedMatchVisual = () => {
             style={{
               background: "radial-gradient(ellipse at center, hsla(var(--glow-magenta), 0.2), transparent 70%)",
             }}
-            animate={{ opacity: [0.4, 0.7, 0.4] }}
+            animate={{ opacity: [0.4, 0.7, 0.4], scale: [1, 1.05, 1] }}
             transition={{ duration: 3, repeat: Infinity }}
           />
           <div className="relative bg-card/95 backdrop-blur-xl border border-glow-magenta/30 rounded-xl px-6 py-4">
@@ -501,12 +531,32 @@ const CombinedMatchVisual = () => {
           </div>
         </motion.div>
 
-        {/* Flow indicator down */}
-        <motion.div
-          className="h-8 w-1 rounded-full bg-gradient-to-b from-status-success to-emerald-500"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-        />
+        {/* Animated flow indicator with particles - Center to Output */}
+        <div className="relative h-12 w-full flex justify-center">
+          {/* Static line */}
+          <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-status-success/40 to-emerald-500/40 rounded-full" />
+          
+          {/* Animated particles flowing down */}
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={`particle-out-${i}`}
+              className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-status-success"
+              style={{
+                boxShadow: "0 0 8px hsl(var(--status-success)), 0 0 16px hsl(var(--status-success))",
+              }}
+              animate={{
+                top: ["-4px", "calc(100% + 4px)"],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                delay: 0.75 + i * 0.5,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
 
         {/* Output Icons Row */}
         <div className="flex items-center gap-4">
@@ -518,9 +568,19 @@ const CombinedMatchVisual = () => {
               transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
               className="flex flex-col items-center gap-2"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-status-success/20 to-emerald-500/10 border border-status-success/40 flex items-center justify-center">
+              <motion.div 
+                className="w-12 h-12 rounded-xl bg-gradient-to-br from-status-success/20 to-emerald-500/10 border border-status-success/40 flex items-center justify-center"
+                animate={{
+                  boxShadow: [
+                    "0 0 15px hsla(var(--status-success), 0.15)",
+                    "0 0 25px hsla(var(--status-success), 0.3)",
+                    "0 0 15px hsla(var(--status-success), 0.15)",
+                  ],
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: 0.4 + i * 0.3 }}
+              >
                 <output.icon className="w-5 h-5 text-status-success" />
-              </div>
+              </motion.div>
               <span className="text-xs text-muted-foreground">{output.label}</span>
             </motion.div>
           ))}
