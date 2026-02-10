@@ -104,7 +104,7 @@ const HeroSection = () => {
             className="mt-8 md:mt-10"
           >
             {!submitted ? (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row max-w-md mx-auto px-2 sm:px-0">
                 <Input
                   type="email"
                   placeholder="Enter your work email"
@@ -112,12 +112,12 @@ const HeroSection = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="h-12 md:h-14 px-4 md:px-6 bg-secondary/80 backdrop-blur-sm border-border text-foreground placeholder:text-muted-foreground rounded-full focus:bg-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all flex-1 shadow-lg text-sm md:text-base disabled:opacity-50"
+                  className="h-12 md:h-14 px-4 md:px-6 bg-secondary/80 backdrop-blur-sm border-border text-foreground placeholder:text-muted-foreground rounded-full focus:bg-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all sm:flex-1 shadow-lg text-base sm:text-sm md:text-base disabled:opacity-50 w-full"
                 />
                 <MagneticButton
                   type="submit"
                   disabled={isLoading}
-                  className="h-12 md:h-14 px-6 md:px-8 rounded-full bg-gradient-to-r from-glow-magenta to-glow-pink text-white font-semibold shadow-lg shadow-primary/40 hover:shadow-xl hover:shadow-primary/50 hover:-translate-y-0.5 transition-all shine-effect flex items-center justify-center gap-2 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="h-12 md:h-14 px-6 md:px-8 rounded-full bg-gradient-to-r from-glow-magenta to-glow-pink text-white font-semibold shadow-lg shadow-primary/40 hover:shadow-xl hover:shadow-primary/50 hover:-translate-y-0.5 transition-all shine-effect flex items-center justify-center gap-2 text-base sm:text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   {isLoading ? (
                     <>
