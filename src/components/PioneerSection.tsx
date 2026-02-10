@@ -5,7 +5,7 @@ import WaitlistForm from "./WaitlistForm";
 const PioneerSection = () => {
   const benefits = [
     { label: "Hands-On Partnership", text: "We work directly with you to identify and eliminate 3-way match bottlenecks." },
-    { label: "The Discount", text: "Locked-in 50% Lifetime Discount for Design Partners." },
+    { label: "The Discount", text: "50% Discount for Design Partners." },
     { label: "The Access", text: "Direct Slack channel with our Team." },
   ];
 
