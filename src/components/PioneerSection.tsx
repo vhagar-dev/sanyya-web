@@ -5,7 +5,7 @@ import WaitlistForm from "./WaitlistForm";
 const PioneerSection = () => {
   const benefits = [
     { label: "Hands-On Partnership", text: "We work directly with you to identify and eliminate 3-way match bottlenecks." },
-    { label: "The Discount", text: "50% Discount for Design Partners." },
+    { label: "The Discount", text: "Locked-in lifetime discount for Design Partners." },
     { label: "The Access", text: "Direct Slack channel with our Team." },
   ];
 
@@ -33,7 +33,7 @@ const PioneerSection = () => {
             Ready to Fix Your Match?
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto transition-all duration-300 hover:text-foreground px-2">
-            Join <span className="text-primary font-semibold">10 design partners</span> getting 
+            Join our <span className="text-primary font-semibold">design partners</span> getting 
             early access and a lifetime discount.
           </p>
         </motion.div>

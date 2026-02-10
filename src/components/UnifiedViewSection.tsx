@@ -117,96 +117,57 @@ const UnifiedViewSection = () => {
             </AnimatePresence>
           </div>
 
-          {/* Connected Documents Visual */}
+          {/* Connected Documents Visual - One line on all viewports (like browser) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-8"
+            className="mt-8 overflow-x-auto"
           >
-            {/* Mobile: Stacked vertical layout */}
-            <div className="flex sm:hidden flex-col items-center gap-2">
-              <div className="flex items-center gap-2 px-3 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                <FileText className="w-4 h-4 text-blue-400" />
-                <span className="text-xs font-medium text-blue-400">PO</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-0.5 h-3 bg-emerald-500" />
-                <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
-                  <Check className="w-3 h-3 text-white" />
-                </div>
-                <div className="w-0.5 h-3 bg-emerald-500" />
-              </div>
-              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors duration-300 ${
-                showDiscrepancy 
-                  ? "bg-amber-500/10 border-amber-500/30" 
-                  : "bg-violet-500/10 border-violet-500/30"
-              }`}>
-                <Package className={`w-4 h-4 transition-colors duration-300 ${showDiscrepancy ? "text-amber-400" : "text-violet-400"}`} />
-                <span className={`text-xs font-medium transition-colors duration-300 ${showDiscrepancy ? "text-amber-400" : "text-violet-400"}`}>GRN</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className={`w-0.5 h-3 transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`} />
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`}>
-                  {showDiscrepancy ? <AlertTriangle className="w-3 h-3 text-white" /> : <Check className="w-3 h-3 text-white" />}
-                </div>
-                <div className={`w-0.5 h-3 transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`} />
-              </div>
-              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors duration-300 ${
-                showDiscrepancy 
-                  ? "bg-red-500/10 border-red-500/30" 
-                  : "bg-amber-500/10 border-amber-500/30"
-              }`}>
-                <Receipt className={`w-4 h-4 transition-colors duration-300 ${showDiscrepancy ? "text-red-400" : "text-amber-400"}`} />
-                <span className={`text-xs font-medium transition-colors duration-300 ${showDiscrepancy ? "text-red-400" : "text-amber-400"}`}>INV</span>
-              </div>
-            </div>
-
-            {/* Tablet+: Horizontal layout */}
-            <div className="hidden sm:flex items-center justify-center gap-3 md:gap-6">
+            <div className="flex flex-nowrap items-center justify-center gap-1 sm:gap-3 md:gap-6 min-w-0 px-1">
               {/* PO */}
-              <div className="flex items-center gap-2 px-3 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                <FileText className="w-4 h-4 text-blue-400" />
-                <span className="text-xs font-medium text-blue-400">PO</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg flex-shrink-0">
+                <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400" />
+                <span className="text-[10px] sm:text-xs font-medium text-blue-400 whitespace-nowrap">PO</span>
               </div>
               
-              {/* Connected line with check */}
-              <div className="flex items-center gap-1">
-                <div className="w-4 md:w-8 h-0.5 bg-emerald-500" />
-                <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-white" />
+              {/* Connector + check */}
+              <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
+                <div className="w-2 sm:w-4 md:w-8 h-0.5 bg-emerald-500" />
+                <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
                 </div>
-                <div className="w-4 md:w-8 h-0.5 bg-emerald-500" />
+                <div className="w-2 sm:w-4 md:w-8 h-0.5 bg-emerald-500" />
               </div>
 
-              {/* Packing Slip */}
-              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors duration-300 ${
+              {/* GRN */}
+              <div className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border transition-colors duration-300 flex-shrink-0 ${
                 showDiscrepancy 
                   ? "bg-amber-500/10 border-amber-500/30" 
                   : "bg-violet-500/10 border-violet-500/30"
               }`}>
-                <Package className={`w-4 h-4 transition-colors duration-300 ${showDiscrepancy ? "text-amber-400" : "text-violet-400"}`} />
-                <span className={`text-xs font-medium transition-colors duration-300 ${showDiscrepancy ? "text-amber-400" : "text-violet-400"}`}>GRN</span>
+                <Package className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors duration-300 ${showDiscrepancy ? "text-amber-400" : "text-violet-400"}`} />
+                <span className={`text-[10px] sm:text-xs font-medium transition-colors duration-300 whitespace-nowrap ${showDiscrepancy ? "text-amber-400" : "text-violet-400"}`}>GRN</span>
               </div>
 
-              {/* Connected line with warning/check */}
-              <div className="flex items-center gap-1">
-                <div className={`w-4 md:w-8 h-0.5 transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`} />
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`}>
-                  {showDiscrepancy ? <AlertTriangle className="w-3 h-3 text-white" /> : <Check className="w-3 h-3 text-white" />}
+              {/* Connector + warning/check */}
+              <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
+                <div className={`w-2 sm:w-4 md:w-8 h-0.5 transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`} />
+                <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`}>
+                  {showDiscrepancy ? <AlertTriangle className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" /> : <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />}
                 </div>
-                <div className={`w-4 md:w-8 h-0.5 transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`} />
+                <div className={`w-2 sm:w-4 md:w-8 h-0.5 transition-colors duration-300 ${showDiscrepancy ? "bg-red-500" : "bg-emerald-500"}`} />
               </div>
 
-              {/* Invoice */}
-              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors duration-300 ${
+              {/* INV */}
+              <div className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border transition-colors duration-300 flex-shrink-0 ${
                 showDiscrepancy 
                   ? "bg-red-500/10 border-red-500/30" 
                   : "bg-amber-500/10 border-amber-500/30"
               }`}>
-                <Receipt className={`w-4 h-4 transition-colors duration-300 ${showDiscrepancy ? "text-red-400" : "text-amber-400"}`} />
-                <span className={`text-xs font-medium transition-colors duration-300 ${showDiscrepancy ? "text-red-400" : "text-amber-400"}`}>INV</span>
+                <Receipt className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors duration-300 ${showDiscrepancy ? "text-red-400" : "text-amber-400"}`} />
+                <span className={`text-[10px] sm:text-xs font-medium transition-colors duration-300 whitespace-nowrap ${showDiscrepancy ? "text-red-400" : "text-amber-400"}`}>INV</span>
               </div>
             </div>
           </motion.div>
@@ -261,10 +222,10 @@ const UnifiedViewSection = () => {
               </AnimatePresence>
             </div>
 
-            {/* 3-Column Grid - stack on mobile */}
-            <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
+            {/* 3-Column - one row on all viewports (horizontal scroll on mobile) */}
+            <div className="flex flex-nowrap overflow-x-auto md:grid md:grid-cols-3 md:divide-x divide-border md:overflow-visible scrollbar-hide">
               {/* Column 1: Purchase Order */}
-              <div className="p-4 md:p-6">
+              <div className="min-w-[260px] sm:min-w-[280px] flex-shrink-0 p-4 md:p-6 border-b md:border-b-0 border-border">
                 <div className="flex items-center justify-between mb-3 md:mb-4">
                   <div className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-blue-400" />
@@ -300,7 +261,7 @@ const UnifiedViewSection = () => {
               </div>
 
               {/* Column 2: Packing Slip */}
-              <div className="p-4 md:p-6 bg-secondary/20">
+              <div className="min-w-[260px] sm:min-w-[280px] flex-shrink-0 p-4 md:p-6 bg-secondary/20 border-b md:border-b-0 border-border">
                 <div className="flex items-center justify-between mb-3 md:mb-4">
                   <div className="flex items-center gap-2">
                     <Package className={`w-4 h-4 transition-colors duration-300 ${showDiscrepancy ? "text-amber-400" : "text-violet-400"}`} />
@@ -416,7 +377,7 @@ const UnifiedViewSection = () => {
               </div>
 
               {/* Column 3: Invoice */}
-              <div className="p-4 md:p-6">
+              <div className="min-w-[260px] sm:min-w-[280px] flex-shrink-0 p-4 md:p-6">
                 <div className="flex items-center justify-between mb-3 md:mb-4">
                   <div className="flex items-center gap-2">
                     <Receipt className={`w-4 h-4 transition-colors duration-300 ${showDiscrepancy ? "text-red-400" : "text-amber-400"}`} />
