@@ -14,6 +14,7 @@ import {
   Wallet,
   ShoppingBag,
   Building2,
+  FolderSearch,
 } from "lucide-react";
 import { Logo } from "./Logo";
 import { GradientButton } from "./ui";
@@ -30,18 +31,27 @@ const platformItems = [
     icon: Layers,
   },
   {
+    name: "AI Match Engine",
+    desc: "Semantic 3-way matching at the line level.",
+    href: "/product/match-engine",
+    icon: Sparkles,
+  },
+  {
     name: "Integrations",
     desc: "Slack, NetSuite, QuickBooks, Bill.com, Ramp, Quartzy.",
     href: "/integrations",
     icon: Plug,
   },
-  {
-    name: "AI & Matching",
-    desc: "Vector embeddings, vendor-trained OCR, semantic matching.",
-    href: "/product/match-engine",
-    icon: Sparkles,
-  },
 ];
+
+const sanyyaDriveItem = {
+  name: "Sanyya Drive",
+  short: "Drop any document. AI extracts and indexes everything.",
+  href: "/product/sanyya-drive",
+  icon: FolderSearch,
+  iconColor: "text-[hsl(258_90%_55%)]",
+  comingSoon: true,
+};
 
 const industryIcons: Record<string, typeof FlaskConical> = {
   "Biotech & Life Sciences": FlaskConical,
@@ -176,7 +186,7 @@ export function Navbar() {
             <div className="mt-6 space-y-2">
               <MobileAccordion label="Modules">
                 <div className="grid gap-1">
-                  {modules.map((m) => (
+                  {modules.filter((m) => m.slug !== "match-engine").map((m) => (
                     <Link
                       key={m.slug}
                       to={m.href}
@@ -189,6 +199,21 @@ export function Navbar() {
                       </div>
                     </Link>
                   ))}
+                  <Link
+                    to={sanyyaDriveItem.href}
+                    className="flex min-h-11 items-start gap-3 rounded-lg p-3 hover:bg-card/60"
+                  >
+                    <sanyyaDriveItem.icon className={cn("mt-0.5 size-4 shrink-0", sanyyaDriveItem.iconColor)} />
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="text-sm font-medium text-foreground">{sanyyaDriveItem.name}</div>
+                        <span className="rounded-full border border-violet-200 bg-violet-50 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-violet-700">
+                          Soon
+                        </span>
+                      </div>
+                      <div className="text-xs text-muted-foreground">{sanyyaDriveItem.short}</div>
+                    </div>
+                  </Link>
                 </div>
               </MobileAccordion>
               <MobileAccordion label="Platform">
@@ -330,7 +355,7 @@ function ProductMegaMenu() {
           Modules
         </div>
         <div className="grid grid-cols-2 gap-1">
-          {modules.map((m) => (
+          {modules.filter((m) => m.slug !== "match-engine").map((m) => (
             <Link
               key={m.slug}
               to={m.href}
@@ -343,6 +368,21 @@ function ProductMegaMenu() {
               </div>
             </Link>
           ))}
+          <Link
+            to={sanyyaDriveItem.href}
+            className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-card/80"
+          >
+            <sanyyaDriveItem.icon className={cn("mt-0.5 size-5 shrink-0", sanyyaDriveItem.iconColor)} />
+            <div>
+              <div className="flex items-center gap-1.5">
+                <div className="text-sm font-semibold text-foreground">{sanyyaDriveItem.name}</div>
+                <span className="rounded-full border border-violet-200 bg-violet-50 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-violet-700">
+                  Soon
+                </span>
+              </div>
+              <div className="text-xs text-muted-foreground leading-snug">{sanyyaDriveItem.short}</div>
+            </div>
+          </Link>
         </div>
       </div>
       <div className="border-l border-border bg-secondary p-5">

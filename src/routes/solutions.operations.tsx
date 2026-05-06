@@ -54,7 +54,7 @@ const after = [
 
 const modules = [
   {
-    title: "Warehouse & Lab Receiving",
+    title: "Receiving",
     category: "RECEIVING",
     icon: PackageCheck,
     iconCls: "text-cyan-600 bg-cyan-50",

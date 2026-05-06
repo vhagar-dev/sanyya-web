@@ -20,6 +20,7 @@ import { Route as SolutionsHardwareRouteImport } from './routes/solutions.hardwa
 import { Route as SolutionsFinanceRouteImport } from './routes/solutions.finance'
 import { Route as SolutionsBiotechRouteImport } from './routes/solutions.biotech'
 import { Route as ProductVendorsRouteImport } from './routes/product.vendors'
+import { Route as ProductSanyyaDriveRouteImport } from './routes/product.sanyya-drive'
 import { Route as ProductRequisitionsRouteImport } from './routes/product.requisitions'
 import { Route as ProductReceivingRouteImport } from './routes/product.receiving'
 import { Route as ProductQuotesRouteImport } from './routes/product.quotes'
@@ -84,6 +85,11 @@ const SolutionsBiotechRoute = SolutionsBiotechRouteImport.update({
 const ProductVendorsRoute = ProductVendorsRouteImport.update({
   id: '/product/vendors',
   path: '/product/vendors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductSanyyaDriveRoute = ProductSanyyaDriveRouteImport.update({
+  id: '/product/sanyya-drive',
+  path: '/product/sanyya-drive',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductRequisitionsRoute = ProductRequisitionsRouteImport.update({
@@ -153,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/product/quotes': typeof ProductQuotesRoute
   '/product/receiving': typeof ProductReceivingRoute
   '/product/requisitions': typeof ProductRequisitionsRoute
+  '/product/sanyya-drive': typeof ProductSanyyaDriveRoute
   '/product/vendors': typeof ProductVendorsRoute
   '/solutions/biotech': typeof SolutionsBiotechRoute
   '/solutions/finance': typeof SolutionsFinanceRoute
@@ -176,6 +183,7 @@ export interface FileRoutesByTo {
   '/product/quotes': typeof ProductQuotesRoute
   '/product/receiving': typeof ProductReceivingRoute
   '/product/requisitions': typeof ProductRequisitionsRoute
+  '/product/sanyya-drive': typeof ProductSanyyaDriveRoute
   '/product/vendors': typeof ProductVendorsRoute
   '/solutions/biotech': typeof SolutionsBiotechRoute
   '/solutions/finance': typeof SolutionsFinanceRoute
@@ -200,6 +208,7 @@ export interface FileRoutesById {
   '/product/quotes': typeof ProductQuotesRoute
   '/product/receiving': typeof ProductReceivingRoute
   '/product/requisitions': typeof ProductRequisitionsRoute
+  '/product/sanyya-drive': typeof ProductSanyyaDriveRoute
   '/product/vendors': typeof ProductVendorsRoute
   '/solutions/biotech': typeof SolutionsBiotechRoute
   '/solutions/finance': typeof SolutionsFinanceRoute
@@ -225,6 +234,7 @@ export interface FileRouteTypes {
     | '/product/quotes'
     | '/product/receiving'
     | '/product/requisitions'
+    | '/product/sanyya-drive'
     | '/product/vendors'
     | '/solutions/biotech'
     | '/solutions/finance'
@@ -248,6 +258,7 @@ export interface FileRouteTypes {
     | '/product/quotes'
     | '/product/receiving'
     | '/product/requisitions'
+    | '/product/sanyya-drive'
     | '/product/vendors'
     | '/solutions/biotech'
     | '/solutions/finance'
@@ -271,6 +282,7 @@ export interface FileRouteTypes {
     | '/product/quotes'
     | '/product/receiving'
     | '/product/requisitions'
+    | '/product/sanyya-drive'
     | '/product/vendors'
     | '/solutions/biotech'
     | '/solutions/finance'
@@ -295,6 +307,7 @@ export interface RootRouteChildren {
   ProductQuotesRoute: typeof ProductQuotesRoute
   ProductReceivingRoute: typeof ProductReceivingRoute
   ProductRequisitionsRoute: typeof ProductRequisitionsRoute
+  ProductSanyyaDriveRoute: typeof ProductSanyyaDriveRoute
   ProductVendorsRoute: typeof ProductVendorsRoute
   SolutionsBiotechRoute: typeof SolutionsBiotechRoute
   SolutionsFinanceRoute: typeof SolutionsFinanceRoute
@@ -380,6 +393,13 @@ declare module '@tanstack/react-router' {
       path: '/product/vendors'
       fullPath: '/product/vendors'
       preLoaderRoute: typeof ProductVendorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/sanyya-drive': {
+      id: '/product/sanyya-drive'
+      path: '/product/sanyya-drive'
+      fullPath: '/product/sanyya-drive'
+      preLoaderRoute: typeof ProductSanyyaDriveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product/requisitions': {
@@ -471,6 +491,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductQuotesRoute: ProductQuotesRoute,
   ProductReceivingRoute: ProductReceivingRoute,
   ProductRequisitionsRoute: ProductRequisitionsRoute,
+  ProductSanyyaDriveRoute: ProductSanyyaDriveRoute,
   ProductVendorsRoute: ProductVendorsRoute,
   SolutionsBiotechRoute: SolutionsBiotechRoute,
   SolutionsFinanceRoute: SolutionsFinanceRoute,

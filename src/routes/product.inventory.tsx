@@ -321,7 +321,7 @@ function InventoryPage() {
         </div>
         <div className="mt-12 space-y-12">
           <HowItWorks
-            steps={[{ title: "Inventory builds itself", body: "Every time a delivery is received through the Warehouse & Lab Receiving module, the inventory updates automatically. GRN data flows directly into stock levels, no manual entry, no reconciliation. What arrived at the dock is what shows on the shelf." }]}
+            steps={[{ title: "Inventory builds itself", body: "Every time a delivery is received through the Receiving module, the inventory updates automatically. GRN data flows directly into stock levels, no manual entry, no reconciliation. What arrived at the dock is what shows on the shelf." }]}
             visual={<GRNFlowMockup />}
           />
           <HowItWorks

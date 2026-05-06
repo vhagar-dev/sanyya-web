@@ -34,7 +34,7 @@ export const modules: Module[] = [
     long: "Centralize vendor quotes. Compare side-by-side. Get AI-powered recommendations.",
   },
   {
-    name: "Requisitions & Slack Agent",
+    name: "Requisitions",
     slug: "requisitions",
     href: "/product/requisitions",
     icon: MessageSquare,
@@ -62,7 +62,7 @@ export const modules: Module[] = [
     long: "The single source of truth for every commitment. Blanket PO drawdown tracking included.",
   },
   {
-    name: "Warehouse & Lab Receiving",
+    name: "Receiving",
     slug: "receiving",
     href: "/product/receiving",
     icon: PackageCheck,

@@ -26,13 +26,13 @@ import { SlackMockup } from "@/components/mockups/SlackMockup";
 export const Route = createFileRoute("/product/requisitions")({
   head: () => ({
     meta: [
-      { title: "Requisitions & Slack Agent | Sanyya" },
+      { title: "Requisitions | Sanyya" },
       {
         name: "description",
         content:
           "Create purchase requests from Slack, from a vendor quote, or from scratch. Sanyya fits however your team works.",
       },
-      { property: "og:title", content: "Requisitions & Slack Agent | Sanyya" },
+      { property: "og:title", content: "Requisitions | Sanyya" },
       {
         property: "og:description",
         content:

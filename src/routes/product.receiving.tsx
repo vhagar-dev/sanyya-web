@@ -20,13 +20,13 @@ import { VendorFormatsMockup } from "@/components/mockups/VendorFormatsMockup";
 export const Route = createFileRoute("/product/receiving")({
   head: () => ({
     meta: [
-      { title: "Warehouse & Lab Receiving | Sanyya" },
+      { title: "Receiving | Sanyya" },
       {
         name: "description",
         content:
           "A mobile app with vendor-trained OCR. Capture deliveries in seconds, extract critical data automatically, and close the loop on every PO.",
       },
-      { property: "og:title", content: "Warehouse & Lab Receiving | Sanyya" },
+      { property: "og:title", content: "Receiving | Sanyya" },
       {
         property: "og:description",
         content:
@@ -87,7 +87,7 @@ function ReceivingPage() {
           { label: "Product" },
           { label: "Receiving" },
         ]}
-        badge="Warehouse & Lab Receiving"
+        badge="Receiving"
         title={
           <>
             Your team receives shipments at the dock.{" "}
