@@ -6,6 +6,7 @@ import { NoiseOverlay } from "@/components/site/NoiseOverlay";
 import { MobileStickyCTA } from "@/components/site/MobileStickyCTA";
 import { BackToTop } from "@/components/site/BackToTop";
 import { WaitlistDialog } from "@/components/site/WaitlistDialog";
+import { usePageView } from "@/hooks/usePageView";
 
 function NotFoundComponent() {
   return (
@@ -35,6 +36,7 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  usePageView();
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <NoiseOverlay />
