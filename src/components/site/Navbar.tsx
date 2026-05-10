@@ -26,7 +26,7 @@ const topNav = [{ label: "Integrations", href: "/integrations" }];
 const platformItems = [
   {
     name: "Platform Overview",
-    desc: "See how all 10 modules work together.",
+    desc: "See how the full platform works together.",
     href: "/",
     icon: Layers,
   },

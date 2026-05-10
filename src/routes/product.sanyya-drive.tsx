@@ -21,6 +21,11 @@ import {
   Eye,
   Database,
   Brain,
+  MessageCircle,
+  Sparkles,
+  Layers,
+  BarChart3,
+  HelpCircle,
 } from "lucide-react";
 import { Section, SectionBadge, GradientButton, GhostButton, GradientGlow } from "@/components/site/ui";
 import { Reveal } from "@/components/site/Reveal";
@@ -29,13 +34,13 @@ import { Breadcrumb } from "@/components/product/Breadcrumb";
 export const Route = createFileRoute("/product/sanyya-drive")({
   head: () => ({
     meta: [
-      { title: "Sanyya Drive — AI Document Intelligence | Sanyya" },
+      { title: "Sanyya Drive: AI Document Intelligence | Sanyya" },
       {
         name: "description",
         content:
-          "Drop any business document into Sanyya Drive. AI reads, extracts, and indexes every line, date, and dollar — searchable like a database.",
+          "Drop any business document into Sanyya Drive. AI reads, extracts, and indexes every line, date, and dollar. Searchable like a database.",
       },
-      { property: "og:title", content: "Sanyya Drive — AI Document Intelligence | Sanyya" },
+      { property: "og:title", content: "Sanyya Drive: AI Document Intelligence | Sanyya" },
       {
         property: "og:description",
         content:
@@ -130,7 +135,7 @@ const pains = [
   {
     icon: Eye,
     title: "Unsearchable PDFs",
-    body: "Scanned packing slips, faxed invoices, handwritten lot numbers — none of it is searchable. You know the document exists, you just can't find it.",
+    body: "Scanned packing slips, faxed invoices, handwritten lot numbers. None of it is searchable. You know the document exists, you just can't find it.",
     iconBg: "bg-violet-50",
     iconColor: "text-violet-500",
   },
@@ -152,7 +157,7 @@ const pains = [
 
 const extractions = [
   { icon: Building2, title: "Vendor & Supplier Info", body: "Company names, addresses, contact details, and account numbers pulled from any document header or footer.", iconBg: "bg-blue-50", iconColor: "text-blue-500" },
-  { icon: Calendar, title: "Dates & Timelines", body: "Invoice dates, expiry dates, ship dates, contract renewal dates — every date found and tagged by type.", iconBg: "bg-violet-50", iconColor: "text-violet-500" },
+  { icon: Calendar, title: "Dates & Timelines", body: "Invoice dates, expiry dates, ship dates, contract renewal dates. Every date found and tagged by type.", iconBg: "bg-violet-50", iconColor: "text-violet-500" },
   { icon: ListOrdered, title: "Line Items & Quantities", body: "Every product, SKU, quantity, unit price, and total extracted from tables, even poorly formatted ones.", iconBg: "bg-cyan-50", iconColor: "text-cyan-600" },
   { icon: Hash, title: "Lot Numbers & Batch IDs", body: "Critical for FDA compliance and traceability. Extracted from COAs, packing slips, and receiving documents.", iconBg: "bg-emerald-50", iconColor: "text-emerald-500" },
   { icon: DollarSign, title: "Financial Amounts", body: "Totals, subtotals, taxes, discounts, and per-line amounts. Pulled from invoices, quotes, and POs.", iconBg: "bg-amber-50", iconColor: "text-amber-500" },
@@ -219,17 +224,40 @@ function StepVisualSearch() {
   );
 }
 
+function StepVisualAsk() {
+  return (
+    <div className="rounded-xl border border-border bg-white p-4 shadow-sm">
+      <div className="flex items-start gap-2">
+        <div className="grid size-6 shrink-0 place-items-center rounded-full bg-violet-100 text-violet-600">
+          <HelpCircle className="size-3.5" />
+        </div>
+        <div className="flex-1 rounded-lg rounded-tl-none border border-border bg-blue-50 px-2.5 py-1.5">
+          <span className="text-[11px] text-foreground">What's our spend with Corning YTD?</span>
+        </div>
+      </div>
+      <div className="mt-2 flex items-start gap-2">
+        <div className="grid size-6 shrink-0 place-items-center rounded-full bg-brand-gradient text-white">
+          <Sparkles className="size-3" />
+        </div>
+        <div className="flex-1 rounded-lg rounded-tl-none border border-border bg-white px-2.5 py-1.5">
+          <span className="text-[11px] text-foreground">$28,410 across 14 POs.</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const steps = [
   {
     n: "01",
     title: "Drop or Forward",
-    body: "Drag and drop any document — PDFs, scanned images, spreadsheets — into Sanyya Drive. Or forward documents to your dedicated Sanyya Drive email address. We accept anything.",
+    body: "Drag and drop any document, including PDFs, scanned images, and spreadsheets, into Sanyya Drive. Or forward documents to your dedicated Sanyya Drive email address. We accept anything.",
     visual: <StepVisualDrop />,
   },
   {
     n: "02",
     title: "AI Reads Everything",
-    body: "Our OCR and extraction engine reads every page. Not just the header — every line item, table cell, date, dollar amount, and term. Handwritten notes, multi-page contracts, scanned receipts. All of it.",
+    body: "Our OCR and extraction engine reads every page. Not just the header. Every line item, table cell, date, dollar amount, and term. Handwritten notes, multi-page contracts, scanned receipts. All of it.",
     visual: <StepVisualRead />,
   },
   {
@@ -237,6 +265,12 @@ const steps = [
     title: "Search Like a Database",
     body: "Every word, number, and field becomes instantly searchable. Find a specific lot number across 10,000 documents. Pull every spec sheet from a vendor. Surface every contract expiring this quarter.",
     visual: <StepVisualSearch />,
+  },
+  {
+    n: "04",
+    title: "Ask the Agent",
+    body: "Don't want to search? Just ask. The AI agent understands your documents and your entire procurement history. Ask it anything, from a specific lot number to a spend analysis across the last 6 months.",
+    visual: <StepVisualAsk />,
   },
 ];
 
@@ -305,6 +339,110 @@ const exampleQueries = [
   "Find every PO with Corning 96-well plates over $500",
 ];
 
+const agentCapabilities = [
+  {
+    icon: Search,
+    title: "Look Things Up",
+    body: "Find specific facts buried in any document. Lot numbers, expiry dates, payment terms, pricing. The agent finds it instantly, even if you don't remember which document it's in.",
+    iconBg: "bg-blue-50",
+    iconColor: "text-blue-500",
+  },
+  {
+    icon: Layers,
+    title: "Analyze Across Documents",
+    body: "Ask questions that span hundreds of documents. Compare vendor terms, track price changes over time, or find every COA from a specific supplier. The agent reasons across your entire document library.",
+    iconBg: "bg-violet-50",
+    iconColor: "text-violet-500",
+  },
+  {
+    icon: BarChart3,
+    title: "Query All Your Procurement Data",
+    body: "The agent doesn't just know your documents. It knows your POs, invoices, inventory levels, and vendor history from across all Sanyya modules. Ask about spend, delivery performance, or outstanding commitments.",
+    iconBg: "bg-emerald-50",
+    iconColor: "text-emerald-500",
+  },
+];
+
+function UserBubble({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex justify-end">
+      <div className="max-w-[85%] rounded-2xl rounded-tr-sm border border-blue-100 bg-blue-50 px-3.5 py-2 text-sm text-foreground">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function AgentBubble({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-start gap-2">
+      <div className="grid size-7 shrink-0 place-items-center rounded-full bg-brand-gradient text-white shadow-sm">
+        <Sparkles className="size-3.5" />
+      </div>
+      <div className="max-w-[85%] rounded-2xl rounded-tl-sm border border-border bg-white px-3.5 py-2 text-sm text-foreground shadow-sm">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function ChatMockup() {
+  return (
+    <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+      <div className="mb-4 flex items-center justify-between border-b border-border pb-3">
+        <div className="flex items-center gap-2">
+          <div className="grid size-7 place-items-center rounded-full bg-brand-gradient text-white">
+            <MessageCircle className="size-3.5" />
+          </div>
+          <div>
+            <div className="text-sm font-semibold text-foreground">Sanyya Agent</div>
+            <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              Online · trained on your data
+            </div>
+          </div>
+        </div>
+        <span className="rounded-full border border-violet-200 bg-violet-50 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-violet-700">
+          Beta
+        </span>
+      </div>
+
+      <div className="space-y-3">
+        <UserBubble>What were the payment terms on our last 3 Thermo Fisher agreements?</UserBubble>
+        <AgentBubble>
+          <p>Here's what I found across your Thermo Fisher vendor agreements:</p>
+          <ul className="mt-2 space-y-1 text-[13px]">
+            <li>• Agreement TF-2024-019 (Mar 2024): Net 45, 2% early pay discount</li>
+            <li>• Agreement TF-2023-088 (Sep 2023): Net 30, no discount</li>
+            <li>• Agreement TF-2023-041 (Feb 2023): Net 60</li>
+          </ul>
+          <p className="mt-2 text-[13px] text-muted-foreground">
+            Payment terms improved over time. Your most recent agreement has the best early pay
+            discount.
+          </p>
+        </AgentBubble>
+        <UserBubble>How much did we spend on cell culture media in Q4?</UserBubble>
+        <AgentBubble>
+          <p>
+            Across all POs in Q4 2024, you spent{" "}
+            <span className="font-semibold">$14,280</span> on cell culture media from 3 vendors.
+            Thermo Fisher was 62% of that spend. Want me to break it down by product?
+          </p>
+        </AgentBubble>
+      </div>
+
+      <div className="mt-4 flex items-center gap-2 rounded-full border border-border bg-[hsl(210_40%_98%)] px-3 py-2">
+        <div className="flex gap-1">
+          <span className="size-1.5 animate-pulse rounded-full bg-blue-400" />
+          <span className="size-1.5 animate-pulse rounded-full bg-violet-400 [animation-delay:120ms]" />
+          <span className="size-1.5 animate-pulse rounded-full bg-cyan-400 [animation-delay:240ms]" />
+        </div>
+        <span className="text-[11px] text-muted-foreground">Agent is thinking…</span>
+      </div>
+    </div>
+  );
+}
+
 function SanyyaDrivePage() {
   return (
     <>
@@ -339,9 +477,10 @@ function SanyyaDrivePage() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-                  Sanyya Drive reads every document you upload — COAs, vendor agreements, spec
-                  sheets, quotes — and extracts every line, date, and dollar amount. Search across
-                  all your documents like a database, not a file cabinet.
+                  Sanyya Drive reads every document you upload: COAs, vendor agreements, spec
+                  sheets, quotes. It extracts every detail. Search across all your documents, or
+                  just ask the AI agent. It knows your documents, your POs, your vendors, and your
+                  spend.
                 </p>
               </Reveal>
               <Reveal delay={0.15}>
@@ -403,7 +542,7 @@ function SanyyaDrivePage() {
             </h2>
           </Reveal>
         </div>
-        <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.05}>
               <div className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-sm">
@@ -474,6 +613,54 @@ function SanyyaDrivePage() {
               </div>
             ))}
           </div>
+          <div className="mt-6 rounded-xl border border-violet-200 bg-violet-50/60 p-4 text-center text-sm text-foreground sm:text-base">
+            Or skip the search bar entirely. Ask the AI agent:{" "}
+            <em className="text-violet-700">
+              "Show me every document from Corning where the order was over $1,000."
+            </em>
+          </div>
+        </div>
+      </Section>
+
+      {/* AI Agent */}
+      <Section id="agent" className="bg-secondary">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <SectionBadge>AI Agent</SectionBadge>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Ask Your Data <span className="text-brand-gradient">Anything</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
+              Sanyya's AI agent sits on top of everything: your documents, purchase orders,
+              invoices, inventory, and vendor history. Ask it a question in plain English and get an
+              answer in seconds. Not hours of digging.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mx-auto mt-12 grid max-w-6xl gap-8 md:grid-cols-2 md:items-start">
+          <div className="space-y-4">
+            {agentCapabilities.map((c, i) => (
+              <Reveal key={c.title} delay={i * 0.05}>
+                <div className="flex gap-4 rounded-2xl border border-border bg-white p-5 shadow-sm">
+                  <div className={`grid size-11 shrink-0 place-items-center rounded-xl ${c.iconBg}`}>
+                    <c.icon className={`size-5 ${c.iconColor}`} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">{c.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.1}>
+            <ChatMockup />
+          </Reveal>
         </div>
       </Section>
 
@@ -490,7 +677,7 @@ function SanyyaDrivePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-              Sanyya Drive is coming soon. Book a demo to be first in line.
+              Sanyya Drive and the AI agent are coming soon.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
