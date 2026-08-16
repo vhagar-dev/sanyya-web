@@ -24,22 +24,22 @@ export const stages: Stage[] = [
   {
     id: "receive",
     num: "03",
-    title: "Did we actually get it",
-    dropdownTitle: "Did we actually get it",
+    title: "Did we actually get it?",
+    dropdownTitle: "Did we actually get it?",
     line: "Packing slips captured and matched.",
   },
   {
     id: "pay",
     num: "04",
-    title: "Can we pay this",
-    dropdownTitle: "Can we pay this",
+    title: "Can we pay this?",
+    dropdownTitle: "Can we pay this?",
     line: "Invoices read, matched, and flagged.",
   },
   {
     id: "spend",
     num: "05",
-    title: "What did we spend",
-    dropdownTitle: "What did we spend",
+    title: "What did we spend?",
+    dropdownTitle: "What did we spend?",
     line: "Live spend, contract balances, and answers.",
   },
 ];

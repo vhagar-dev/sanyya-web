@@ -337,6 +337,12 @@ const roles: Role[] = [
   },
 ];
 
+const shortNames: Record<Role["slug"], string> = {
+  founder: "Founder",
+  lab: "Lab & Ops",
+  finance: "Finance",
+};
+
 export function WhichVersion() {
   const [open, setOpen] = useState<Role["slug"]>("founder");
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -352,6 +358,18 @@ export function WhichVersion() {
     setOpen(slug);
   };
 
+  const selectMobile = (slug: Role["slug"]) => {
+    setOpen(slug);
+    requestAnimationFrame(() => {
+      const el = panelRef.current;
+      if (!el) return;
+      const offset = 150; // nav + pinned control
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+    });
+  };
+
   const role = roles.find((r) => r.slug === open) ?? roles[0];
   const { Graphic } = role;
   const problems = [{ title: role.question, body: role.body }, ...role.moments];
@@ -363,7 +381,34 @@ export function WhichVersion() {
           You&apos;ve lived this. Which version?
         </h2>
 
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {/* Mobile: sticky segmented control */}
+        <div className="sticky top-14 z-30 -mx-6 mt-6 border-b border-border bg-background px-6 pb-2.5 pt-2.5 md:hidden">
+          <div className="grid grid-cols-3 gap-2">
+            {roles.map((r) => {
+              const active = r.slug === open;
+              return (
+                <button
+                  key={r.slug}
+                  type="button"
+                  onClick={() => selectMobile(r.slug)}
+                  aria-pressed={active}
+                  className={cn(
+                    "h-11 rounded-md border px-2 text-[13px] font-semibold transition-colors",
+                    active
+                      ? "border-brand bg-brand/[0.07] text-brand"
+                      : "border-border bg-card text-foreground",
+                  )}
+                >
+                  {shortNames[r.slug]}
+                </button>
+              );
+            })}
+          </div>
+          <div className="mt-2 text-[13px] text-muted-foreground">{role.answer}</div>
+        </div>
+
+        {/* Desktop: cards */}
+        <div className="mt-12 hidden grid-cols-1 gap-4 md:grid sm:grid-cols-3">
           {roles.map((r) => {
             const active = r.slug === open;
             return (
@@ -396,7 +441,7 @@ export function WhichVersion() {
           })}
         </div>
 
-        <div ref={panelRef} className="mt-10" style={{ overflowAnchor: "none" }}>
+        <div ref={panelRef} className="mt-6 md:mt-10" style={{ overflowAnchor: "none" }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={role.slug}
@@ -413,18 +458,20 @@ export function WhichVersion() {
                       transition={{ duration: 0.45, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
                       className={cn(
                         "max-w-[62ch]",
-                        lead ? "pb-6" : "border-t border-border/70 py-6 last:pb-0",
+                        lead
+                          ? "pb-[10px] md:pb-6"
+                          : "border-t border-border/70 py-[10px] last:pb-0 md:py-6",
                       )}
                     >
-                      <p className="font-display text-pretty text-[clamp(1.125rem,1.8vw,1.5rem)] font-semibold leading-[1.2] tracking-[-0.02em] text-foreground">
+                      <p className="font-display text-pretty text-[17px] font-semibold leading-[1.25] tracking-[-0.02em] text-foreground md:text-[clamp(1.125rem,1.8vw,1.5rem)] md:leading-[1.2]">
                         {p.title}
                       </p>
-                      <p className="mt-3 max-w-[52ch] text-pretty text-[15px] font-normal leading-[1.6] text-muted-foreground">
+                      <p className="mt-2 max-w-[52ch] text-pretty text-[14px] font-normal leading-[1.6] text-muted-foreground md:mt-3 md:text-[15px]">
                         {p.body}
                       </p>
 
                       {lead && (
-                        <div className="mt-8 w-full max-w-sm lg:hidden">
+                        <div className="mt-6 w-full lg:hidden">
                           <Graphic />
                         </div>
                       )}

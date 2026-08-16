@@ -142,10 +142,10 @@ export function Payoff() {
                 {revealing ? (
                   <>
                     <span className="h-2 w-2 animate-pulse bg-brand" aria-hidden />
-                    Claude is working
+                    Sanyya is working
                   </>
                 ) : (
-                  "Claude · cited"
+                  "Sanyya · cited"
                 )}
               </span>
               <button
@@ -220,7 +220,7 @@ export function Payoff() {
 
             {/* Right, recessed */}
             <div className="bg-background p-6 md:p-8 dark:bg-secondary">
-              <p className="text-sm text-muted-foreground">How Claude got there</p>
+              <p className="text-sm text-muted-foreground">How Sanyya got there</p>
               <ol className="mt-4 space-y-3">
                 {STEPS.map((s, i) => (
                   <li key={s} className="flex gap-3 text-sm leading-relaxed">
@@ -243,7 +243,7 @@ export function Payoff() {
 
           {/* Footer */}
           <div className="border-t border-border px-6 py-5 md:px-8">
-            <p className="text-sm text-muted-foreground">Sources Claude used</p>
+            <p className="text-sm text-muted-foreground">Sources Sanyya used</p>
             <ol className="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
               {SOURCES.map((s, i) => (
                 <li key={s} className="flex gap-2.5 text-xs leading-relaxed text-muted-foreground">

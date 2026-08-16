@@ -355,7 +355,7 @@ function ProductPage() {
                     <div className="relative h-10">
                       <div className="absolute left-1/2 top-0 h-full -translate-x-1/2 border-l-[1.5px] border-dashed border-brand" />
                       <div className="absolute left-[calc(50%+10px)] top-1/2 max-w-[calc(50%-1rem)] md:max-w-[260px] -translate-y-1/2 text-[10px] md:text-[11px] leading-tight text-muted-foreground">
-                        A · Matched invoices
+                        Matched invoices
                       </div>
                     </div>
                   </div>
@@ -367,7 +367,7 @@ function ProductPage() {
                     <div className="relative h-10">
                       <div className="absolute left-1/2 top-0 h-full -translate-x-1/2 border-l-[1.5px] border-dashed border-brand" />
                       <div className="absolute left-[calc(50%+10px)] top-1/2 max-w-[calc(50%-1rem)] md:max-w-[260px] -translate-y-1/2 text-[10px] md:text-[11px] leading-tight text-muted-foreground">
-                        B · Purchase records and approvals
+                        Purchase records and approvals
                       </div>
                     </div>
                   </div>
@@ -400,18 +400,31 @@ function ProductPage() {
 
               {/* Mobile technical drawing */}
               <div className="md:hidden">
-                {/* Bill pay */}
-                <div className="flex flex-col">
-                  <div className="border-[1.5px] border-dashed border-border p-4">
-                    <div className="text-base font-semibold text-foreground">Bill pay</div>
-                    <p className="mt-1 text-sm text-muted-foreground">Moves the money.</p>
+                {/* Upper layer: Bill pay and Accounting side by side */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="border-[1.5px] border-dashed border-border p-3">
+                    <div className="text-sm font-semibold text-foreground">Bill pay</div>
+                    <p className="mt-1 text-[13px] leading-snug text-muted-foreground">
+                      Moves the money.
+                    </p>
                   </div>
-                  <div className="relative h-8">
-                    <div className="absolute left-1/2 top-0 h-full -translate-x-1/2 border-l-[1.5px] border-dashed border-brand" />
-                    <div className="absolute left-[calc(50%+10px)] top-1/2 max-w-[calc(50%-1rem)] -translate-y-1/2 text-[10px] leading-tight text-muted-foreground">
-                      A · Matched invoices
+                  <div className="border-[1.5px] border-dashed border-border p-3">
+                    <div className="text-sm font-semibold text-foreground">Accounting</div>
+                    <p className="mt-1 text-[13px] leading-snug text-muted-foreground">
+                      Closes the books.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Connectors */}
+                <div className="grid grid-cols-2 gap-3">
+                  {[0, 1].map((k) => (
+                    <div key={k} className="relative h-10">
+                      <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-brand" />
+                      <div className="absolute left-1/2 top-0 h-0.5 w-[10px] -translate-x-1/2 bg-brand" />
+                      <div className="absolute left-1/2 bottom-0 h-0.5 w-[10px] -translate-x-1/2 bg-brand" />
                     </div>
-                  </div>
+                  ))}
                 </div>
 
                 {/* Base layer */}
@@ -419,37 +432,24 @@ function ProductPage() {
                   <div className="border-b border-border pb-4">
                     <div className="text-xl font-semibold text-foreground">Sanyya</div>
                   </div>
-                  <div className="mt-5 divide-y divide-border">
-                    <div className="grid grid-cols-2 gap-4 py-4 pt-0">
-                      <div className="text-[13px] text-foreground">Requests</div>
-                      <div className="text-[13px] text-foreground">Approvals</div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 py-4">
-                      <div className="text-[13px] text-foreground">Quotes</div>
-                      <div className="text-[13px] text-foreground">Purchase orders</div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 py-4">
-                      <div className="text-[13px] text-foreground">Contracts and SOWs</div>
-                      <div className="text-[13px] text-foreground">Receiving</div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 py-4 pb-0">
-                      <div className="text-[13px] text-foreground">Three way match</div>
-                      <div></div>
-                    </div>
+                  <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-[14px]">
+                    <div className="text-[13px] text-foreground">Requests</div>
+                    <div className="text-[13px] text-foreground">Approvals</div>
+                    <div className="text-[13px] text-foreground">Quotes</div>
+                    <div className="text-[13px] text-foreground">Purchase orders</div>
+                    <div className="text-[13px] text-foreground">Contracts and SOWs</div>
+                    <div className="text-[13px] text-foreground">Receiving</div>
+                    <div className="text-[13px] text-foreground">Three way match</div>
                   </div>
                 </div>
 
-                {/* Accounting */}
-                <div className="flex flex-col">
-                  <div className="relative h-8">
-                    <div className="absolute left-1/2 top-0 h-full -translate-x-1/2 border-l-[1.5px] border-dashed border-brand" />
-                    <div className="absolute left-[calc(50%+10px)] top-1/2 max-w-[calc(50%-1rem)] -translate-y-1/2 text-[10px] leading-tight text-muted-foreground">
-                      B · Purchase records and approvals
-                    </div>
+                {/* Reference notes */}
+                <div className="mt-4 space-y-1.5 text-[11px] leading-snug text-muted-foreground">
+                  <div>
+                    <span className="text-brand">Bill pay</span> · Matched invoices
                   </div>
-                  <div className="border-[1.5px] border-dashed border-border p-4">
-                    <div className="text-base font-semibold text-foreground">Accounting</div>
-                    <p className="mt-1 text-sm text-muted-foreground">Closes the books.</p>
+                  <div>
+                    <span className="text-brand">Accounting</span> · Purchase records and approvals
                   </div>
                 </div>
               </div>
