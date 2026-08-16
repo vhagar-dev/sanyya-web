@@ -104,7 +104,7 @@ export function RoleProblems() {
                   className={cn(
                     "rounded-2xl px-6 py-6 text-left transition-all duration-300 md:px-7 md:py-7",
                     active
-                      ? "bg-brand-gradient text-white shadow-[0_1px_2px_hsl(220_43%_11%/0.06)]"
+                      ? "bg-brand-gradient shadow-[0_1px_2px_hsl(220_43%_11%/0.06)]"
                       : "border border-border bg-card/60 text-foreground md:hover:border-foreground/30 md:hover:bg-card md:hover:-translate-y-0.5",
                   )}
                 >

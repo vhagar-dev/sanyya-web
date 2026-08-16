@@ -15,7 +15,7 @@ export function HowItWorks({
         {steps.map((s, i) => (
           <StaggerItem key={s.title}>
             <GlassCard className="flex gap-4">
-              <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-brand-gradient tabular-nums text-sm font-bold text-white">
+              <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-brand-gradient tabular-nums text-sm font-bold">
                 {String(i + 1).padStart(2, "0")}
               </div>
               <div>

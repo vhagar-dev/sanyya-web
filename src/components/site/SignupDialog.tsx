@@ -64,7 +64,7 @@ export function SignupButton({
           className,
         )}
       >
-        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-brand-gradient text-white">
+        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-brand-gradient">
           <Check className="size-3" />
         </span>
         Thanks. We will be in touch shortly to get you set up.
@@ -115,7 +115,7 @@ export function SignupButton({
           disabled={status === "loading"}
           aria-label="Get early access"
           className={cn(
-            "grid shrink-0 place-items-center rounded-md bg-brand-gradient px-3 text-sm font-medium text-white transition-opacity",
+            "grid shrink-0 place-items-center rounded-md bg-brand-gradient px-3 text-sm font-medium transition-opacity",
             size === "lg" ? "h-8 md:h-9" : size === "sm" ? "h-6 md:h-7" : "h-7 md:h-8",
             status === "loading" && "opacity-60",
           )}

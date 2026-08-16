@@ -73,7 +73,7 @@ export function Navbar() {
                             hash={s.id}
                             className="group flex gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-secondary/60"
                           >
-                            <span className="z-10 mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border border-border bg-background tabular-nums text-[10px] text-muted-foreground transition-colors group-hover:border-transparent group-hover:bg-brand-gradient group-hover:text-white">
+                            <span className="z-10 mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border border-border bg-background tabular-nums text-[10px] text-muted-foreground transition-colors group-hover:border-transparent group-hover:bg-brand-gradient">
                               {i + 1}
                             </span>
                             <span>

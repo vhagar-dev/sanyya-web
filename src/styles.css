@@ -74,6 +74,8 @@
   --cta-from: hsl(40 6% 10%);
   --cta-to: hsl(40 6% 10%);
   --cta-hover: hsl(40 8% 4%);
+  /* Reads against --cta-from, which inverts between schemes. */
+  --cta-foreground: hsl(41 33% 95%);
   --success: hsl(160 40% 30%);
   --success-soft: hsl(150 30% 92%);
   --tile-indigo: hsl(269 60% 50% / 0.1);
@@ -112,6 +114,7 @@
   --cta-from: hsl(41 33% 95%);
   --cta-to: hsl(41 33% 95%);
   --cta-hover: hsl(41 20% 86%);
+  --cta-foreground: hsl(40 6% 10%);
   --success: hsl(160 60% 55%);
   --success-soft: hsl(160 40% 16%);
   --doc-po: hsl(272 75% 72%);
@@ -162,6 +165,9 @@
   .bg-brand-gradient {
     background-color: var(--cta-from);
     background-image: none;
+    /* Owns its foreground: --cta-from is near-black in light and cream in
+       dark, so call sites must not hardcode a text colour. */
+    color: var(--cta-foreground);
   }
   .bg-cta-gradient {
     background-color: var(--cta-from);

@@ -45,7 +45,7 @@ export function HowWeDoIt() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex h-auto min-w-[80px] flex-shrink-0 flex-col items-center gap-1.5 rounded-xl border border-border bg-card/50 p-3 text-foreground transition-all hover:border-[hsl(268_70%_52%/0.3)] data-[state=active]:border-transparent data-[state=active]:bg-brand-gradient data-[state=active]:text-white data-[state=active]:shadow-[0_1px_2px_hsl(220_43%_11%/0.06)] md:flex-shrink md:p-4"
+                className="flex h-auto min-w-[80px] flex-shrink-0 flex-col items-center gap-1.5 rounded-xl border border-border bg-card/50 p-3 text-foreground transition-all hover:border-[hsl(268_70%_52%/0.3)] data-[state=active]:border-transparent data-[state=active]:bg-brand-gradient data-[state=active]:shadow-[0_1px_2px_hsl(220_43%_11%/0.06)] md:flex-shrink md:p-4"
               >
                 <tab.icon className="size-5" />
                 <span className="text-[11px] font-medium md:text-xs">{tab.label}</span>

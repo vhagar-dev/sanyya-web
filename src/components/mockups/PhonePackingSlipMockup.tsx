@@ -81,7 +81,7 @@ export function PhonePackingSlipMockup({ className }: { className?: string }) {
             <span className="ml-auto tabular-nums text-[10px] text-[hsl(160_84%_40%)]">99.2%</span>
           </div>
 
-          <div className="mx-3 mt-3 flex items-center justify-center gap-1.5 rounded-full bg-brand-gradient py-2 text-[11px] font-medium text-white">
+          <div className="mx-3 mt-3 flex items-center justify-center gap-1.5 rounded-full bg-brand-gradient py-2 text-[11px] font-medium">
             <Sparkles className="size-3" />
             Confirm GRN · Match PO
           </div>
