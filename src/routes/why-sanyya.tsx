@@ -49,10 +49,14 @@ function WhySanyyaPage() {
           <GradientGlow size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-20" />
         </div>
         <div className="container relative mx-auto px-4 sm:px-6">
-          <Reveal>
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Why Sanyya" }]} />
-          </Reveal>
-          <div className="mx-auto mt-10 max-w-4xl text-center">
+          {/* Every block on this page shares one measure (max-w-3xl) so the
+              left edge does not shift as you scroll. */}
+          <div className="mx-auto max-w-3xl">
+            <Reveal>
+              <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Why Sanyya" }]} />
+            </Reveal>
+          </div>
+          <div className="mx-auto mt-10 max-w-3xl text-center">
             <Reveal>
               <span className="inline-flex items-center rounded-md border border-[hsl(269_80%_57%/0.25)] bg-[hsl(269_80%_57%/0.08)] px-4 py-1.5 tabular-nums text-[11px] text-brand">
                 Why Sanyya
@@ -71,7 +75,7 @@ function WhySanyyaPage() {
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mx-auto mt-6 max-w-[64ch] text-pretty text-base font-normal leading-[1.7] text-muted-foreground md:text-lg">
+              <p className="mx-auto mt-6 text-pretty text-base font-normal leading-[1.7] text-muted-foreground md:text-lg">
                 Chasing the approvals. Matching the packing slips. Rebuilding the numbers every time
                 someone asked. Sanyya is what we wished existed.
               </p>
