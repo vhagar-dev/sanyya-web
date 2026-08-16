@@ -12,7 +12,7 @@ export function Differentiators() {
           <SectionBadge>Why Sanyya</SectionBadge>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          <h2 className="mt-5 text-balance font-display text-4xl sm:text-5xl md:text-6xl">
             Why teams choose Sanyya
           </h2>
         </Reveal>
@@ -31,7 +31,7 @@ export function Differentiators() {
             Slack.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <GradientButton as="link" to="/product/requisitions">
+            <GradientButton as="link" to="/product">
               Learn more <ArrowRight className="size-4" />
             </GradientButton>
           </div>
@@ -55,7 +55,7 @@ export function Differentiators() {
             and conditions that generic tools miss. And they get smarter with every delivery.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <GradientButton as="link" to="/product/receiving">
+            <GradientButton as="link" to="/product">
               Explore receiving <ArrowRight className="size-4" />
             </GradientButton>
           </div>
@@ -65,7 +65,6 @@ export function Differentiators() {
           <PhonePackingSlipMockup />
         </Reveal>
       </div>
-
     </Section>
   );
 }

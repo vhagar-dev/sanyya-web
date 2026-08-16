@@ -16,8 +16,8 @@ export function ThreeWayMatchInteractive() {
           <SectionBadge tone={showDiscrepancy ? "danger" : "success"}>
             {showDiscrepancy ? "Discrepancy Detected" : "3-Way Match Complete"}
           </SectionBadge>
-          <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            The digital tether <span className="text-brand-gradient">in action</span>
+          <h2 className="mt-5 text-balance font-display text-4xl sm:text-5xl md:text-6xl">
+            The digital tether <span className="text-foreground">in action</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
             {showDiscrepancy
@@ -31,7 +31,7 @@ export function ThreeWayMatchInteractive() {
               onClick={() => setShowDiscrepancy(false)}
               className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition ${
                 !showDiscrepancy
-                  ? "bg-emerald-500/15 text-emerald-400"
+                  ? "bg-violet-500/15 text-violet-400"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -69,14 +69,9 @@ export function ThreeWayMatchInteractive() {
 
       {/* App Window */}
       <Reveal delay={0.15} className="mt-12">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-border bg-card/70 shadow-2xl backdrop-blur-xl">
+        <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-border bg-card">
           {/* Title bar */}
           <div className="flex items-center gap-2 border-b border-border bg-secondary/60 px-4 py-3">
-            <div className="flex gap-1.5">
-              <div className="size-2.5 rounded-full bg-red-500" />
-              <div className="size-2.5 rounded-full bg-yellow-500" />
-              <div className="size-2.5 rounded-full bg-green-500" />
-            </div>
             <span className="ml-3 truncate text-xs text-muted-foreground sm:text-sm">
               Sanyya, Transaction #TXN-4921
             </span>
@@ -101,7 +96,7 @@ export function ThreeWayMatchInteractive() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   className="ml-auto"
                 >
-                  <Badge className="border-emerald-500/20 bg-emerald-500/10 text-[10px] text-emerald-400 hover:bg-emerald-500/15 md:text-xs">
+                  <Badge className="border-violet-500/20 bg-violet-500/10 text-[10px] text-violet-400 hover:bg-violet-500/15 md:text-xs">
                     <Check className="mr-1 size-3" /> Ready to Approve
                   </Badge>
                 </motion.div>
@@ -113,10 +108,10 @@ export function ThreeWayMatchInteractive() {
             {/* PO */}
             <div className="p-5 md:p-6">
               <ColHeader
-                icon={<FileText className="size-4 text-blue-400" />}
+                icon={<FileText className="size-4 text-violet-400" />}
                 title="PO #4921"
                 right={
-                  <Badge className="border-emerald-500/20 bg-emerald-500/10 text-[10px] text-emerald-400 hover:bg-emerald-500/15 md:text-xs">
+                  <Badge className="border-violet-500/20 bg-violet-500/10 text-[10px] text-violet-400 hover:bg-violet-500/15 md:text-xs">
                     Approved
                   </Badge>
                 }
@@ -174,8 +169,11 @@ export function ThreeWayMatchInteractive() {
                       <p className="mb-1 text-xs text-muted-foreground">
                         Serological Pipettes Verified
                       </p>
-                      <p className="font-mono text-lg font-bold text-amber-400">
-                        180 <span className="text-xs font-normal text-muted-foreground">of 200 units</span>
+                      <p className="tabular-nums text-lg font-bold text-amber-400">
+                        180{" "}
+                        <span className="text-xs font-normal text-muted-foreground">
+                          of 200 units
+                        </span>
                       </p>
                     </div>
                     <VerifiedRow name="T75 Flasks Verified" value="20" of="20" />
@@ -196,7 +194,7 @@ export function ThreeWayMatchInteractive() {
                     <div className="mt-3" />
                     <VerifiedRow name="T75 Flasks Verified" value="20" of="20" />
                     <div className="mt-3 flex justify-center">
-                      <Badge className="border-emerald-500/20 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/15">
+                      <Badge className="border-violet-500/20 bg-violet-500/10 text-violet-400 hover:bg-violet-500/15">
                         <Check className="mr-1 size-3" /> Matches PO
                       </Badge>
                     </div>
@@ -238,7 +236,7 @@ export function ThreeWayMatchInteractive() {
                     >
                       <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-4">
                         <p className="mb-1 text-xs text-muted-foreground">Total Amount</p>
-                        <p className="font-mono text-2xl font-bold tabular-nums text-red-400">
+                        <p className="tabular-nums text-2xl font-bold tabular-nums text-red-400">
                           $23,350.00
                         </p>
                         <p className="mt-1 text-xs text-red-400/80">Billed for 50 + 10 units</p>
@@ -274,16 +272,16 @@ export function ThreeWayMatchInteractive() {
                     >
                       <div className="rounded-lg border border-border bg-secondary/50 p-4">
                         <p className="mb-1 text-xs text-muted-foreground">Total Amount</p>
-                        <p className="font-mono text-2xl font-bold tabular-nums text-foreground">
+                        <p className="tabular-nums text-2xl font-bold tabular-nums text-foreground">
                           $3,100.00
                         </p>
                       </div>
                       <div className="pt-1">
-                        <div className="mb-3 flex items-center gap-2 text-xs text-emerald-400">
+                        <div className="mb-3 flex items-center gap-2 text-xs text-violet-400">
                           <Check className="size-4" />
                           <span>PO ↔ GRN ↔ Invoice Tethered</span>
                         </div>
-                        <Button className="w-full bg-emerald-500 text-white hover:bg-emerald-600">
+                        <Button className="w-full bg-violet-500 text-white hover:bg-violet-600">
                           Approve for Payment
                         </Button>
                       </div>
@@ -323,7 +321,7 @@ function LineCard({ name, qty, price }: { name: string; qty: string; price: stri
   return (
     <div className="rounded-lg border border-border bg-secondary/50 p-3">
       <p className="mb-1 text-sm font-medium text-foreground">{name}</p>
-      <div className="flex items-center gap-4 font-mono text-xs text-muted-foreground">
+      <div className="flex items-center gap-4 tabular-nums text-xs text-muted-foreground">
         <span>
           Qty: <span className="font-semibold text-foreground">{qty}</span>
         </span>
@@ -339,7 +337,7 @@ function VerifiedRow({ name, value, of }: { name: string; value: string; of: str
   return (
     <div className="rounded-lg border border-border bg-secondary/50 p-3">
       <p className="mb-1 text-xs text-muted-foreground">{name}</p>
-      <p className="font-mono text-sm font-bold text-foreground">
+      <p className="tabular-nums text-sm font-bold text-foreground">
         {value} <span className="text-xs font-normal text-muted-foreground">of {of} units</span>
       </p>
     </div>
@@ -347,7 +345,7 @@ function VerifiedRow({ name, value, of }: { name: string; value: string; of: str
 }
 
 const toneMap: Record<string, string> = {
-  blue: "bg-blue-500/10 border-blue-500/30 text-blue-400",
+  blue: "bg-violet-500/10 border-violet-500/30 text-violet-400",
   violet: "bg-violet-500/10 border-violet-500/30 text-violet-400",
   amber: "bg-amber-500/10 border-amber-500/30 text-amber-400",
   red: "bg-red-500/10 border-red-500/30 text-red-400",
@@ -373,7 +371,7 @@ function Pill({
 }
 
 function Connector({ ok }: { ok: boolean }) {
-  const color = ok ? "bg-emerald-500" : "bg-red-500";
+  const color = ok ? "bg-[hsl(160_84%_40%)]" : "bg-red-500";
   return (
     <div className="flex items-center gap-1">
       <div className={`h-0.5 w-6 md:w-10 ${color}`} />
@@ -390,7 +388,7 @@ function Connector({ ok }: { ok: boolean }) {
 }
 
 function VConnector({ ok }: { ok: boolean }) {
-  const color = ok ? "bg-emerald-500" : "bg-red-500";
+  const color = ok ? "bg-[hsl(160_84%_40%)]" : "bg-red-500";
   return (
     <div className="flex flex-col items-center">
       <div className={`h-3 w-0.5 ${color}`} />

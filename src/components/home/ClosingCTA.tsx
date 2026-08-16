@@ -1,26 +1,32 @@
 import { ArrowRight } from "lucide-react";
-import { Section, GradientButton, GradientGlow } from "@/components/site/ui";
+import { GradientButton } from "@/components/site/ui";
 import { Reveal } from "@/components/site/Reveal";
 
 export function ClosingCTA() {
   return (
-    <Section id="book-demo" size="loose" className="overflow-hidden">
-      <Reveal>
-        <div className="relative mx-auto max-w-3xl rounded-3xl border border-border bg-card/40 p-8 text-center sm:p-12 md:p-16">
-          <GradientGlow size="xl" className="-z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50" />
-          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Ready to fix your <span className="text-brand-gradient">procurement?</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-            Join the biotech and hardware teams already using Sanyya.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-4">
-            <GradientButton href="#book-demo" size="lg" className="w-full sm:w-auto">
-              Book a Demo <ArrowRight className="size-4" />
-            </GradientButton>
+    <section id="next" className="relative bg-background py-32 md:py-44">
+      <div className="mx-auto max-w-6xl px-6">
+        <Reveal>
+          <div className="max-w-3xl text-left">
+            <h2
+              className="text-balance text-[clamp(3rem,6.5vw,5rem)] leading-[1.1] tracking-normal text-muted-foreground"
+              style={{ fontFamily: "var(--font-hand)" }}
+            >
+              So what does that look like?
+            </h2>
+            <div className="mt-12 flex">
+              <GradientButton
+                as="link"
+                to="/product"
+                size="lg"
+                className="h-14 px-10 text-base md:h-16 md:px-12 md:text-lg"
+              >
+                Check out Sanyya <ArrowRight className="size-5" />
+              </GradientButton>
+            </div>
           </div>
-        </div>
-      </Reveal>
-    </Section>
+        </Reveal>
+      </div>
+    </section>
   );
 }

@@ -1,21 +1,23 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import sanyyaLogo from "@/assets/sanyya-logo.png";
+import sanyyaLogoTransparent from "@/assets/sanyya-logo-transparent.png";
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({ className, compact = false }: { className?: string; compact?: boolean }) {
+  const size = compact ? 30 : 38;
+  const textSize = compact ? "text-lg" : "text-xl";
   return (
     <Link to="/" className={cn("group inline-flex items-center gap-2", className)}>
-      <span className="relative grid place-items-center" style={{ height: 48, width: 48 }}>
+      <span className="relative grid place-items-center" style={{ height: size, width: size }}>
         <img
-          src={sanyyaLogo}
+          src={sanyyaLogoTransparent}
           alt="Sanyya logo"
-          width={48}
-          height={48}
+          width={size}
+          height={size}
           className="object-contain"
-          style={{ height: 48, width: 48 }}
+          style={{ height: size, width: size }}
         />
       </span>
-      <span className="text-xl font-semibold tracking-tight text-foreground">Sanyya</span>
+      <span className={cn("font-semibold tracking-tight text-foreground", textSize)}>Sanyya</span>
     </Link>
   );
 }

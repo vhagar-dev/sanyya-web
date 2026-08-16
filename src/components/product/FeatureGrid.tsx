@@ -14,10 +14,10 @@ export function FeatureGrid({
           <GlassCard className="h-full">
             <div className="flex items-start justify-between gap-2">
               <div className="grid size-10 place-items-center rounded-lg border border-border bg-background/50">
-                <f.icon className="size-4 text-[hsl(217_91%_38%)]" />
+                <f.icon className="size-4 text-[hsl(268_70%_44%)]" />
               </div>
               {f.comingSoon && (
-                <span className="rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-blue-700">
+                <span className="rounded-md border border-violet-200 bg-violet-50 px-2 py-0.5 tabular-nums text-[10px] text-violet-800">
                   Coming soon
                 </span>
               )}

@@ -32,7 +32,7 @@ const tileContent: Record<string, TileContent> = {
       <div className="flex flex-wrap gap-1.5">
         <MiniBadge tone="violet">Slack</MiniBadge>
         <MiniBadge tone="blue">Quote Upload</MiniBadge>
-        <MiniBadge tone="emerald">Web Form</MiniBadge>
+        <MiniBadge tone="indigo">Web Form</MiniBadge>
       </div>
     ),
   },
@@ -44,15 +44,15 @@ const tileContent: Record<string, TileContent> = {
       <svg viewBox="0 0 140 36" className="h-9 w-full max-w-[160px]" fill="none">
         <defs>
           <linearGradient id="aurora-flow" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="hsl(217 91% 57%)" />
-            <stop offset="100%" stopColor="hsl(258 90% 66%)" />
+            <stop offset="0%" stopColor="hsl(162 84% 57%)" />
+            <stop offset="100%" stopColor="hsl(174 72% 66%)" />
           </linearGradient>
         </defs>
         <path d="M14 18 L60 18 L80 6 M60 18 L80 30" stroke="url(#aurora-flow)" strokeWidth="1.25" />
-        <circle cx="14" cy="18" r="4" fill="hsl(258 90% 60%)" />
-        <circle cx="60" cy="18" r="4" fill="hsl(258 90% 60%)" />
-        <circle cx="86" cy="6" r="4" fill="hsl(258 90% 60%)" />
-        <circle cx="86" cy="30" r="4" fill="hsl(258 90% 60%)" />
+        <circle cx="14" cy="18" r="4" fill="hsl(174 72% 60%)" />
+        <circle cx="60" cy="18" r="4" fill="hsl(174 72% 60%)" />
+        <circle cx="86" cy="6" r="4" fill="hsl(174 72% 60%)" />
+        <circle cx="86" cy="30" r="4" fill="hsl(174 72% 60%)" />
       </svg>
     ),
   },
@@ -63,10 +63,9 @@ const tileContent: Record<string, TileContent> = {
     visual: (
       <div className="flex flex-wrap items-center gap-2 text-[11px]">
         <span className="inline-flex items-center gap-1 text-foreground">
-          <CheckCircle2 className="size-3 text-[hsl(160_84%_45%)]" />
-          3 quotes received
+          <CheckCircle2 className="size-3 text-[hsl(160_84%_45%)]" />3 quotes received
         </span>
-        <span className="text-brand-gradient font-medium">AI Recommended</span>
+        <span className="text-brand font-medium">AI Recommended</span>
       </div>
     ),
   },
@@ -80,8 +79,8 @@ const tileContent: Record<string, TileContent> = {
           <span className="text-muted-foreground">Blanket PO</span>
           <span className="font-medium text-foreground">$34K / $50K</span>
         </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-[hsl(214_90%_60%/0.15)]">
-          <div className="h-full rounded-full bg-[hsl(214_90%_50%)]" style={{ width: "68%" }} />
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-[hsl(269_80%_57%/0.12)]">
+          <div className="h-full rounded-full bg-[hsl(269_80%_57%)]" style={{ width: "68%" }} />
         </div>
       </div>
     ),
@@ -93,7 +92,7 @@ const tileContent: Record<string, TileContent> = {
     visual: (
       <div className="flex items-center gap-2 text-[11px]">
         <span className="font-semibold text-foreground">4.2 / 5.0</span>
-        <MiniBadge tone="emerald">Reliable</MiniBadge>
+        <MiniBadge tone="indigo">Reliable</MiniBadge>
       </div>
     ),
   },
@@ -159,14 +158,14 @@ function MiniBadge({
   tone,
   children,
 }: {
-  tone: "violet" | "blue" | "emerald" | "cyan" | "amber";
+  tone: "violet" | "blue" | "indigo" | "cyan" | "amber";
   children: React.ReactNode;
 }) {
   const tones = {
-    violet: "bg-[hsl(258_90%_96%)] text-[hsl(258_70%_45%)] border-[hsl(258_90%_88%)]",
-    blue: "bg-[hsl(214_90%_96%)] text-[hsl(214_90%_40%)] border-[hsl(214_90%_88%)]",
-    emerald: "bg-[hsl(160_84%_94%)] text-[hsl(160_84%_30%)] border-[hsl(160_84%_85%)]",
-    cyan: "bg-[hsl(190_90%_94%)] text-[hsl(190_90%_30%)] border-[hsl(190_90%_85%)]",
+    violet: "bg-[hsl(272_72%_96%)] text-[hsl(272_60%_40%)] border-[hsl(272_60%_88%)]",
+    blue: "bg-[hsl(205_90%_96%)] text-[hsl(205_90%_32%)] border-[hsl(205_80%_88%)]",
+    indigo: "bg-[hsl(191_80%_95%)] text-[hsl(268_70%_42%)] border-[hsl(191_70%_85%)]",
+    cyan: "bg-[hsl(270_70%_96%)] text-[hsl(270_60%_40%)] border-[hsl(270_60%_88%)]",
     amber: "bg-[hsl(38_92%_94%)] text-[hsl(38_92%_35%)] border-[hsl(38_92%_85%)]",
   } as const;
   return (
@@ -206,15 +205,14 @@ export function PlatformBento() {
           <SectionBadge>The Platform</SectionBadge>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Modular by design.{" "}
-            <span className="text-brand-gradient">Run one. Run all ten.</span>
+          <h2 className="mt-5 text-balance font-display text-4xl sm:text-5xl md:text-6xl">
+            Modular by design. <span className="text-foreground">Run one. Run all ten.</span>
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-            Every module works standalone, or together. Configure Sanyya to match how your
-            company actually operates, not the other way around.
+            Every module works standalone, or together. Configure Sanyya to match how your company
+            actually operates, not the other way around.
           </p>
         </Reveal>
         <Reveal delay={0.15}>
@@ -239,7 +237,6 @@ export function PlatformBento() {
           })}
         </div>
       </div>
-
     </Section>
   );
 }
@@ -250,9 +247,9 @@ function BentoTile({ module: mod }: { module: Module }) {
   const content = tileContent[mod.slug];
   return (
     <Link to={mod.href} className="group block h-full">
-      <GlassCard className="relative flex h-full flex-col p-5 transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-[0_20px_50px_-20px_hsl(217_91%_57%/0.35)]">
+      <GlassCard className="relative flex h-full flex-col p-5 transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-[0_1px_2px_hsl(220_43%_11%/0.06)]">
         {content && (
-          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground/70">
+          <div className="tabular-nums text-[10px] text-muted-foreground/70">
             {content.category}
           </div>
         )}
@@ -260,16 +257,14 @@ function BentoTile({ module: mod }: { module: Module }) {
           <div className="grid size-10 shrink-0 place-items-center rounded-lg border border-border bg-background/60">
             <mod.icon className={cn("size-4.5", mod.iconColor)} />
           </div>
-          <div className="text-[14px] font-semibold leading-tight text-foreground">
-            {mod.name}
-          </div>
+          <div className="text-[14px] font-semibold leading-tight text-foreground">{mod.name}</div>
         </div>
         <p className="mt-3 text-[12.5px] leading-relaxed text-muted-foreground">
           {content?.description ?? mod.short}
         </p>
         {content?.visual && <div className="mt-4">{content.visual}</div>}
         <div className="mt-auto pt-4">
-          <span className="inline-flex items-center gap-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[hsl(217_91%_38%)] opacity-60 transition-opacity group-hover:opacity-100">
+          <span className="inline-flex items-center gap-0.5 tabular-nums text-[10px] text-[hsl(268_70%_44%)] opacity-60 transition-opacity group-hover:opacity-100">
             View <ChevronRight className="size-3" />
           </span>
         </div>
@@ -287,10 +282,10 @@ function FeaturedTile({ module: mod }: { module: Module }) {
       <div
         className={cn(
           "glass relative flex h-full flex-col overflow-hidden rounded-2xl p-6",
-          "border-[hsl(217_91%_57%/0.45)]",
-          "bg-[linear-gradient(120deg,hsl(217_91%_57%/0.16),hsl(258_90%_55%/0.12)_60%,hsl(217_91%_57%/0.16))]",
-          "shadow-[0_24px_70px_-20px_hsl(217_91%_57%/0.45)]",
-          "transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-[0_30px_80px_-20px_hsl(217_91%_57%/0.6)]",
+          "border-[hsl(268_70%_52%/0.45)]",
+          "bg-[linear-gradient(120deg,hsl(268_70%_52%/0.16),hsl(272_72%_62%/0.12)_60%,hsl(268_70%_52%/0.16))]",
+          "shadow-[0_1px_2px_hsl(220_43%_11%/0.06)]",
+          "transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-[0_1px_2px_hsl(220_43%_11%/0.06)]",
         )}
       >
         <div
@@ -298,34 +293,31 @@ function FeaturedTile({ module: mod }: { module: Module }) {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(60% 80% at 30% 20%, hsl(217 91% 57% / 0.22), transparent 70%)",
+              "radial-gradient(60% 80% at 30% 20%, hsl(269 80% 57% / 0.10), transparent 70%)",
           }}
         />
         <div className="relative flex items-center gap-3">
-          <div className="grid size-11 place-items-center rounded-xl border border-[hsl(217_91%_57%/0.45)] bg-background/40">
-            <mod.icon className="size-5 text-[hsl(217_91%_38%)]" />
+          <div className="grid size-11 place-items-center rounded-xl border border-[hsl(268_70%_52%/0.45)] bg-background/40">
+            <mod.icon className="size-5 text-[hsl(268_70%_44%)]" />
           </div>
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[hsl(217_91%_38%)]">
+            <div className="tabular-nums text-[10px] text-[hsl(268_70%_44%)]">
               The Reconcile Layer
             </div>
-            <div className="text-base font-semibold text-foreground sm:text-lg">
-              {mod.name}
-            </div>
+            <div className="text-base font-semibold text-foreground sm:text-lg">{mod.name}</div>
           </div>
         </div>
 
         <p className="relative mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-          Semantic 3-way match across PO, GRN, and invoice, even when vendors call the same
-          part three different names. The connective tissue that makes every other module
-          smarter.
+          Semantic 3-way match across PO, GRN, and invoice, even when vendors call the same part
+          three different names. The connective tissue that makes every other module smarter.
         </p>
 
-        <div className="relative mt-5 flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+        <div className="relative mt-5 flex flex-wrap items-center gap-2 tabular-nums text-[10px] text-muted-foreground">
           <Tag color="po">PO</Tag>
-          <ChevronRight className="size-3 text-[hsl(217_91%_38%)]" />
+          <ChevronRight className="size-3 text-[hsl(268_70%_44%)]" />
           <Tag color="grn">GRN</Tag>
-          <ChevronRight className="size-3 text-[hsl(217_91%_38%)]" />
+          <ChevronRight className="size-3 text-[hsl(268_70%_44%)]" />
           <Tag color="invoice">Invoice</Tag>
           <span className="ml-auto inline-flex items-center gap-1.5 text-[hsl(160_84%_40%)]">
             <span className="size-1.5 rounded-full bg-[hsl(160_84%_55%)] pulse-dot" />
@@ -334,7 +326,7 @@ function FeaturedTile({ module: mod }: { module: Module }) {
         </div>
 
         <div className="relative mt-auto pt-6">
-          <span className="inline-flex items-center gap-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[hsl(217_91%_38%)] opacity-70 transition-opacity group-hover:opacity-100">
+          <span className="inline-flex items-center gap-0.5 tabular-nums text-[10px] text-[hsl(268_70%_44%)] opacity-70 transition-opacity group-hover:opacity-100">
             Explore the engine <ChevronRight className="size-3" />
           </span>
         </div>
@@ -343,15 +335,9 @@ function FeaturedTile({ module: mod }: { module: Module }) {
   );
 }
 
-function Tag({
-  children,
-  color,
-}: {
-  children: React.ReactNode;
-  color: "po" | "grn" | "invoice";
-}) {
+function Tag({ children, color }: { children: React.ReactNode; color: "po" | "grn" | "invoice" }) {
   const map = {
-    po: "border-[hsl(214_90%_60%/0.4)] text-[hsl(214_90%_38%)] bg-[hsl(214_90%_60%/0.1)]",
+    po: "border-[hsl(168_78%_60%/0.4)] text-[hsl(168_78%_38%)] bg-[hsl(168_78%_60%/0.1)]",
     grn: "border-[hsl(25_90%_60%/0.4)] text-[hsl(25_90%_38%)] bg-[hsl(25_90%_60%/0.1)]",
     invoice: "border-[hsl(38_92%_58%/0.4)] text-[hsl(38_92%_38%)] bg-[hsl(38_92%_58%/0.1)]",
   } as const;
@@ -360,8 +346,8 @@ function Tag({
 
 function Chip({ icon: Icon, children }: { icon: LucideIcon; children: React.ReactNode }) {
   return (
-    <li className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-3 py-1.5 backdrop-blur-md">
-      <Icon className="size-3.5 text-[hsl(217_91%_38%)]" />
+    <li className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-3 py-1.5 backdrop-blur-md">
+      <Icon className="size-3.5 text-[hsl(268_70%_44%)]" />
       <span>{children}</span>
     </li>
   );

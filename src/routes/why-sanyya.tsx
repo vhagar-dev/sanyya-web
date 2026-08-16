@@ -1,106 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  
-  Package,
-  Sparkles,
-  Rocket,
-  FlaskConical,
-  Calculator,
-  ShoppingCart,
-  Zap,
-  MessageSquare,
-  Settings,
-} from "lucide-react";
-import { Section, SectionBadge, GradientButton, GradientGlow } from "@/components/site/ui";
+import { ArrowRight } from "lucide-react";
+import { Section, GradientButton, GradientGlow } from "@/components/site/ui";
 import { Reveal } from "@/components/site/Reveal";
 import { Breadcrumb } from "@/components/product/Breadcrumb";
 
 export const Route = createFileRoute("/why-sanyya")({
   head: () => ({
     meta: [
-      { title: "Why Sanyya, Procurement Built for You" },
+      { title: "Why Sanyya, spend control that scales with you" },
       {
         name: "description",
         content:
-          "Sanyya was built by an operator for biotech and hardware teams. Compare Sanyya to enterprise and mid-market procurement tools.",
+          "Sanyya was built by an operator who ran early stage biotech operations, chased approvals, matched packing slips, and rebuilt spend numbers by hand.",
       },
       { property: "og:title", content: "Why Sanyya" },
       {
         property: "og:description",
-        content: "Procurement software actually built for you, not adapted from enterprise.",
+        content: "Built by someone who did this job, not adapted from an enterprise system.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: WhySanyyaPage,
 });
 
-const differentiators = [
+const principles = [
   {
-    title: "Designed for Physical Spend",
-    icon: Package,
-    accent: "bg-blue-500",
-    iconCls: "text-blue-500 bg-blue-50",
-    text: "Reagents, components, lab equipment, raw materials. Sanyya was built for companies that buy things that arrive on a truck, not things that arrive in an email. Receiving, matching, and inventory workflows reflect that.",
+    title: "It has to work for physical things",
+    text: "Reagents, equipment, and materials arrive on a truck, not in an inbox. Receiving is part of the job, not an afterthought bolted onto a system designed for software subscriptions.",
   },
   {
-    title: "Works Where Your Team Works",
-    icon: MessageSquare,
-    accent: "bg-violet-500",
-    iconCls: "text-violet-500 bg-violet-50",
-    text: "Slack agent for requisitions. Mobile app for receiving at the dock. Email forwarding for invoices. Sanyya meets your team where they already are instead of asking them to learn another portal.",
+    title: "It has to work where people already are",
+    text: "People will not come to the system. The system has to go to them.",
   },
   {
-    title: "AI That Knows Your Vendors",
-    icon: Sparkles,
-    accent: "bg-cyan-500",
-    iconCls: "text-cyan-500 bg-cyan-50",
-    text: "OCR models trained on each vendor's packing slip format. Semantic matching that understands 'FBS 500mL' and 'Fetal Bovine Serum, 500 mL' are the same thing. The system gets smarter the more you use it.",
-  },
-  {
-    title: "Live in Days, Not Quarters",
-    icon: Zap,
-    accent: "bg-emerald-500",
-    iconCls: "text-emerald-500 bg-emerald-50",
-    text: "No 6-month rollout. No consultants. No training sessions nobody attends. Sanyya is designed to be obvious from the first login. Your team can be live in days because the platform was built to be intuitive, not configured to be usable.",
-  },
-  {
-    title: "Workflows You Control",
-    icon: Settings,
-    accent: "bg-slate-500",
-    iconCls: "text-slate-600 bg-slate-100",
-    text: "Build complex approval chains with no code. Change approvers, thresholds, or routing rules at any time with full version control. Someone leaves, your org restructures, a VP goes on PTO. Update in minutes, not support tickets.",
-  },
-  {
-    title: "Priced for Your Stage",
-    icon: Rocket,
-    accent: "bg-amber-500",
-    iconCls: "text-amber-500 bg-amber-50",
-    text: "You don't need 50 modules and a dedicated admin. Start with one module, add more as you grow. Pricing that makes sense for a Series A through C company, with implementation measured in days.",
-  },
-];
-
-const personas = [
-  {
-    title: "Lab Ops / Operations",
-    icon: FlaskConical,
-    accent: "bg-blue-500",
-    iconCls: "text-blue-500 bg-blue-50",
-    text: "You're drowning in email threads, spreadsheets, and manual reconciliation. Sanyya gives you one system for quotes, requisitions, approvals, receiving, and invoicing, with workflows that match how your company actually operates.",
-  },
-  {
-    title: "Finance & CFO",
-    icon: Calculator,
-    accent: "bg-amber-500",
-    iconCls: "text-amber-500 bg-amber-50",
-    text: "You need spend visibility, budget controls, accrual reporting, and audit trails. Sanyya connects every procurement document into a single source of truth, with real-time dashboards and bill pay platform integration.",
-  },
-  {
-    title: "Procurement Lead",
-    icon: ShoppingCart,
-    accent: "bg-violet-500",
-    iconCls: "text-violet-500 bg-violet-50",
-    text: "You want vendor intelligence, automated matching, and approval workflows that don't require babysitting. Sanyya automates the tedious parts so you can focus on strategy and vendor relationships.",
+    title: "It has to be usable on the first day",
+    text: "There is no one to run an implementation. No admin, no consultants, no rollout budget. If it needs a training session, it is already the wrong tool.",
   },
 ];
 
@@ -108,127 +44,169 @@ function WhySanyyaPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-background pt-24 md:pt-32 pb-16 md:pb-20">
+      <section className="relative overflow-hidden pt-24 md:pt-32 pb-10 md:pb-14">
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <GradientGlow size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-20" />
         </div>
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="container relative mx-auto px-4 sm:px-6">
           <Reveal>
             <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Why Sanyya" }]} />
           </Reveal>
-          <div className="mx-auto mt-8 max-w-3xl text-center">
+          <div className="mx-auto mt-10 max-w-4xl text-center">
             <Reveal>
-              <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-4 py-1.5 font-mono text-[11px] uppercase tracking-widest text-amber-700">
+              <span className="inline-flex items-center rounded-md border border-[hsl(269_80%_57%/0.25)] bg-[hsl(269_80%_57%/0.08)] px-4 py-1.5 tabular-nums text-[11px] text-brand">
                 Why Sanyya
               </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-                Procurement Software That Was{" "}
-                <span className="bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-400 bg-clip-text text-transparent">
-                  Actually Built for You
-                </span>
+              <h1 className="mt-6 text-balance font-display text-5xl leading-[0.98] sm:text-6xl md:text-7xl">
+                For years, we{" "}
+                <span
+                  className="mr-3 md:mr-4 text-muted-foreground tracking-normal text-[1.45em] leading-[1.05] align-baseline"
+                  style={{ fontFamily: "var(--font-hand)" }}
+                >
+                  were
+                </span>{" "}
+                <span className="text-foreground">the system</span>.
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground md:text-lg">
-                Not adapted from an enterprise tool. Not bolted onto an ERP. Designed from first
-                principles by an operator who lived the pain, for biotech, hardware, and
-                physical-spend teams that need intuitive workflows without the complexity.
+              <p className="mx-auto mt-6 max-w-[64ch] text-pretty text-base font-normal leading-[1.7] text-muted-foreground md:text-lg">
+                Chasing the approvals. Matching the packing slips. Rebuilding the numbers every time
+                someone asked. Sanyya is what we wished existed.
               </p>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <div className="mt-8 flex justify-center">
-                <GradientButton href="#book-demo" size="lg" className="w-full sm:w-auto">
-                  Book a Demo <ArrowRight className="size-4" />
-                </GradientButton>
-              </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* DIFFERENTIATORS */}
-      <Section size="tight">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-medium uppercase tracking-widest text-blue-600">
-              Difference
-            </span>
-            <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              What Makes Sanyya Different
-            </h2>
-          </div>
-        </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {differentiators.map((d, i) => (
-            <Reveal key={d.title} delay={i * 0.05}>
-              <div className="h-full overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-lg">
-                <div className={`h-1 w-full ${d.accent}`} />
-                <div className="p-8">
-                  <div className={`grid size-12 place-items-center rounded-xl ${d.iconCls}`}>
-                    <d.icon className="size-6" />
-                  </div>
-                  <h3 className="mt-5 text-lg font-semibold text-foreground">{d.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d.text}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-
-      {/* PERSONAS */}
-      <Section size="tight">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <SectionBadge>Teams</SectionBadge>
-            <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Who Thrives on Sanyya
-            </h2>
-          </div>
-        </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {personas.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.05}>
-              <div className="h-full overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-lg">
-                <div className={`h-1.5 w-full ${p.accent}`} />
-                <div className="p-6">
-                  <div className={`grid size-12 place-items-center rounded-xl ${p.iconCls}`}>
-                    <p.icon className="size-5" />
-                  </div>
-                  <h3 className="mt-4 text-lg font-semibold text-foreground">{p.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{p.text}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-
-      {/* CTA */}
-      <Section size="tight" id="book-demo">
-        <Reveal>
-          <div className="mx-auto max-w-3xl rounded-3xl border border-border bg-white p-8 text-center shadow-sm sm:p-12">
-            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Ready to See the{" "}
-              <span className="bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-400 bg-clip-text text-transparent">
-                Difference?
-              </span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Join the biotech and hardware teams already using Sanyya.
-            </p>
-            <div className="mt-8 flex flex-col items-center gap-4">
-              <GradientButton href="#book-demo" size="lg" className="w-full sm:w-auto">
-                Book a Demo <ArrowRight className="size-4" />
-              </GradientButton>
+      {/* THE STORY */}
+      <Section size="tight" className="!pt-10 md:!pt-14">
+        <div className="mx-auto max-w-3xl">
+          <Reveal>
+            <div className="space-y-6 text-base font-normal leading-[1.7] text-muted-foreground md:text-lg md:leading-[1.75]">
+              <p>
+                Sanyya started with years of running operations at early stage biotech companies.
+                Building labs out of empty rooms, through permits and benches and freezers, until
+                real science was happening in them. That included the loading dock and everything
+                that came off it.
+              </p>
+              <p>
+                None of that was in anyone's job description. It just landed on whoever was closest
+                to it, and the record of what happened lived in that person's head and their inbox.
+                We did not just evaluate the alternatives. We lived through them.
+              </p>
             </div>
+          </Reveal>
+        </div>
+
+        <Reveal>
+          <div className="mx-auto max-w-3xl my-14">
+            <span aria-hidden className="mb-5 block h-[2px] w-10 bg-brand" />
+            <p className="text-2xl font-semibold leading-[1.3] tracking-[-0.03em] text-foreground md:text-[30px]">
+              Slack and spreadsheets first. Then a procurement tool that never fit.
+            </p>
           </div>
         </Reveal>
+
+        <div className="mx-auto max-w-3xl">
+          <Reveal>
+            <div className="space-y-6 text-base font-normal leading-[1.7] text-muted-foreground md:text-lg md:leading-[1.75]">
+              <p>
+                Then a system we designed and built ourselves, out of forms, spreadsheets, email
+                notifications, and custom scripts, because nothing on the market worked at our size
+                and we needed something that did.
+              </p>
+              <p>
+                Then the enterprise route. A multi year contract,{" "}
+                <span className="font-medium text-foreground">six figures a year</span> once
+                implementation was counted, and the better part of a year before anyone could use
+                it. Approval rules so complex that only a certified specialist could change them,
+                which meant every small change became a support ticket. The tools were built for a
+                company that did not exist yet. Nothing was built for the company that existed
+                today.
+              </p>
+            </div>
+          </Reveal>
+        </div>
       </Section>
+
+      {/* WHAT THAT CHANGED */}
+      <Section size="tight" className="!pt-0">
+        <div className="mx-auto max-w-3xl">
+          <Reveal>
+            <h2 className="text-balance font-display text-4xl sm:text-5xl">What that changed</h2>
+            <p className="mt-4 max-w-3xl text-base text-muted-foreground md:text-lg">
+              Three things were non negotiable from the first line of code.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 divide-y divide-border border-y border-border">
+            {principles.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.05}>
+                <div className="group relative py-7 pl-6 transition-colors md:py-8">
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-7 h-6 w-px bg-brand/30 transition-all duration-300 group-hover:h-[calc(100%-3.5rem)] group-hover:bg-brand md:top-8"
+                  />
+                  <h3 className="text-lg font-semibold text-foreground md:text-xl">{p.title}</h3>
+                  <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                    {p.text}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* THE MIDDLE TIER */}
+      <Section size="tight" className="!pt-0">
+        <div className="mx-auto max-w-3xl">
+          <Reveal>
+            <h2 className="text-balance font-display text-4xl sm:text-5xl">
+              What about the tools in the middle?
+            </h2>
+            <div className="mt-6 space-y-6 text-base font-normal leading-[1.7] text-muted-foreground md:text-lg md:leading-[1.75]">
+              <p>
+                There is a whole tier between a spreadsheet and an enterprise system. They cost{" "}
+                <span className="font-medium text-foreground">two to four times</span> what we do,
+                they still take weeks to configure, and they are still built around a purchasing
+                team you do not have.
+              </p>
+              <p>
+                The bigger problem is fit. They are good at ordering things that arrive in boxes.
+                Most of what you spend is{" "}
+                <span className="rounded bg-brand/10 px-1.5 py-0.5 font-medium text-foreground">
+                  a study, a contract, a service
+                </span>
+                .
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* CLOSING */}
+      <section className="relative overflow-hidden pt-6 pb-20 md:pt-8 md:pb-28">
+        <div className="container relative mx-auto px-4 sm:px-6">
+          <Reveal>
+            <div className="mx-auto max-w-3xl rounded-xl border border-border bg-card px-6 py-10 text-center md:px-10">
+              <span aria-hidden className="mx-auto mb-6 block h-px w-16 bg-brand/50" />
+              <p className="text-balance text-lg text-muted-foreground md:text-xl">
+                Sanyya is the system that would have made those years easier. It is built for{" "}
+                <span className="font-medium text-foreground">the team you have right now</span>,
+                not the one you might have in three years.
+              </p>
+              <div className="mt-7 flex justify-center">
+                <GradientButton as="link" to="/product" size="lg" className="w-full sm:w-auto">
+                  See how it works <ArrowRight className="size-4" />
+                </GradientButton>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </>
   );
 }

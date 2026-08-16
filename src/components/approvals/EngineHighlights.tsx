@@ -20,7 +20,7 @@ const items = [
   {
     icon: ScrollText,
     title: "Append-Only Decision Log",
-    body: "Every approval, rejection, and re-route is permanently recorded, never edited, never deleted. When an auditor asks \"who approved this and when,\" the answer is instant.",
+    body: 'Every approval, rejection, and re-route is permanently recorded, never edited, never deleted. When an auditor asks "who approved this and when," the answer is instant.',
   },
   {
     icon: Search,
@@ -39,8 +39,8 @@ export function EngineHighlights() {
     <Stagger className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {items.map((it) => (
         <StaggerItem key={it.title}>
-          <div className="h-full rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-lg">
-            <div className="grid size-10 place-items-center rounded-lg bg-gradient-to-br from-blue-50 to-violet-50 text-blue-600">
+          <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-lg">
+            <div className="grid size-10 place-items-center rounded-lg bg-gradient-to-br from-violet-50 to-violet-50 text-violet-700">
               <it.icon className="size-5" />
             </div>
             <h3 className="mt-4 text-base font-semibold text-foreground sm:text-lg">{it.title}</h3>

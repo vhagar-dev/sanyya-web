@@ -27,18 +27,18 @@ export const modules: Module[] = [
   {
     name: "Quote Management",
     slug: "quotes",
-    href: "/product/quotes",
+    href: "/product",
     icon: FileText,
-    iconColor: "text-[hsl(214_90%_38%)]",
+    iconColor: "text-[hsl(168_78%_38%)]",
     short: "Centralize and compare vendor quotes.",
     long: "Centralize vendor quotes. Compare side-by-side. Get AI-powered recommendations.",
   },
   {
     name: "Requisitions",
     slug: "requisitions",
-    href: "/product/requisitions",
+    href: "/product",
     icon: MessageSquare,
-    iconColor: "text-[hsl(217_91%_38%)]",
+    iconColor: "text-[hsl(268_70%_44%)]",
     short: "Create POs from Slack with an AI agent.",
     long: "Create purchase requests from Slack. Our AI agent handles the rest.",
     featured: true,
@@ -46,7 +46,7 @@ export const modules: Module[] = [
   {
     name: "Approvals & Workflows",
     slug: "approvals",
-    href: "/product/approvals",
+    href: "/product",
     icon: GitBranch,
     iconColor: "text-[hsl(170_70%_40%)]",
     short: "Dynamic routing by threshold or project.",
@@ -55,16 +55,16 @@ export const modules: Module[] = [
   {
     name: "Purchase Orders",
     slug: "purchase-orders",
-    href: "/product/purchase-orders",
+    href: "/product",
     icon: ShoppingCart,
-    iconColor: "text-[hsl(214_90%_40%)]",
+    iconColor: "text-[hsl(168_78%_40%)]",
     short: "Single source of truth for commitments.",
     long: "The single source of truth for every commitment. Blanket PO drawdown tracking included.",
   },
   {
     name: "Receiving",
     slug: "receiving",
-    href: "/product/receiving",
+    href: "/product",
     icon: PackageCheck,
     iconColor: "text-[hsl(25_90%_40%)]",
     short: "Mobile receiving with vendor-trained OCR.",
@@ -74,7 +74,7 @@ export const modules: Module[] = [
   {
     name: "Inventory Management",
     slug: "inventory",
-    href: "/product/inventory",
+    href: "/product",
     icon: Boxes,
     iconColor: "text-[hsl(160_84%_40%)]",
     short: "Real-time stock from actual deliveries.",
@@ -83,7 +83,7 @@ export const modules: Module[] = [
   {
     name: "Invoice Processing",
     slug: "invoices",
-    href: "/product/invoices",
+    href: "/product",
     icon: Receipt,
     iconColor: "text-[hsl(38_92%_40%)]",
     short: "3-way match with bill pay handoff.",
@@ -92,41 +92,30 @@ export const modules: Module[] = [
   {
     name: "Vendor Management",
     slug: "vendors",
-    href: "/product/vendors",
+    href: "/product",
     icon: Building2,
-    iconColor: "text-[hsl(258_90%_38%)]",
+    iconColor: "text-[hsl(190_85%_32%)]",
     short: "Auto vendor scorecards from real data.",
     long: "Automatic vendor scorecards built from pricing accuracy, delivery reliability, and quote consistency.",
   },
   {
     name: "Dashboards & Reporting",
     slug: "dashboards",
-    href: "/product/dashboards",
+    href: "/product",
     icon: BarChart3,
-    iconColor: "text-[hsl(258_90%_38%)]",
+    iconColor: "text-[hsl(190_85%_32%)]",
     short: "Line-item search and accruals.",
     long: "Line-item search across every document. Custom dashboards. Accrual reporting.",
   },
   {
     name: "AI Match Engine",
     slug: "match-engine",
-    href: "/product/match-engine",
+    href: "/product",
     icon: Sparkles,
-    iconColor: "text-[hsl(258_90%_38%)]",
+    iconColor: "text-[hsl(190_85%_32%)]",
     short: "Semantic 3-way matching at the line level.",
     long: "Semantic vector matching connects POs, packing slips, and invoices, even with different names.",
   },
-];
-
-export const solutionsByIndustry = [
-  { name: "Biotech & Life Sciences", desc: "Reagents, lot tracking, cold chain.", href: "/solutions/biotech" },
-  { name: "Hardware & Robotics", desc: "Components, BOMs, compliance.", href: "/solutions/hardware" },
-];
-
-export const solutionsByRole = [
-  { name: "Operations", desc: "Close the loop on every delivery.", href: "/solutions/operations" },
-  { name: "Finance", desc: "Accruals and 3-way match, automated.", href: "/solutions/finance" },
-  { name: "Procurement", desc: "Quote leverage and vendor scoring.", href: "/solutions/procurement" },
 ];
 
 export const integrations = [

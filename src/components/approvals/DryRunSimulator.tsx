@@ -77,25 +77,23 @@ export function DryRunSimulator() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <PlayCircle className="size-4 text-violet-600" />
-          <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            Dry-run simulator
-          </span>
+          <span className="tabular-nums text-[10px] text-muted-foreground">Dry-run simulator</span>
         </div>
-        <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-700">
+        <span className="rounded-md border border-violet-200 bg-violet-50 px-2 py-0.5 tabular-nums text-[10px] text-violet-800">
           Simulation only
         </span>
       </div>
 
       <div className="mt-5 grid gap-6 md:grid-cols-2">
         <div className="space-y-3">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            Test scenario
-          </div>
+          <div className="tabular-nums text-[10px] text-muted-foreground">Test scenario</div>
           <Field label="Department">
             <select
               value={facts.department}
-              onChange={(e) => setFacts({ ...facts, department: e.target.value as Facts["department"] })}
-              className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm"
+              onChange={(e) =>
+                setFacts({ ...facts, department: e.target.value as Facts["department"] })
+              }
+              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm"
             >
               <option value="mkt">Marketing</option>
               <option value="rnd">R&D</option>
@@ -107,14 +105,16 @@ export function DryRunSimulator() {
               type="number"
               value={facts.amount}
               onChange={(e) => setFacts({ ...facts, amount: Number(e.target.value) || 0 })}
-              className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm"
+              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm"
             />
           </Field>
           <Field label="Currency">
             <select
               value={facts.currency}
-              onChange={(e) => setFacts({ ...facts, currency: e.target.value as Facts["currency"] })}
-              className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm"
+              onChange={(e) =>
+                setFacts({ ...facts, currency: e.target.value as Facts["currency"] })
+              }
+              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm"
             >
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
@@ -125,7 +125,7 @@ export function DryRunSimulator() {
             <select
               value={facts.vendor}
               onChange={(e) => setFacts({ ...facts, vendor: e.target.value as Facts["vendor"] })}
-              className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm"
+              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm"
             >
               <option value="preapproved">Pre-approved</option>
               <option value="standard">Standard</option>
@@ -134,22 +134,22 @@ export function DryRunSimulator() {
           </Field>
         </div>
 
-        <div className="rounded-xl border border-border bg-[hsl(210_40%_98%)] p-4">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            What would happen
-          </div>
+        <div className="rounded-xl border border-border bg-secondary p-4">
+          <div className="tabular-nums text-[10px] text-muted-foreground">What would happen</div>
 
-          <div className="mt-3 rounded-lg border border-border bg-white p-3">
+          <div className="mt-3 rounded-lg border border-border bg-card p-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Rule matched</span>
-              <span className="rounded bg-blue-50 px-1.5 py-0.5 font-mono text-[10px] text-blue-700">
+              <span className="rounded bg-violet-50 px-1.5 py-0.5 tabular-nums text-[10px] text-violet-800">
                 p{result.priority}
               </span>
             </div>
-            <code className="mt-1 block font-mono text-[11px] text-foreground">{result.predicate}</code>
+            <code className="mt-1 block tabular-nums text-[11px] text-foreground">
+              {result.predicate}
+            </code>
           </div>
 
-          <div className="mt-3 rounded-lg border border-border bg-white p-3">
+          <div className="mt-3 rounded-lg border border-border bg-card p-3">
             <div className="text-xs text-muted-foreground">Workflow</div>
             <div className="mt-1 text-sm font-semibold text-foreground">{result.workflow}</div>
           </div>
@@ -157,7 +157,7 @@ export function DryRunSimulator() {
           <div className="mt-3">
             <div className="mb-2 text-xs text-muted-foreground">Approval path</div>
             {result.chain.length === 0 ? (
-              <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+              <div className="rounded-lg border border-violet-200 bg-violet-50 px-3 py-2 text-sm text-violet-800">
                 Auto-approved, no approvers required
               </div>
             ) : (
@@ -167,7 +167,9 @@ export function DryRunSimulator() {
                     <span className="rounded-md border border-violet-200 bg-violet-50 px-2 py-1 text-xs font-medium text-violet-700">
                       {a}
                     </span>
-                    {i < result.chain.length - 1 && <span className="text-muted-foreground">→</span>}
+                    {i < result.chain.length - 1 && (
+                      <span className="text-muted-foreground">→</span>
+                    )}
                   </span>
                 ))}
               </div>

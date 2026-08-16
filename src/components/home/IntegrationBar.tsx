@@ -9,7 +9,7 @@ export function IntegrationBar() {
       <Reveal>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
-            Plugs into your stack, <span className="text-brand-gradient">no migration required</span>
+            Plugs into your stack, <span className="text-foreground">no migration required</span>
           </h2>
         </div>
       </Reveal>
@@ -20,7 +20,7 @@ export function IntegrationBar() {
               key={i}
               className={cn(
                 "glass flex h-16 items-center justify-center rounded-xl text-sm font-medium text-foreground/90",
-                i === "Quartzy" && "ring-1 ring-[hsl(217_91%_57%/0.4)]",
+                i === "Quartzy" && "ring-1 ring-[hsl(268_70%_52%/0.4)]",
               )}
             >
               {i}
@@ -30,8 +30,8 @@ export function IntegrationBar() {
       </Reveal>
       <Reveal delay={0.1}>
         <div className="mt-6 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[hsl(217_91%_57%/0.4)] bg-[hsl(217_91%_57%/0.1)] px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-[hsl(217_91%_38%)]">
-            <span className="size-1.5 rounded-full bg-[hsl(217_91%_60%)]" />
+          <span className="inline-flex items-center gap-2 rounded-md border border-[hsl(269_80%_57%/0.25)] bg-[hsl(268_70%_52%/0.1)] px-3 py-1 tabular-nums text-[11px] text-[hsl(268_70%_44%)]">
+            <span className="size-1.5 rounded-full bg-[hsl(269_80%_57%)]" />
             Only procurement platform that integrates with Quartzy
           </span>
         </div>

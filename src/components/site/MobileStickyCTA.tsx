@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { GradientButton } from "./ui";
+import { SignupButton } from "./SignupDialog";
 import { cn } from "@/lib/utils";
 
 export function MobileStickyCTA() {
@@ -18,9 +18,9 @@ export function MobileStickyCTA() {
         show ? "translate-y-0" : "translate-y-full",
       )}
     >
-      <GradientButton href="#book-demo" className="w-full">
-        Book a Demo <ArrowRight className="size-4" />
-      </GradientButton>
+      <SignupButton className="w-full">
+        Get early access <ArrowRight className="size-4" />
+      </SignupButton>
     </div>
   );
 }

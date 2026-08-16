@@ -10,9 +10,9 @@ export function MatchEngineSection() {
           <SectionBadge>Match Engine</SectionBadge>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            From <span className="text-foreground/50">messy</span> to{" "}
-            <span className="text-brand-gradient">matched</span>
+          <h2 className="mt-5 text-balance font-display text-4xl sm:text-5xl md:text-6xl">
+            From <span className="text-foreground">messy</span> to{" "}
+            <span className="text-foreground">matched</span>
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
@@ -25,7 +25,10 @@ export function MatchEngineSection() {
 
       <Reveal delay={0.15}>
         <div className="relative mx-auto mt-12 max-w-4xl">
-          <GradientGlow size="lg" className="-z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
+          <GradientGlow
+            size="lg"
+            className="-z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30"
+          />
           <MatchEngineDiagram />
         </div>
       </Reveal>

@@ -7,8 +7,8 @@ const pains = [
     icon: Mail,
     title: "Quotes Buried in Inboxes",
     body: "Vendor quotes scattered across email threads. No comparison, no history, no leverage.",
-    iconBg: "bg-blue-50",
-    iconColor: "text-blue-500",
+    iconBg: "bg-violet-50",
+    iconColor: "text-violet-700",
   },
   {
     icon: Clock,
@@ -31,23 +31,21 @@ export function ProblemSection() {
     <Section id="problem">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-100 px-4 py-1.5 text-sm font-medium uppercase tracking-widest text-slate-600">
+          <span className="inline-flex items-center rounded-md border border-border bg-secondary px-4 py-1.5 text-sm font-medium text-muted-foreground">
             The Problem
           </span>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          <h2 className="mt-5 text-balance font-display text-4xl sm:text-5xl md:text-6xl">
             Your procurement stack is held together with{" "}
-            <span className="bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-400 bg-clip-text text-transparent">
-              email and spreadsheets
-            </span>
+            <span className="text-foreground">email and spreadsheets</span>
           </h2>
         </Reveal>
       </div>
       <Stagger className="mt-12 grid gap-4 md:gap-6 md:grid-cols-3">
         {pains.map((p) => (
           <StaggerItem key={p.title}>
-            <div className="h-full rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-lg">
+            <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-lg">
               <div className={`grid size-11 place-items-center rounded-xl ${p.iconBg}`}>
                 <p.icon className={`size-5 ${p.iconColor}`} />
               </div>

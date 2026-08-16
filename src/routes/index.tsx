@@ -1,28 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/home/Hero";
-import { ProblemSection } from "@/components/home/ProblemSection";
-import { PlatformBento } from "@/components/home/PlatformBento";
-import { Differentiators } from "@/components/home/Differentiators";
-import { IntegrationBar } from "@/components/home/IntegrationBar";
-
+import { WhichVersion } from "@/components/home/WhichVersion";
+import { TheTurn } from "@/components/home/TheTurn";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-import { SectionDivider } from "@/components/site/ui";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sanyya, Procurement that actually works" },
+      { title: "Sanyya, spend control that scales with you" },
       {
         name: "description",
         content:
-          "From quote to payment, one platform, zero chaos. Built for biotech, hardware, and deep-tech teams.",
+          "Requests, approvals, orders, receiving, and invoices in one place, so any spend question is a lookup, not an investigation.",
       },
-      { property: "og:title", content: "Sanyya, Procurement that actually works" },
+      { property: "og:title", content: "Sanyya, the system underneath how your team buys" },
       {
         property: "og:description",
         content:
-          "From quote to payment, one platform, zero chaos. Built for biotech, hardware, and deep-tech teams.",
+          "Requests, approvals, orders, receiving, and invoices in one place, so any spend question is a lookup, not an investigation.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: HomePage,
@@ -32,14 +30,8 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <SectionDivider />
-      <ProblemSection />
-      <SectionDivider />
-      <PlatformBento />
-      <SectionDivider />
-      <Differentiators />
-      <SectionDivider />
-      <IntegrationBar />
+      <WhichVersion />
+      <TheTurn />
       <ClosingCTA />
     </>
   );

@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/sanyya-logo.png" />
     <link rel="apple-touch-icon" href="/sanyya-logo.png" />
-    <title>Sanyya, Procurement that actually works</title>
+    <title>Sanyya, spend control that scales with you</title>
     <meta
       name="description"
       content="Sanyya is the procurement platform built for biotech, hardware, and deep-tech teams. From quote to payment, one platform, zero chaos."
@@ -18,7 +18,7 @@
     <link rel="canonical" href="https://sanyya.com" />
 
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Sanyya, Procurement that actually works" />
+    <meta property="og:title" content="Sanyya, spend control that scales with you" />
     <meta
       property="og:description"
       content="The procurement platform built by operators, for biotech, hardware, and deep-tech teams."
@@ -31,7 +31,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@sanyya" />
-    <meta name="twitter:title" content="Sanyya, Procurement that actually works" />
+    <meta name="twitter:title" content="Sanyya, spend control that scales with you" />
     <meta
       name="twitter:description"
       content="The procurement platform built by operators, for biotech, hardware, and deep-tech teams."
@@ -42,19 +42,37 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DL2MG6EQHT"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DL2MG6EQHT');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-DL2MG6EQHT");
+    </script>
+
+    <!-- Applies the saved/system theme before first paint to avoid a flash. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("sanyya-theme");
+          if (!t) {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          if (t === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
+      })();
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@700&display=swap"
     />
   </head>
-  <body class="dark min-h-screen bg-background text-foreground antialiased">
+  <body class="min-h-screen bg-background text-foreground antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -5,7 +5,7 @@ export function Breadcrumb({ items }: { items: { label: string; href?: string }[
   return (
     <nav
       aria-label="Breadcrumb"
-      className="mx-auto flex max-w-6xl items-center gap-1.5 overflow-hidden whitespace-nowrap font-mono text-[11px] uppercase tracking-widest text-muted-foreground"
+      className="mx-auto flex max-w-6xl items-center gap-1.5 overflow-hidden whitespace-nowrap tabular-nums text-[11px] text-muted-foreground"
     >
       {items.map((item, i) => (
         <span key={i} className="flex items-center gap-1.5 truncate">

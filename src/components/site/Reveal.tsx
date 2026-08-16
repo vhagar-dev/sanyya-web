@@ -24,7 +24,15 @@ export function Reveal({ children, className, delay = 0, y = 20, ...rest }: Prop
   );
 }
 
-export function Stagger({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+export function Stagger({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   return (
     <motion.div
       initial="hidden"
