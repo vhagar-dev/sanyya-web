@@ -178,7 +178,9 @@ const flow: Stage[] = [
 
 function ProductPage() {
   return (
-    <div className="xl:[&_.container]:pl-60">
+    // Reserves the StageRail's gutter so no section can slide under it. Must
+    // match the rail's footprint (left-8 + w-64 = 18rem) and breakpoint.
+    <div className="lg:[&_.container]:pl-76">
       <StageRail />
 
       <section className="relative overflow-hidden bg-background pt-28 md:pt-36 pb-12 md:pb-16">

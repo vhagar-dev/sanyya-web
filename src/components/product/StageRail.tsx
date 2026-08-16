@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { stages } from "@/data/stages";
 
+// Keep in sync with the marker geometry below: the track sits on the centre of
+// the numbered circles, so its offset is (circle width - track width) / 2.
+const TRACK_LEFT = "left-[1.0625rem]";
+
 export function StageRail() {
   const [active, setActive] = useState(stages[0]!.id);
+  const [marker, setMarker] = useState<{ top: number; height: number } | null>(null);
+  const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
 
   useEffect(() => {
     let frame = 0;
@@ -42,23 +48,59 @@ export function StageRail() {
     };
   }, []);
 
+  // Position the sliding marker over whichever item is active. Measured rather
+  // than derived from an index so it stays correct when titles wrap to two lines.
+  useEffect(() => {
+    const measure = () => {
+      const index = stages.findIndex((s) => s.id === active);
+      const el = itemRefs.current[index];
+      if (!el) return;
+      setMarker({ top: el.offsetTop, height: el.offsetHeight });
+    };
+
+    measure();
+    window.addEventListener("resize", measure);
+    // Titles can reflow once the webfont swaps in, which shifts item heights.
+    document.fonts?.ready.then(measure).catch(() => {});
+    return () => window.removeEventListener("resize", measure);
+  }, [active]);
+
   return (
     <nav
       aria-label="Product flow"
-      className="pointer-events-none fixed left-6 top-1/2 z-40 hidden w-52 -translate-y-1/2 xl:block"
+      className="pointer-events-none fixed left-8 top-1/2 z-40 hidden w-64 -translate-y-1/2 lg:block"
     >
-      <ol className="pointer-events-auto relative space-y-6">
-        <div aria-hidden className="absolute left-[0.6875rem] top-2 bottom-2 w-px bg-border" />
+      <ol className="pointer-events-auto relative space-y-8">
+        <div
+          aria-hidden
+          className={cn("absolute top-3 bottom-3 w-0.5 rounded-full bg-border", TRACK_LEFT)}
+        />
+        {marker && (
+          <div
+            aria-hidden
+            className={cn(
+              "absolute w-0.5 rounded-full bg-brand transition-all duration-300 ease-out motion-reduce:transition-none",
+              TRACK_LEFT,
+            )}
+            style={{ top: marker.top, height: marker.height }}
+          />
+        )}
         {stages.map((s, i) => {
           const isActive = active === s.id;
           return (
-            <li key={s.id} className="relative">
-              <a href={`#${s.id}`} className="group flex items-center gap-3">
+            <li
+              key={s.id}
+              ref={(el) => {
+                itemRefs.current[i] = el;
+              }}
+              className="relative"
+            >
+              <a href={`#${s.id}`} className="group flex items-center gap-4">
                 <span
                   className={cn(
-                    "z-10 grid size-6 shrink-0 place-items-center rounded-full border tabular-nums text-[10px] transition-all",
+                    "z-10 grid size-9 shrink-0 place-items-center rounded-full border tabular-nums text-[13px] transition-all",
                     isActive
-                      ? "border-brand bg-brand/[0.08] text-brand"
+                      ? "border-brand bg-brand/[0.08] font-semibold text-brand"
                       : "border-border bg-background text-muted-foreground group-hover:border-foreground/30",
                   )}
                 >
@@ -66,7 +108,7 @@ export function StageRail() {
                 </span>
                 <span
                   className={cn(
-                    "max-w-[11rem] text-xs leading-tight transition-colors",
+                    "max-w-[12.5rem] text-sm leading-snug transition-colors",
                     isActive ? "font-medium text-brand" : "text-muted-foreground",
                   )}
                 >
