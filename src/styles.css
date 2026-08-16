@@ -68,6 +68,8 @@
   /* Violet accent, used sparingly */
   --brand: hsl(269 60% 50%);
   --brand-end: hsl(269 60% 50%);
+  /* Soft ring behind the active stage marker. */
+  --brand-halo: hsl(269 60% 50% / 0.18);
   --glow-blue: hsl(269 60% 50%);
   --glow-violet: hsl(269 60% 50%);
   --glow-cyan: hsl(269 60% 50%);
@@ -111,6 +113,7 @@
   --ring: hsl(272 75% 72%);
   --brand: hsl(272 75% 72%);
   --brand-end: hsl(272 75% 72%);
+  --brand-halo: hsl(272 75% 72% / 0.22);
   --cta-from: hsl(41 33% 95%);
   --cta-to: hsl(41 33% 95%);
   --cta-hover: hsl(41 20% 86%);

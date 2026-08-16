@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { stages } from "@/data/stages";
-
-// Keep in sync with the marker geometry below: the track sits on the centre of
-// the numbered circles, so its offset is (circle width - track width) / 2.
-const TRACK_LEFT = "left-[1.0625rem]";
 
 export function StageRail() {
   const [active, setActive] = useState(stages[0]!.id);
   const [marker, setMarker] = useState<{ top: number; height: number } | null>(null);
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     let frame = 0;
@@ -48,8 +46,8 @@ export function StageRail() {
     };
   }, []);
 
-  // Position the sliding marker over whichever item is active. Measured rather
-  // than derived from an index so it stays correct when titles wrap to two lines.
+  // Measured from the active item rather than derived from its index, so the
+  // marker stays aligned when a title wraps to two lines.
   useEffect(() => {
     const measure = () => {
       const index = stages.findIndex((s) => s.id === active);
@@ -70,19 +68,22 @@ export function StageRail() {
       aria-label="Product flow"
       className="pointer-events-none fixed left-8 top-1/2 z-40 hidden w-64 -translate-y-1/2 lg:block"
     >
-      <ol className="pointer-events-auto relative space-y-8">
-        <div
-          aria-hidden
-          className={cn("absolute top-3 bottom-3 w-0.5 rounded-full bg-border", TRACK_LEFT)}
-        />
+      {/* The track sits in its own column left of the numbers. It used to run
+          through their centres, which showed through the translucent active
+          circle as a line across the digit. */}
+      <ol className="pointer-events-auto relative space-y-8 pl-7">
+        <div aria-hidden className="absolute left-0 top-3 bottom-3 w-0.5 rounded-full bg-border" />
         {marker && (
-          <div
+          <motion.div
             aria-hidden
-            className={cn(
-              "absolute w-0.5 rounded-full bg-brand transition-all duration-300 ease-out motion-reduce:transition-none",
-              TRACK_LEFT,
-            )}
-            style={{ top: marker.top, height: marker.height }}
+            className="absolute left-0 top-0 w-0.5 rounded-full bg-brand"
+            initial={false}
+            animate={{ y: marker.top, height: marker.height }}
+            transition={
+              reduceMotion
+                ? { duration: 0 }
+                : { type: "spring", stiffness: 420, damping: 38, mass: 0.9 }
+            }
           />
         )}
         {stages.map((s, i) => {
@@ -98,17 +99,19 @@ export function StageRail() {
               <a href={`#${s.id}`} className="group flex items-center gap-4">
                 <span
                   className={cn(
-                    "z-10 grid size-9 shrink-0 place-items-center rounded-full border tabular-nums text-[13px] transition-all",
+                    "grid size-9 shrink-0 place-items-center rounded-full border tabular-nums text-[13px]",
+                    "transition-[transform,background-color,border-color,box-shadow,color] duration-300 ease-out",
+                    "motion-reduce:transition-none",
                     isActive
-                      ? "border-brand bg-brand/[0.08] font-semibold text-brand"
-                      : "border-border bg-background text-muted-foreground group-hover:border-foreground/30",
+                      ? "scale-110 border-brand bg-brand font-semibold text-primary-foreground shadow-[0_0_0_5px_var(--brand-halo)]"
+                      : "border-border bg-background text-muted-foreground group-hover:border-foreground/30 group-hover:text-foreground",
                   )}
                 >
                   {i + 1}
                 </span>
                 <span
                   className={cn(
-                    "max-w-[12.5rem] text-sm leading-snug transition-colors",
+                    "max-w-[10.5rem] text-sm leading-snug transition-colors duration-300",
                     isActive ? "font-medium text-brand" : "text-muted-foreground",
                   )}
                 >
