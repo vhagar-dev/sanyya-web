@@ -10,7 +10,9 @@ export function Breadcrumb({ items }: { items: { label: string; href?: string }[
       {items.map((item, i) => (
         <span key={i} className="flex items-center gap-1.5 truncate">
           {item.href ? (
-            <Link to={item.href} className="hover:text-foreground">
+            // py/-my expands the tap target to ~33px without moving anything:
+            // the 11px text alone gave a 17px target, under the 24px minimum.
+            <Link to={item.href} className="-my-2 py-2 hover:text-foreground">
               {item.label}
             </Link>
           ) : (

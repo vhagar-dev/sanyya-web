@@ -66,12 +66,12 @@ export function StageRail() {
   return (
     <nav
       aria-label="Product flow"
-      className="pointer-events-none fixed left-8 top-1/2 z-40 hidden w-64 -translate-y-1/2 lg:block"
+      className="pointer-events-none fixed left-8 top-1/2 z-40 hidden w-56 -translate-y-1/2 lg:block"
     >
       {/* The track sits in its own column left of the numbers. It used to run
           through their centres, which showed through the translucent active
           circle as a line across the digit. */}
-      <ol className="pointer-events-auto relative space-y-8 pl-7">
+      <ol className="pointer-events-auto relative space-y-7 pl-6">
         <div aria-hidden className="absolute left-0 top-3 bottom-3 w-0.5 rounded-full bg-border" />
         {marker && (
           <motion.div
@@ -96,14 +96,14 @@ export function StageRail() {
               }}
               className="relative"
             >
-              <a href={`#${s.id}`} className="group flex items-center gap-4">
+              <a href={`#${s.id}`} className="group flex items-center gap-3.5">
                 <span
                   className={cn(
-                    "grid size-9 shrink-0 place-items-center rounded-full border tabular-nums text-[13px]",
+                    "grid size-8 shrink-0 place-items-center rounded-full border tabular-nums text-xs",
                     "transition-[transform,background-color,border-color,box-shadow,color] duration-300 ease-out",
                     "motion-reduce:transition-none",
                     isActive
-                      ? "scale-110 border-brand bg-brand font-semibold text-primary-foreground shadow-[0_0_0_5px_var(--brand-halo)]"
+                      ? "scale-110 border-brand bg-brand font-semibold text-primary-foreground shadow-[0_0_0_4px_var(--brand-halo)]"
                       : "border-border bg-background text-muted-foreground group-hover:border-foreground/30 group-hover:text-foreground",
                   )}
                 >
@@ -111,7 +111,7 @@ export function StageRail() {
                 </span>
                 <span
                   className={cn(
-                    "max-w-[10.5rem] text-sm leading-snug transition-colors duration-300",
+                    "max-w-[9.5rem] text-[13px] leading-snug transition-colors duration-300",
                     isActive ? "font-medium text-brand" : "text-muted-foreground",
                   )}
                 >

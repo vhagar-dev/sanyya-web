@@ -175,7 +175,7 @@ function AIInsightPanel() {
         <p className="text-xs sm:text-[13px] leading-relaxed text-foreground/90">
           3 departments ordering from Fisher this week. Bundle to save ~$340 on shipping.
         </p>
-        <button className="mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-[hsl(268_70%_52%)] hover:underline">
+        <button className="mt-2 inline-flex min-h-[28px] items-center gap-1 text-[11px] font-medium text-[hsl(268_70%_52%)] hover:underline">
           View Bundle <ArrowRight className="size-3" />
         </button>
         <p className="mt-3 text-[11px] text-muted-foreground leading-relaxed border-t border-border/60 pt-2">

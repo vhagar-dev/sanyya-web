@@ -480,7 +480,7 @@ function IntegrationsPage() {
                 </p>
                 <SignupButton
                   variant="link"
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-violet-700 hover:text-violet-700"
+                  className="mt-4 inline-flex min-h-[28px] items-center gap-1 text-sm font-medium text-violet-700 hover:text-violet-700"
                 >
                   Contact Us <ArrowRight className="size-4" />
                 </SignupButton>

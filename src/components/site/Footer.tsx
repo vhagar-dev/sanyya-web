@@ -14,13 +14,13 @@ export function Footer() {
             </p>
           </div>
           <nav className="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
-            <Link to="/product" className="hover:text-foreground">
+            <Link to="/product" className="-my-2 py-2 hover:text-foreground">
               Product
             </Link>
-            <Link to="/why-sanyya" className="hover:text-foreground">
+            <Link to="/why-sanyya" className="-my-2 py-2 hover:text-foreground">
               Why Sanyya
             </Link>
-            <SignupButton variant="link" className="hover:text-foreground">
+            <SignupButton variant="link" className="-my-2 py-2 hover:text-foreground">
               Contact
             </SignupButton>
           </nav>
